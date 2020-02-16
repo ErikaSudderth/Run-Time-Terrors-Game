@@ -31,6 +31,7 @@ public class SFX {
 
 	public static void music() {
 		music = new MediaPlayer(SFX.MUSIC);
+		music.setVolume(.5);
 		music.setRate(.92);
 		music.setCycleCount(MediaPlayer.INDEFINITE);
 		music.play();
@@ -39,14 +40,16 @@ public class SFX {
 	public static void musicVolUp(){
 		double volume = music.getVolume();
 		if (volume < 1){
-			music.setVolume(volume + .1);
+			music.setVolume(volume + .05);
+			System.out.println(music.getVolume());
 		}
 	}
 
 	public static void musicVolDown(){
 		double volume = music.getVolume();
 		if (volume > 0){
-			music.setVolume(volume - .1);
+			music.setVolume(volume - .05);
+			System.out.println(music.getVolume());
 		}
 	}
 }
