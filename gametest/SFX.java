@@ -16,6 +16,7 @@ import java.io.File;
 public class SFX {
 	private static final Media CLICK = new Media(new File("src/resources/click.wav").toURI().toString());
 	private static final Media RELEASE = new Media(new File("src/resources/release.wav").toURI().toString());
+	private static final Media ERROR = new Media(new File("src/resources/error.wav").toURI().toString());
 	private static final Media MUSIC = new Media(new File("src/resources/music.mp3").toURI().toString());
 	private static MediaPlayer music;
 
@@ -37,19 +38,29 @@ public class SFX {
 		music.play();
 	}
 
-	public static void musicVolUp(){
+	public static void musicVolUp() {
 		double volume = music.getVolume();
-		if (volume < 1){
+		if (volume < .5){
 			music.setVolume(volume + .05);
 			System.out.println(music.getVolume());
+			return;
 		}
+		SFX.playError();
 	}
 
-	public static void musicVolDown(){
+	public static void musicVolDown() {
 		double volume = music.getVolume();
 		if (volume > 0){
 			music.setVolume(volume - .05);
 			System.out.println(music.getVolume());
+			return;
 		}
+		SFX.playError();
+	}
+
+	public static void playError() {
+		MediaPlayer error = new MediaPlayer(SFX.ERROR);
+		error.setVolume(.5);
+		error.play();
 	}
 }

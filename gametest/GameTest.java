@@ -1,12 +1,6 @@
 package gametest;
 
 import javafx.application.Application;
-import javafx.scene.image.Image;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
-
 import javafx.stage.Stage;
 
 

@@ -42,22 +42,22 @@ public class ButtonExt extends Button {
 
 	private void setButtonFont(int _size) {
 		try {
-			setFont(Font.loadFont(new FileInputStream(FONT_PATH), _size));
+			this.setFont(Font.loadFont(new FileInputStream(FONT_PATH), _size));
 		} catch (FileNotFoundException e) {
-			setFont(Font.font("Verdana", 24));
+			this.setFont(Font.font("Verdana", 15));
 			System.out.println("Whoopsie." + e);
 		}
 
 	}
 
 	private void setButtonPressedStyle() {
-		setStyle(BUTTON_PRESSED_STYLE);
+		this.setStyle(BUTTON_PRESSED_STYLE);
 		//setPrefHeight(35);
 		//setLayoutY(getLayoutY() + 4);
 	}
 
 	private void setButtonReleasedStyle() {
-		setStyle(BUTTON_FREE_STYLE);
+		this.setStyle(BUTTON_FREE_STYLE);
 		//setPrefHeight(35);
 		//setLayoutY(getLayoutY() - 4);
 	}
