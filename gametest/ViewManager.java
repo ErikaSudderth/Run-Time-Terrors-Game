@@ -1,5 +1,6 @@
 package gametest;
 
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -45,8 +46,20 @@ public class ViewManager {
 	private void createButtons(){
 		ButtonExt button = new ButtonExt("Down", 300, 300);
 		mainPane.getChildren().add(button);
+		button.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				SFX.musicVolDown();
+			}
+		});
 		ButtonExt button2 = new ButtonExt("Up", 300, 200, 18);
 		mainPane.getChildren().add(button2);
+		button2.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				SFX.musicVolUp();
+			}
+		});
 //		button.setLayoutX(300);
 //		button.setLayoutY(300);
 //		button.setOnMouseEntered(new EventHandler<Event>(){

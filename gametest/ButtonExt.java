@@ -28,7 +28,7 @@ public class ButtonExt extends Button {
 		this.setLayoutY(_y);
 	}
 
-	public ButtonExt(String _text, int _x, int _y, int _font_size){
+	public ButtonExt(String _text, int _x, int _y, int _font_size) {
 		this.setText(_text);
 		this.setId(_text);
 		this.setButtonFont(_font_size);
@@ -81,7 +81,7 @@ public class ButtonExt extends Button {
 					Button source = (Button) event.getSource();
 					String sourceButt = source.getText();
 					System.out.println(sourceButt);
-					ButtonController.buttonDecoder(sourceButt);
+					//ButtonController.buttonDecoder(sourceButt);
 					SFX.playRelease();
 				}
 			}

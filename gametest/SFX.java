@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gametest;
 
 import javafx.scene.media.Media;
@@ -14,6 +9,7 @@ import java.io.File;
  * @author Latitude
  */
 public class SFX {
+
 	private static final Media CLICK = new Media(new File("src/resources/click.wav").toURI().toString());
 	private static final Media RELEASE = new Media(new File("src/resources/release.wav").toURI().toString());
 	private static final Media ERROR = new Media(new File("src/resources/error.wav").toURI().toString());
@@ -24,6 +20,7 @@ public class SFX {
 		MediaPlayer click = new MediaPlayer(SFX.CLICK);
 		click.play();
 	}
+
 	public static void playRelease() {
 		MediaPlayer release = new MediaPlayer(SFX.RELEASE);
 		release.play();
@@ -40,7 +37,7 @@ public class SFX {
 
 	public static void musicVolUp() {
 		double volume = music.getVolume();
-		if (volume < .5){
+		if (volume < .5) {
 			music.setVolume(volume + .05);
 			System.out.println(music.getVolume());
 			return;
@@ -50,7 +47,7 @@ public class SFX {
 
 	public static void musicVolDown() {
 		double volume = music.getVolume();
-		if (volume > 0){
+		if (volume > .01) {
 			music.setVolume(volume - .05);
 			System.out.println(music.getVolume());
 			return;
