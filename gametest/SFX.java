@@ -57,7 +57,7 @@ public class SFX {
 
 	public static void playError() {
 		MediaPlayer error = new MediaPlayer(SFX.ERROR);
-		error.setVolume(.5);
+		error.setVolume(.05);
 		error.play();
 	}
 }

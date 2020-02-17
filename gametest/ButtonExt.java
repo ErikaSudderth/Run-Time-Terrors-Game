@@ -78,10 +78,10 @@ public class ButtonExt extends Button {
 			public void handle(MouseEvent event) {
 				if (event.getButton().equals(MouseButton.PRIMARY)) {
 					setButtonReleasedStyle();
-					Button source = (Button) event.getSource();
-					String sourceButt = source.getText();
-					System.out.println(sourceButt);
-					//ButtonController.buttonDecoder(sourceButt);
+//					Button source = (Button) event.getSource();
+//					String sourceButt = source.getText();
+//					System.out.println(sourceButt);
+//					//ButtonController.buttonDecoder(sourceButt);
 					SFX.playRelease();
 				}
 			}
