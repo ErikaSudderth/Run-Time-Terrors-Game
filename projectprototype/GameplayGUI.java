@@ -1,13 +1,13 @@
 package projectprototype;
 
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-
 /**
  *
  * @author Erika
  */
+
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class GameplayGUI {
 

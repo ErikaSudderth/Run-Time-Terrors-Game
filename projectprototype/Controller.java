@@ -16,34 +16,36 @@ import javafx.util.Duration;
 
 public class Controller {
 
-    protected Stage initialStage;
-    protected GameplayGUI gameGUI;
-    protected int sceneWidth = 500;
-    protected int sceneHeight = 500;
-    protected GenericCharacter cat;
-    protected GenericCharacter mouse;
-    protected String catPNG = "CatImage.png";
-    protected String mousePNG = "MouseImage.png";
-    protected Boolean moveUp = false;
-    protected Boolean moveDown = false;
-    protected Boolean moveLeft = false;
-    protected Boolean moveRight = false;
+    private Stage initialStage;
+    private GameplayGUI gameGUI;
+    private int sceneWidth = 500;
+    private int sceneHeight = 500;
+    private GenericCharacter cat;
+    private GenericCharacter mouse;
+    private String catPNG = "CatImage.png";
+    private String mousePNG = "MouseImage.png";
+    private Boolean moveUp = false;
+    private Boolean moveDown = false;
+    private Boolean moveLeft = false;
+    private Boolean moveRight = false;
 
     public Controller(Stage _initialStage) {
+        
+        // Set up the window (stage) and a separate scene for gameplay.
         this.initialStage = _initialStage;
         this.gameGUI = new GameplayGUI(_initialStage);
-
         this.gameGUI.createScene(sceneWidth, sceneHeight);
-
+        // Initialize stand in characters for prototyping.
         this.cat = new GenericCharacter(50, 50, 30, 30, catPNG);
         this.mouse = new GenericCharacter(250, 450, 30, 30, mousePNG);
-
+        // Call for cat movement with path transition and key controlled mouse movement.
         this.createPathTransition();
         this.moveMouse();
 
     }
 
     public void createPathTransition() {
+        
         PathTransition pathTransition = new PathTransition();
         pathTransition.setDuration(Duration.seconds(5));
         pathTransition.setNode(cat.getImage());
@@ -54,6 +56,7 @@ public class Controller {
     }
 
     public void moveMouse() {
+        
         //Create key event
         this.gameGUI.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
