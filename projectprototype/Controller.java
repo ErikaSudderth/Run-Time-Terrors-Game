@@ -6,6 +6,7 @@ package projectprototype;
  */
 
 import static javafx.animation.Animation.INDEFINITE;
+import javafx.animation.AnimationTimer;
 import javafx.animation.PathTransition;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
@@ -23,6 +24,10 @@ public class Controller {
     protected GenericCharacter mouse;
     protected String catPNG = "CatImage.png";
     protected String mousePNG = "MouseImage.png";
+    protected Boolean moveUp = false;
+    protected Boolean moveDown = false;
+    protected Boolean moveLeft = false;
+    protected Boolean moveRight = false;
 
     public Controller(Stage _initialStage) {
         this.initialStage = _initialStage;
@@ -55,27 +60,60 @@ public class Controller {
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
                     case UP:
-                        if(mouse.getValueY() >= 5)
-                            mouse.setValueY(mouse.getValueY() - 5);
+                        moveUp = true;
                         break;
                     case DOWN:
-                        if(mouse.getValueY() <= 465) //500-35 (height of image + 5)
-                            mouse.setValueY(mouse.getValueY() + 5);
+                        moveDown = true;
                         break;
                     case LEFT:
-                        if (mouse.getValueX() >= 5)
-                            mouse.setValueX(mouse.getValueX() - 5);
+                        moveLeft = true;
                         break;
                     case RIGHT:
-                        if(mouse.getValueX() <= 465)
-                            mouse.setValueX(mouse.getValueX() + 5);
+                        moveRight = true;
                         break;
-                    case SPACE:
-                        break;
-
                 }
             }
         }
         );
+
+        this.gameGUI.getScene().setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                switch (event.getCode()) {
+                    case UP:
+                        moveUp = false;
+                        break;
+                    case DOWN:
+                        moveDown = false;
+                        break;
+                    case LEFT:
+                        moveLeft = false;
+                        break;
+                    case RIGHT:
+                        moveRight = false;
+                        break;
+                }
+            }
+        }
+        );
+
+        AnimationTimer timer = new AnimationTimer(){
+            @Override
+            public void handle(long now) {
+                if(moveUp && mouse.getValueY() >= 5) {
+                    mouse.setValueY(mouse.getValueY() - 2);
+                }
+                if(moveDown && mouse.getValueY() <= 465) {
+                    mouse.setValueY(mouse.getValueY() + 2);
+                }
+                if(moveLeft && mouse.getValueX() >= 5) {
+                    mouse.setValueX(mouse.getValueX() - 2);
+                }
+                if(moveRight && mouse.getValueX() <= 465) {
+                    mouse.setValueX(mouse.getValueX() + 2);
+                }
+            }
+        };
+        timer.start();
     }
 }
