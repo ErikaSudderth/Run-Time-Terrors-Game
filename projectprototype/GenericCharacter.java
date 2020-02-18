@@ -1,10 +1,11 @@
 package projectprototype;
 
 /**
- * Do we need the getters and setters if they are already a part of the
- * ImageView?
+ * This class allows for creation of character objects, which will all have an
+ * image and location coordinates. This may become a superclass.
  *
  * @author Erika
+ * Last updated: 2/18/20
  */
 
 import javafx.scene.image.ImageView;
@@ -27,42 +28,12 @@ public class GenericCharacter {
         GameplayGUI.layoutPane.getChildren().add(this.characterImage);
     }
 
+//=================  GETTERS ===============
     public ImageView getImage() {
         return this.characterImage;
     }
 
-    public double getValueX() {
-        return this.characterImage.getLayoutX();
-    }
-
-    public double getValueY() {
-        return this.characterImage.getLayoutY();
-    }
-
-    public double getImageWidth() {
-        return this.characterImage.getFitWidth();
-    }
-
-    public double getImageHeight() {
-        return this.characterImage.getFitHeight();
-    }
-
-    public void setValueX(double xValue) {
-        this.characterImage.setLayoutX(xValue);
-    }
-
-    public void setValueY(double yValue) {
-        this.characterImage.setLayoutY(yValue);
-    }
-
-    public void setImageWidth(double width) {
-        this.characterImage.setFitWidth(width);
-    }
-
-    public void setImageHeight(double height) {
-        this.characterImage.setFitHeight(height);
-    }
-
+//=================  SETTERS ===============
     public void setImage(String _imagePNG) {
         this.characterImage = new ImageView(_imagePNG);
     }

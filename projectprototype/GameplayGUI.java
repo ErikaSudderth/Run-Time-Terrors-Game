@@ -1,8 +1,11 @@
 package projectprototype;
 
 /**
+ * This class allows for creation of a scene. This will have to be combined with
+ * the other GUI code.
  *
  * @author Erika
+ * Last updated: 2/18/20
  */
 
 import javafx.scene.Scene;
@@ -24,8 +27,10 @@ public class GameplayGUI {
         this.initialStage.setScene(this.scene);
     }
 
+//=================  GETTERS ===============
     public Scene getScene() {
         return scene;
     }
 
+//=================  SETTERS ===============
 }
