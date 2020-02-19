@@ -6,11 +6,11 @@ import javafx.stage.Stage;
 public class GameTest extends Application {
 
 	@Override
-	public void start(Stage mainMenu) {
+	public void start(Stage _mainMenu) {
 
 		ViewManager manager = new ViewManager();
-		mainMenu = manager.getMainStage();
-		mainMenu.show();
+		_mainMenu = manager.getMainStage();
+		_mainMenu.show();
 		SFX.music();
 	}
 
