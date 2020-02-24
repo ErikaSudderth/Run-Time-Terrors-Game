@@ -4,7 +4,7 @@ package projectprototype;
  * This initializes both a mouse and cat object and provides methods to move the
  * corresponding images on screen.
  *
- * @author Erika Last updated: 2/18/20
+ * @author Erika and Hasler Last updated: 2/22/20
  */
 import static javafx.animation.Animation.INDEFINITE;
 import javafx.animation.AnimationTimer;
@@ -52,13 +52,13 @@ public class Controller {
         this.gameGUI.createScene(sceneWidth, sceneHeight);
         // Initialize stand in characters for prototyping.
         this.cat = new GenericCharacter(this.initialEnemyXLocation,
-        this.initialEnemyYLocation, this.enemyImageWidth,
-        this.enemyImageHeight, this.catPNG);
+                this.initialEnemyYLocation, this.enemyImageWidth,
+                this.enemyImageHeight, this.catPNG);
         this.mouse = new GenericCharacter(this.initialPlayerXLocation,
-        this.initialPlayerYLocation, this.playerImageWidth,
-        this.playerImageHeight, this.mousePNG);
+                this.initialPlayerYLocation, this.playerImageWidth,
+                this.playerImageHeight, this.mousePNG);
         // Call for cat movement with path transition and key controlled mouse movement.
-        this.createLinePathTransition(cat.getImage());
+       // this.createLinePathTransition(cat.getImage());
         this.createKeyPressedEvent();
         this.createKeyReleasedEvent();
         this.moveMouse(mouse.getImage());
@@ -75,13 +75,13 @@ public class Controller {
         pathTransition.setDuration(Duration.seconds(this.linePathDuration));
         pathTransition.setNode(_enemyImage);
         pathTransition.setPath(new Line(this.initialLineYLocation,
-        this.initialLineXLocation, this.finalLineYLocation,
-        this.finalLineXLocation));
+                this.initialLineXLocation, this.finalLineYLocation,
+                this.finalLineXLocation));
         pathTransition.setCycleCount(INDEFINITE);
         pathTransition.setAutoReverse(true);
         checkCollision();
         pathTransition.play();
-        
+
     }
 
     public final void createKeyPressedEvent() {
@@ -139,17 +139,14 @@ public class Controller {
         }
         );
     }
-    
+
     public void checkCollision() {
         double radius = enemyImageHeight;
         double distanceX = (cat.getImage().getTranslateX() + 65) - (mouse.getImage().getLayoutX() + 15);
         double distanceY = (cat.getImage().getTranslateY() + 65) - (mouse.getImage().getLayoutY() + 15);
-        
-        
-        
+
         double distanceFormula = Math.sqrt((distanceX * distanceX) + (distanceY * distanceY));
-        System.out.println(distanceFormula);
-        
+
         if (distanceFormula <= radius) {
             System.out.println("Collided");
         }
@@ -169,7 +166,7 @@ public class Controller {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-               
+
                 if (moveUp && _playerImage.getLayoutY() >= changeInAxis) {
                     _playerImage.setLayoutY(_playerImage.getLayoutY() - changeInAxis);
                 }
@@ -186,5 +183,5 @@ public class Controller {
         };
         timer.start();
     }
-    
+
 }
