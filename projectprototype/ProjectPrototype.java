@@ -1,8 +1,11 @@
 package projectprototype;
 
 /**
+ * This is the main class. It starts the program, creates a stage, and calls
+ * the controller to begin the game.
  *
  * @author Erika
+ * Last updated: 2/18/20
  */
 
 import javafx.application.Application;
@@ -15,9 +18,9 @@ public class ProjectPrototype extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
-        Controller controller = new Controller(primaryStage);
+    public void start(Stage _primaryStage) {
+        Controller controller = new Controller(_primaryStage);
         //This shows the actual window
-        primaryStage.show();
+        _primaryStage.show();
     }
 }
