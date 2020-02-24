@@ -4,7 +4,10 @@ package projectprototype;
  * This initializes both a mouse and cat object and provides methods to move the
  * corresponding images on screen.
  *
- * @author Erika and Hasler Last updated: 2/22/20
+ * 
+ *
+ * Author Erika and Hasler Last updated: 2/22/20 
+ *
  */
 import static javafx.animation.Animation.INDEFINITE;
 import javafx.animation.AnimationTimer;
@@ -58,19 +61,18 @@ public class Controller {
                 this.initialPlayerYLocation, this.playerImageWidth,
                 this.playerImageHeight, this.mousePNG);
         // Call for cat movement with path transition and key controlled mouse movement.
-       // this.createLinePathTransition(cat.getImage());
+
+        this.createLinePathTransition(cat.getImage());
+
+        this.createLinePathTransition(cat.getImage());
+
         this.createKeyPressedEvent();
         this.createKeyReleasedEvent();
         this.moveMouse(mouse.getImage());
     }
 
-    /**
-     * This is the prototype version of enemy movement. It will be changed to
-     * allow for collisions.
-     *
-     * @param _enemyImage
-     */
-    public final void createLinePathTransition(ImageView _enemyImage) {
+    public void createLinePathTransition(ImageView _enemyImage) {
+
         PathTransition pathTransition = new PathTransition();
         pathTransition.setDuration(Duration.seconds(this.linePathDuration));
         pathTransition.setNode(_enemyImage);
@@ -84,7 +86,8 @@ public class Controller {
 
     }
 
-    public final void createKeyPressedEvent() {
+    public void createKeyPressedEvent() {
+
         //Create key event
         this.gameGUI.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -106,33 +109,28 @@ public class Controller {
                         moveRight = true;
                         checkCollision();
                         break;
-
                 }
             }
         }
         );
     }
 
-    public final void createKeyReleasedEvent() {
+    public void createKeyReleasedEvent() {
         this.gameGUI.getScene().setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
                     case UP:
                         moveUp = false;
-                        checkCollision();
                         break;
                     case DOWN:
                         moveDown = false;
-                        checkCollision();
                         break;
                     case LEFT:
                         moveLeft = false;
-                        checkCollision();
                         break;
                     case RIGHT:
                         moveRight = false;
-                        checkCollision();
                         break;
                 }
             }
@@ -153,20 +151,12 @@ public class Controller {
 
     }
 
-    /**
-     * This method results in movement of the player when the conditions are
-     * correct. It determines which key is being pushed and if that movement
-     * will keep the image within the scene bounds.
-     *
-     * @param _playerImage
-     */
-    public final void moveMouse(ImageView _playerImage) {
+    public void moveMouse(ImageView _playerImage) {
         int higherBound = this.sceneHeight - this.playerImageHeight - changeInAxis;
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-
                 if (moveUp && _playerImage.getLayoutY() >= changeInAxis) {
                     _playerImage.setLayoutY(_playerImage.getLayoutY() - changeInAxis);
                 }
@@ -177,6 +167,7 @@ public class Controller {
                     _playerImage.setLayoutX(_playerImage.getLayoutX() - changeInAxis);
                 }
                 if (moveRight && _playerImage.getLayoutX() <= higherBound) {
+
                     _playerImage.setLayoutX(_playerImage.getLayoutX() + changeInAxis);
                 }
             }
