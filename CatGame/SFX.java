@@ -9,11 +9,11 @@ import java.io.File;
  * @author Latitude
  */
 public class SFX {
-
-	private static final Media CLICK = new Media(new File("src/resources/click.wav").toURI().toString());
-	private static final Media RELEASE = new Media(new File("src/resources/release.wav").toURI().toString());
-	private static final Media ERROR = new Media(new File("src/resources/error.wav").toURI().toString());
-	private static final Media MUSIC = new Media(new File("src/resources/music.mp3").toURI().toString());
+	private static final String SFX_FOLDER = "src/resources/sfx/";
+	private static final Media CLICK = new Media(new File(SFX.SFX_FOLDER + "click.wav").toURI().toString());
+	private static final Media RELEASE = new Media(new File(SFX.SFX_FOLDER + "release.wav").toURI().toString());
+	private static final Media ERROR = new Media(new File(SFX.SFX_FOLDER + "error.wav").toURI().toString());
+	private static final Media MUSIC = new Media(new File(SFX.SFX_FOLDER + "music.mp3").toURI().toString());
 	private static final double MIN_VOL = 0.01;
 	private static final double MAX_VOL = 0.4;
 	private static final double VOL_STEP = 0.05;

@@ -13,8 +13,8 @@ public class ButtonExt extends Button {
 
 	private final static String FONT_PATH = "src/resources/C64_Pro_Mono-STYLE.ttf";
 	private final static String BACKGROUND_COLOR = "-fx-background-color: transparent";
-	private final static String BUTTON_PRESSED_STYLE = BACKGROUND_COLOR + "; -fx-background-image: url('/resources/button_pressed.png')";
-	private final static String BUTTON_FREE_STYLE = BACKGROUND_COLOR + "; -fx-background-image: url('/resources/button.png')";
+	private final static String BUTTON_PRESSED_STYLE = BACKGROUND_COLOR + "; -fx-background-image: url('/resources/imgs/button_pressed.png')";
+	private final static String BUTTON_FREE_STYLE = BACKGROUND_COLOR + "; -fx-background-image: url('/resources/imgs/button.png')";
 	private final static int PREF_WIDTH = 200;
 	private final static int PREF_HEIGHT = 40;
 	private final static int DEFAULT_FONT_SIZE = 20;

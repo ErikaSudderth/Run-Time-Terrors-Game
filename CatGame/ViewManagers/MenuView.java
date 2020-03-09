@@ -20,12 +20,12 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 
-public class MenuView extends ViewManager{
+public class MenuView extends ViewManager {
 
 	protected static final int BUTTON_START_X = 100;
 	protected static final int BUTTON_START_Y = 200;
 	protected static final int BUTTON_SPACING = 100;
-	protected static final String BACKGROUND = "/resources/cat.png";
+	protected static final String BACKGROUND = "/resources/imgs/cat.png";
 	protected ButtonExt exitButton;
 	private SubSceneExt subSceneOnScreen;
 
@@ -34,7 +34,7 @@ public class MenuView extends ViewManager{
 		this.mainScene = new Scene(this.mainPane, MenuView.WIDTH, MenuView.HEIGHT);
 		this.mainStage = new Stage();
 		this.mainStage.setScene(this.mainScene);
-		this.mainStage.setTitle("Cat Game");
+		this.mainStage.setTitle(this.TITLE);
 		this.mainStage.setMaxHeight(MenuView.HEIGHT);
 		this.mainStage.setMaxWidth(MenuView.WIDTH);
 		this.mainStage.setMinHeight(MenuView.HEIGHT);
@@ -62,7 +62,9 @@ public class MenuView extends ViewManager{
 		button.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				test.moveSubScene();
+				//test.moveSubScene();
+				GameView _gameview = new GameView(mainStage);
+			
 			}
 		});
 		this.exitButton = new ButtonExt("Exit", MenuView.BUTTON_START_X, (MenuView.BUTTON_START_Y + this.mainPane.getChildren().size() * MenuView.BUTTON_SPACING));

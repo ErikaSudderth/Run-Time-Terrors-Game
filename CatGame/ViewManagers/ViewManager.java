@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 public abstract class ViewManager {
 	static final int WIDTH = 800;
 	static final int HEIGHT = 600;
+	static final String TITLE = "Quesadilla Ratón";
 	AnchorPane mainPane;
 	Scene mainScene;
 	Stage mainStage;
