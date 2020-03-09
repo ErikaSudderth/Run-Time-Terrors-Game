@@ -1,4 +1,4 @@
-package gametest;
+package CatGame;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,18 +11,21 @@ import javafx.scene.text.Font;
 
 public class ButtonExt extends Button {
 
-	private final String FONT_PATH = "src/resources/C64_Pro_Mono-STYLE.ttf";
-	private final String BACKGROUND_COLOR = "-fx-background-color: transparent";
-	private final String BUTTON_PRESSED_STYLE = BACKGROUND_COLOR + "; -fx-background-image: url('/resources/button_pressed.png')";
-	private final String BUTTON_FREE_STYLE = BACKGROUND_COLOR + "; -fx-background-image: url('/resources/button.png')";
+	private final static String FONT_PATH = "src/resources/C64_Pro_Mono-STYLE.ttf";
+	private final static String BACKGROUND_COLOR = "-fx-background-color: transparent";
+	private final static String BUTTON_PRESSED_STYLE = BACKGROUND_COLOR + "; -fx-background-image: url('/resources/imgs/button_pressed.png')";
+	private final static String BUTTON_FREE_STYLE = BACKGROUND_COLOR + "; -fx-background-image: url('/resources/imgs/button.png')";
+	private final static int PREF_WIDTH = 200;
+	private final static int PREF_HEIGHT = 40;
+	private final static int DEFAULT_FONT_SIZE = 20;
 
 	public ButtonExt(String _text, int _x, int _y) {
 		this.setText(_text);
 		this.setId(_text);
-		this.setButtonFont(20);
-		this.setPrefWidth(200);
-		this.setPrefHeight(40);
-		this.setStyle(BUTTON_FREE_STYLE);
+		this.setButtonFont(ButtonExt.DEFAULT_FONT_SIZE);
+		this.setPrefWidth(ButtonExt.PREF_WIDTH);
+		this.setPrefHeight(ButtonExt.PREF_HEIGHT);
+		this.setStyle(ButtonExt.BUTTON_FREE_STYLE);
 		this.initializeButtonListeners();
 		this.setLayoutX(_x);
 		this.setLayoutY(_y);
@@ -34,7 +37,7 @@ public class ButtonExt extends Button {
 		this.setButtonFont(_font_size);
 		this.setPrefWidth(200);
 		this.setPrefHeight(40);
-		this.setStyle(BUTTON_FREE_STYLE);
+		this.setStyle(ButtonExt.BUTTON_FREE_STYLE);
 		this.initializeButtonListeners();
 		this.setLayoutX(_x);
 		this.setLayoutY(_y);
@@ -42,24 +45,20 @@ public class ButtonExt extends Button {
 
 	private void setButtonFont(int _size) {
 		try {
-			this.setFont(Font.loadFont(new FileInputStream(FONT_PATH), _size));
+			this.setFont(Font.loadFont(new FileInputStream(ButtonExt.FONT_PATH), _size));
 		} catch (FileNotFoundException e) {
-			this.setFont(Font.font("Verdana", 15));
+			this.setFont(Font.font("Verdana", _size));
 			System.out.println("Whoopsie." + e);
 		}
 
 	}
 
 	private void setButtonPressedStyle() {
-		this.setStyle(BUTTON_PRESSED_STYLE);
-		//setPrefHeight(35);
-		//setLayoutY(getLayoutY() + 4);
+		this.setStyle(ButtonExt.BUTTON_PRESSED_STYLE);
 	}
 
 	private void setButtonReleasedStyle() {
-		this.setStyle(BUTTON_FREE_STYLE);
-		//setPrefHeight(35);
-		//setLayoutY(getLayoutY() - 4);
+		this.setStyle(ButtonExt.BUTTON_FREE_STYLE);
 	}
 
 	private void initializeButtonListeners() {
@@ -78,10 +77,6 @@ public class ButtonExt extends Button {
 			public void handle(MouseEvent event) {
 				if (event.getButton().equals(MouseButton.PRIMARY)) {
 					setButtonReleasedStyle();
-//					Button source = (Button) event.getSource();
-//					String sourceButt = source.getText();
-//					System.out.println(sourceButt);
-//					//ButtonController.buttonDecoder(sourceButt);
 					SFX.playRelease();
 				}
 			}
