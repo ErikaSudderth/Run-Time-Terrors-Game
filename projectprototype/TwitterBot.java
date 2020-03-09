@@ -17,7 +17,7 @@ public class TwitterBot {
 
     ConfigurationBuilder cb = new ConfigurationBuilder();
 
-    public void postToTwitter(String highscore) throws TwitterException {
+    public void postToTwitter(String _highscore) throws TwitterException {
         cb.setDebugEnabled(true)
         .setOAuthConsumerKey("zkxzfcERcpPlZGpb9Xdiboo3J")
         .setOAuthConsumerSecret("Q6PEwZ88d6jnv5gRbR2Pw1f25f1DYxUqQHPTUcqsdS0YgliY9C")
@@ -25,6 +25,6 @@ public class TwitterBot {
         .setOAuthAccessTokenSecret("AsYy7yoPW8lvkbY5fdQdcztktoBDq295Fr55AGsHQMKNz");
         TwitterFactory tf = new TwitterFactory(cb.build());
         Twitter twitter = tf.getInstance();
-        twitter.updateStatus(highscore);
+        twitter.updateStatus(_highscore);
     }
 }
