@@ -1,4 +1,4 @@
-package gametest;
+package CatGame;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
