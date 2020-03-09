@@ -1,4 +1,4 @@
-package gametest;
+package CatGame;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -15,7 +15,7 @@ public class SFX {
 	private static final Media ERROR = new Media(new File("src/resources/error.wav").toURI().toString());
 	private static final Media MUSIC = new Media(new File("src/resources/music.mp3").toURI().toString());
 	private static final double MIN_VOL = 0.01;
-	private static final double MAX_VOL = 0.5;
+	private static final double MAX_VOL = 0.4;
 	private static final double VOL_STEP = 0.05;
 	private static MediaPlayer music;
 
@@ -41,7 +41,6 @@ public class SFX {
 		double volume = music.getVolume();
 		if (volume < SFX.MAX_VOL) {
 			music.setVolume(volume + SFX.VOL_STEP);
-			System.out.println(music.getVolume());
 			return;
 		}
 		SFX.playError();
@@ -51,7 +50,6 @@ public class SFX {
 		double volume = music.getVolume();
 		if (volume > SFX.MIN_VOL) {
 			music.setVolume(volume - SFX.VOL_STEP);
-			System.out.println(music.getVolume());
 			return;
 		}
 		SFX.playError();

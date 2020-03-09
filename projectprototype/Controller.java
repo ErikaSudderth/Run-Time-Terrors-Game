@@ -4,9 +4,9 @@ package projectprototype;
  * This initializes both a mouse and cat object and provides methods to move the
  * corresponding images on screen.
  *
- * 
  *
- * Author Erika and Hasler Last updated: 2/22/20 
+ *
+ * Author Erika and Hasler Last updated: 2/22/20
  *
  */
 import static javafx.animation.Animation.INDEFINITE;
