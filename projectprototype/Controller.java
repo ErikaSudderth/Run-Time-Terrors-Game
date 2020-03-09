@@ -13,8 +13,10 @@ import static javafx.animation.Animation.INDEFINITE;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PathTransition;
 import javafx.event.EventHandler;
+import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -54,12 +56,8 @@ public class Controller {
         this.gameGUI = new GameplayGUI(_initialStage);
         this.gameGUI.createScene(sceneWidth, sceneHeight);
         // Initialize stand in characters for prototyping.
-        this.cat = new GenericCharacter(this.initialEnemyXLocation,
-                this.initialEnemyYLocation, this.enemyImageWidth,
-                this.enemyImageHeight, this.catPNG);
-        this.mouse = new GenericCharacter(this.initialPlayerXLocation,
-                this.initialPlayerYLocation, this.playerImageWidth,
-                this.playerImageHeight, this.mousePNG);
+        this.cat = new GenericCharacter(this.initialEnemyXLocation,this.initialEnemyYLocation, this.enemyImageWidth,this.enemyImageHeight, this.catPNG);
+        this.mouse = new GenericCharacter(this.initialPlayerXLocation,this.initialPlayerYLocation, this.playerImageWidth,this.playerImageHeight, this.mousePNG);
         // Call for cat movement with path transition and key controlled mouse movement.
 
         this.createLinePathTransition(cat.getImage());
@@ -69,6 +67,7 @@ public class Controller {
         this.createKeyPressedEvent();
         this.createKeyReleasedEvent();
         this.moveMouse(mouse.getImage());
+
     }
 
     public void createLinePathTransition(ImageView _enemyImage) {
@@ -95,25 +94,33 @@ public class Controller {
                 switch (event.getCode()) {
                     case UP:
                         moveUp = true;
-                        checkCollision();
                         break;
                     case DOWN:
                         moveDown = true;
-                        checkCollision();
                         break;
                     case LEFT:
                         moveLeft = true;
-                        checkCollision();
                         break;
                     case RIGHT:
                         moveRight = true;
-                        checkCollision();
                         break;
+                    case SPACE:
+                        shoot(cat);
+                        break;
+
+
                 }
+                checkCollision();
             }
         }
         );
     }
+
+
+    private void shoot(GenericCharacter cat){
+
+    }
+
 
     public void createKeyReleasedEvent() {
         this.gameGUI.getScene().setOnKeyReleased(new EventHandler<KeyEvent>() {
@@ -132,11 +139,14 @@ public class Controller {
                     case RIGHT:
                         moveRight = false;
                         break;
+
                 }
+                checkCollision();
             }
         }
         );
     }
+
 
     public void checkCollision() {
         double radius = enemyImageHeight;
