@@ -1,11 +1,8 @@
 package CatGame.ViewManagers;
 
 /**
- * This is the Menu View Manager
- * Author(s) - Greg
- * Last updated - 3/6/20
+ * This is the Menu View Manager Author(s) - Greg Last updated - 3/6/20
  */
-
 import CatGame.ButtonExt;
 import java.awt.event.ActionListener;
 import javafx.event.ActionEvent;
@@ -46,25 +43,32 @@ public class MenuView extends ViewManager {
 	}
 
 	public void showSubScene(SubSceneExt _subscene) {
-		if(subSceneOnScreen != null){
+		if (subSceneOnScreen != null) {
 			subSceneOnScreen.moveSubScene();
 		}
 		_subscene.moveSubScene();
 		subSceneOnScreen = _subscene;
 	}
 
-
 	private void createButtons() {
-		ButtonExt button = new ButtonExt("SubScene", MenuView.BUTTON_START_X, (MenuView.BUTTON_START_Y + this.mainPane.getChildren().size() * MenuView.BUTTON_SPACING));
+		ButtonExt button = new ButtonExt("Game", MenuView.BUTTON_START_X, (MenuView.BUTTON_START_Y + this.mainPane.getChildren().size() * MenuView.BUTTON_SPACING));
 		this.mainPane.getChildren().add(button);
+		ButtonExt button2 = new ButtonExt("Subscene", MenuView.BUTTON_START_X, (MenuView.BUTTON_START_Y + this.mainPane.getChildren().size() * MenuView.BUTTON_SPACING));
+		this.mainPane.getChildren().add(button2);
 		SubSceneExt test = new SubSceneExt();
 		this.mainPane.getChildren().add(test);
 		button.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				//test.moveSubScene();
 				GameView _gameview = new GameView(mainStage);
-			
+
+			}
+		});
+		button2.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				test.moveSubScene();
+
 			}
 		});
 		this.exitButton = new ButtonExt("Exit", MenuView.BUTTON_START_X, (MenuView.BUTTON_START_Y + this.mainPane.getChildren().size() * MenuView.BUTTON_SPACING));
@@ -76,10 +80,11 @@ public class MenuView extends ViewManager {
 		this.exitButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-			mainStage.close();
+				mainStage.close();
 			}
 		});
 	}
+
 	//=================  GETTERS ===============
 	public static int getWIDTH() {
 		return MenuView.WIDTH;
@@ -88,7 +93,6 @@ public class MenuView extends ViewManager {
 	public static int getHEIGHT() {
 		return MenuView.HEIGHT;
 	}
-
 
 	public static int getBUTTON_START_X() {
 		return MenuView.BUTTON_START_X;
@@ -117,6 +121,5 @@ public class MenuView extends ViewManager {
 	public Stage getMainStage() {
 		return this.mainStage;
 	}
-
 
 }

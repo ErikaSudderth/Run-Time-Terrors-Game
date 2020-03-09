@@ -25,7 +25,7 @@ public class SubSceneExt extends SubScene {
 	private final static int PREF_WIDTH = 300;
 	private final static int LAYOUT_X = ViewManager.WIDTH;
 	private final static int LAYOUT_Y = 150;
-	private final static String BACKGROUND = "/resources/subscene_background.png";
+	private final static String BACKGROUND = "/resources/imgs/subscene_background.png";
 
 	public SubSceneExt() {
 		super(new AnchorPane(), SubSceneExt.PREF_WIDTH, SubSceneExt.PREF_HEIGHT);
