@@ -1,4 +1,4 @@
-package Prototype;
+package projectprototype;
 
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
