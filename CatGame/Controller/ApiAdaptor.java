@@ -1,4 +1,4 @@
-package projectprototype;
+package CateGame.Controller;
 
 /**
  * The purpose of this file is to call the API.
@@ -8,6 +8,7 @@ package projectprototype;
  * Author Hasler Last updated: 3/9/20
  *
  */
+import projectprototype.TwitterBot;
 import twitter4j.TwitterException;
 
 public class ApiAdaptor {
