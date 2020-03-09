@@ -14,9 +14,9 @@ public class ApiAdaptor {
 
     private TwitterBot api = new TwitterBot();
 
-    public void callAPI(String highscore) throws TwitterException {
+    public void callAPI(String _highscore) throws TwitterException {
 
-        api.postToTwitter(highscore);
+        api.postToTwitter(_highscore);
 
     }
 }
