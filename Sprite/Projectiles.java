@@ -1,46 +1,39 @@
-/*
- * 
- * 
- * 
- */
 package Sprite;
 
-import java.util.ArrayList;
-import javafx.scene.image.ImageView;
-
 /**
+ * Projectile class that extends Sprite. Each object will have a Boolean value
+ * to determine if it has been thrown or not.
  *
  * @author Erika
+ * Last updated: 3/9/20
  */
+
 public class Projectiles extends Sprite {
 
-    ArrayList<ImageView> throwableObjList = new ArrayList<ImageView>();
+    protected Boolean hasBeenThrown = false;
 
     /**
-     * Constructor to implement the abstract Sprite class with sprite location
-     * and size. Creates a list of throwable objects.
+     * Constructor to implement the abstract Sprite class methods with sprite location
+     * and size.
      *
      * @param _initialSpriteXValue
      * @param _initialSpriteYValue
      * @param _initialSpriteWidth
      * @param _initialSpriteHeight
      * @param _spriteImage
-     * @param _ThrowableList
      */
-    public Projectiles(int _initialSpriteXValue, int _initialSpriteYValue, int _initialSpriteWidth,
-            int _initialSpriteHeight, String _spriteImage, ArrayList<ImageView> _ThrowableList) {
+    public Projectiles(int _initialSpriteXValue, int _initialSpriteYValue, int _initialSpriteWidth, int _initialSpriteHeight, String _spriteImage) {
 
-        super (_initialSpriteXValue, _initialSpriteYValue, _initialSpriteWidth,
-                _initialSpriteHeight, _spriteImage);
+        super (_initialSpriteXValue, _initialSpriteYValue, _initialSpriteWidth, _initialSpriteHeight, _spriteImage);
     }
 
 //=================  GETTERS ===============
-    public ArrayList<ImageView> getThrowObjList() {
-        return this.throwableObjList;
+    public Boolean getHasBeenThrown() {
+        return this.hasBeenThrown;
     }
 
 //=================  SETTERS ===============
-    public void setThrowObjList(ArrayList<ImageView> _throwObjList) {
-        this.throwableObjList = _throwObjList;
+    public void setHasBeenThrown(Boolean _isThrown) {
+        this.hasBeenThrown = _isThrown;
     }
 }
