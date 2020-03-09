@@ -1,4 +1,4 @@
-package projectprototype;
+package CatGame.Models;
 
 /**
  * The purpose of this file is to call the API twitter bot so the high score can be posted on to twitter.
@@ -13,7 +13,7 @@ import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
-public class TwitterBot {
+public class TwitterConnection {
 
     ConfigurationBuilder cb = new ConfigurationBuilder();
 
