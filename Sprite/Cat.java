@@ -9,6 +9,7 @@ package Sprite;
  */
 
 import java.util.ArrayList;
+import javafx.scene.image.ImageView;
 
 public class Cat extends Sprite {
 
@@ -25,7 +26,7 @@ public class Cat extends Sprite {
      * @param _spriteImage
      * @param _projectileList
      */
-    public Cat(int _initialSpriteXValue, int _initialSpriteYValue, int _initialSpriteWidth, int _initialSpriteHeight, String _spriteImage, ArrayList<Projectiles> _projectileList) {
+    public Cat(int _initialSpriteXValue, int _initialSpriteYValue, int _initialSpriteWidth, int _initialSpriteHeight, ImageView _spriteImage, ArrayList<Projectiles> _projectileList) {
 
         super (_initialSpriteXValue, _initialSpriteYValue, _initialSpriteWidth, _initialSpriteHeight, _spriteImage);
         this.projectilesList = _projectileList;
