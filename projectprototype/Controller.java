@@ -147,16 +147,19 @@ public class Controller {
         );
     }
 
-
+//this method checks for collisions
     public void checkCollision() {
+
         double radius = enemyImageHeight;
         double distanceX = (cat.getImage().getTranslateX() + 65) - (mouse.getImage().getLayoutX() + 15);
         double distanceY = (cat.getImage().getTranslateY() + 65) - (mouse.getImage().getLayoutY() + 15);
 
+        //using distance formula to determine if there is a collision
         double distanceFormula = Math.sqrt((distanceX * distanceX) + (distanceY * distanceY));
-
+        //use event handiling for the collisions
         if (distanceFormula <= radius) {
             System.out.println("Collided");
+
         }
 
     }
