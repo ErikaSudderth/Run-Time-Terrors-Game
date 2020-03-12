@@ -24,7 +24,7 @@ public class Projectiles extends Sprite {
      * @param _initialSpriteHeight
      * @param _spriteImage
      */
-    public Projectiles(int _initialSpriteXValue, int _initialSpriteYValue, int _initialSpriteWidth, int _initialSpriteHeight, ImageView _spriteImage) {
+    public Projectiles(int _initialSpriteXValue, int _initialSpriteYValue, int _initialSpriteWidth, int _initialSpriteHeight, String _spriteImage) {
 
         super (_initialSpriteXValue, _initialSpriteYValue, _initialSpriteWidth, _initialSpriteHeight, _spriteImage);
     }
