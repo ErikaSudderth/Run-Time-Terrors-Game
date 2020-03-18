@@ -6,19 +6,24 @@ package CatGame.Models;
  * last updated: 3/9/20
  */
 
+import projectprototype.UserInputSubScene;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 
-public class WriteToTxt{
+public class WriteToTxt extends UserInputSubScene{
     //method creates a FileWriter, BufferedWriter, and PrintWriter
-    public void writeTo() throws IOException{
+    public void writeTo(String _text) throws IOException{
+       try{
        FileWriter fw = new FileWriter("C:\\Users\\antho\\Documents\\netbeans projects\\RuntimeTerrors\\src\\resources\\GameScores.txt", true);
-       BufferedWriter bf = new BufferedWriter(fw);
-       PrintWriter pw = new PrintWriter(bf);
-       //new scores to be added to the txt file
-       pw.println("5  208");
-       pw.close();
-    }
+       BufferedWriter bw = new BufferedWriter(fw);
+       //String text = "new string for the file";
+       bw.write(_text);
+       bw.close();
+
+        System.out.println("done");
+       }  catch(IOException e){
+        e.printStackTrace();
+          }
+   }
 }

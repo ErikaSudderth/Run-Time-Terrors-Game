@@ -22,11 +22,11 @@ public class ReadFromTxt {
     //reads the contents using the scanner. Sets the variables of the text file
     public void readFile() {
         while (scores.hasNext()) {
-            String rank = scores.next();
+            //String rank = scores.next();
             String player = scores.next();
-            String score = scores.next();
+            //String score = scores.next();
             //format the output of the txt
-            System.out.printf("%s %s %s\n", rank, player, score);
+            System.out.printf("%s",  player);
         }
     }
     //close the file

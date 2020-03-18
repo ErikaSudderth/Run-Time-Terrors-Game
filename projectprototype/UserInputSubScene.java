@@ -1,3 +1,5 @@
+package projectprototype;
+
 
 /**
  * The purpose of this file is so the users can input their name
@@ -6,6 +8,8 @@
  * Author Hasler Last updated: 3/9/20
  *
  */
+import CatGame.Models.WriteToTxt;
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -16,7 +20,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class UserInputSubScene extends Application {
-
+    private static String name;
     // launch the application
     public void start(Stage s) {
 
@@ -31,6 +35,9 @@ public class UserInputSubScene extends Application {
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 l.setText(field.getText());
+                s.close();
+                name = field.getText();
+
             }
         };
 
@@ -48,7 +55,9 @@ public class UserInputSubScene extends Application {
         s.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         launch(args);
+        WriteToTxt playerName = new WriteToTxt();
+        playerName.writeTo(name);
     }
 }
