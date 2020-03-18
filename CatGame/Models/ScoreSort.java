@@ -24,9 +24,9 @@ public class ScoreSort {
         } catch (FileNotFoundException e) {
             System.out.println("Cannot find dummy file");
         }
-        
+
         String line = null;
-        //while loop 
+        //while loop
         while ((line = reader.readLine()) != null) {
             String[] playerScores = line.split(": ");
             int score = Integer.valueOf(playerScores[1]);
