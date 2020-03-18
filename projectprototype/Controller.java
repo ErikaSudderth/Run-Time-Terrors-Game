@@ -9,6 +9,7 @@ package projectprototype;
  * Author Erika and Hasler Last updated: 2/22/20
  *
  */
+import CatGame.ViewManagers.GameView;
 import static javafx.animation.Animation.INDEFINITE;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PathTransition;
@@ -23,8 +24,8 @@ import javafx.util.Duration;
 
 public class Controller {
 
-    private final int sceneWidth = 500;
-    private final int sceneHeight = 500;
+    private final int sceneWidth = 800;
+    private final int sceneHeight = 600;
     private final int initialEnemyXLocation = 50;
     private final int initialEnemyYLocation = 50;
     private final int enemyImageWidth = 30;
@@ -40,11 +41,12 @@ public class Controller {
     private final int finalLineYLocation = 400;
     private final int changeInAxis = 2;
     private Stage initialStage;
+    //private GameplayGUI gameGUI;
     private GameplayGUI gameGUI;
     private GenericCharacter cat;
     private GenericCharacter mouse;
-    private String catPNG = "CatImage.png";
-    private String mousePNG = "MouseImage.png";
+    private String catPNG = "/resources/imgs/Cat01.png";
+    private String mousePNG = "/resources/imgs/Mouse00.png";
     private Boolean moveUp = false;
     private Boolean moveDown = false;
     private Boolean moveLeft = false;
@@ -54,7 +56,9 @@ public class Controller {
         // Set up the window (stage) and a separate scene for gameplay.
         this.initialStage = _initialStage;
         this.gameGUI = new GameplayGUI(_initialStage);
+        //this.gameView = new GameView(_initialStage);
         this.gameGUI.createScene(sceneWidth, sceneHeight);
+        //this.gameView.createScene();
         // Initialize stand in characters for prototyping.
         this.cat = new GenericCharacter(this.initialEnemyXLocation,this.initialEnemyYLocation, this.enemyImageWidth,this.enemyImageHeight, this.catPNG);
         this.mouse = new GenericCharacter(this.initialPlayerXLocation,this.initialPlayerYLocation, this.playerImageWidth,this.playerImageHeight, this.mousePNG);
