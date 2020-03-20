@@ -16,8 +16,6 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import projectprototype.Controller;
-import projectprototype.ProjectPrototype;
 
 public class MenuView extends ViewManager {
 
@@ -62,10 +60,7 @@ public class MenuView extends ViewManager {
 		button.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				//GameView _gameview = new GameView(mainStage);
-                                ProjectPrototype controller = new ProjectPrototype();
-                                controller.start(mainStage);
-
+				GameView _gameview = new GameView(mainStage);
 			}
 		});
 		button2.setOnAction(new EventHandler<ActionEvent>() {

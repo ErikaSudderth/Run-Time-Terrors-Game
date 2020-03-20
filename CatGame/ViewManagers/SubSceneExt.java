@@ -1,11 +1,8 @@
 package CatGame.ViewManagers;
 
 /**
- * This class handles the subscenes.
- * Author(s) - Greg
- * Last updated - 3/6/20
+ * This class handles the subscenes. Author(s) - Greg Last updated - 3/6/20
  */
-
 import javafx.animation.TranslateTransition;
 import javafx.scene.SubScene;
 import javafx.scene.image.Image;
@@ -16,7 +13,6 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.util.Duration;
-
 
 public class SubSceneExt extends SubScene {
 
