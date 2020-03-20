@@ -15,16 +15,16 @@ import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterConnection {
 
-    ConfigurationBuilder cb = new ConfigurationBuilder();
+	ConfigurationBuilder cb = new ConfigurationBuilder();
 
-    public void postToTwitter(String _highscore) throws TwitterException {
-        cb.setDebugEnabled(true)
-        .setOAuthConsumerKey("zkxzfcERcpPlZGpb9Xdiboo3J")
-        .setOAuthConsumerSecret("Q6PEwZ88d6jnv5gRbR2Pw1f25f1DYxUqQHPTUcqsdS0YgliY9C")
-        .setOAuthAccessToken("1222276825969131520-3iuVn78RpduNEViVwixUHDx6sFYBtT")
-        .setOAuthAccessTokenSecret("AsYy7yoPW8lvkbY5fdQdcztktoBDq295Fr55AGsHQMKNz");
-        TwitterFactory tf = new TwitterFactory(cb.build());
-        Twitter twitter = tf.getInstance();
-        twitter.updateStatus(_highscore);
-    }
+	public void postToTwitter(String _highscore) throws TwitterException {
+		cb.setDebugEnabled(true)
+				.setOAuthConsumerKey("zkxzfcERcpPlZGpb9Xdiboo3J")
+				.setOAuthConsumerSecret("Q6PEwZ88d6jnv5gRbR2Pw1f25f1DYxUqQHPTUcqsdS0YgliY9C")
+				.setOAuthAccessToken("1222276825969131520-3iuVn78RpduNEViVwixUHDx6sFYBtT")
+				.setOAuthAccessTokenSecret("AsYy7yoPW8lvkbY5fdQdcztktoBDq295Fr55AGsHQMKNz");
+		TwitterFactory tf = new TwitterFactory(cb.build());
+		Twitter twitter = tf.getInstance();
+		twitter.updateStatus(_highscore);
+	}
 }

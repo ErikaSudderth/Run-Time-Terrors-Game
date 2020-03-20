@@ -9,6 +9,7 @@ import java.io.File;
  * @author Latitude
  */
 public class SFX {
+
 	private static final String SFX_FOLDER = "src/resources/sfx/";
 	private static final Media CLICK = new Media(new File(SFX.SFX_FOLDER + "click.wav").toURI().toString());
 	private static final Media RELEASE = new Media(new File(SFX.SFX_FOLDER + "release.wav").toURI().toString());
