@@ -2,15 +2,15 @@ package Sprite;
 
 /**
  * Abstract sprite class. Every movable object will have a location and a size
- * and will implement this class.
+ * and will inherit this class.
  *
- * @author Erika
- * Last updated: 3/9/20
+ * @author Erika Sudderth
+ * Last updated: 3/19/20
  */
 
 import javafx.scene.image.ImageView;
 
-public abstract class Sprite {
+public class Sprite {
 
     protected ImageView spriteImage;
 
@@ -24,7 +24,7 @@ public abstract class Sprite {
      * @param _SpriteImage
      */
     public Sprite(int _initialSpriteXValue, int _initialSpriteYValue, int _initialSpriteWidth, int _initialSpriteHeight, String _SpriteImage) {
-
+        //Initialize sprite specific image.
         this.spriteImage = new ImageView(_SpriteImage);
         //Sets image size.
         this.spriteImage.setFitHeight(_initialSpriteHeight);
