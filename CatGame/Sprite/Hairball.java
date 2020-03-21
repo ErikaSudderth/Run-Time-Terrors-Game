@@ -7,15 +7,6 @@ package CatGame.Sprite;
  */
 public class Hairball extends Sprite {
 
-	/**
-	 * Constructor to use the abstract Sprite class methods with sprite location and size.
-	 *
-	 * @param _initialSpriteXValue
-	 * @param _initialSpriteYValue
-	 * @param _initialSpriteWidth
-	 * @param _initialSpriteHeight
-	 * @param _spriteImage
-	 */
 	public Hairball() {
 	}
 }
