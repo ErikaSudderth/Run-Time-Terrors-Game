@@ -31,6 +31,7 @@ public class UserInputSubScene extends Application {
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 l.setText(field.getText());
+                s.close();
             }
         };
 
