@@ -9,15 +9,6 @@ public class Cheese extends Sprite {
 
 	protected Boolean isCollected;
 
-	/**
-	 * Constructor to use the abstract Sprite class methods with sprite location and size.
-	 *
-	 * @param _initialSpriteXValue
-	 * @param _initialSpriteYValue
-	 * @param _initialSpriteWidth
-	 * @param _initialSpriteHeight
-	 * @param _spriteImage
-	 */
 	public Cheese() {
 	}
 

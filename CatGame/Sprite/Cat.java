@@ -1,4 +1,4 @@
-package CatGame.Sprite;
+    package CatGame.Sprite;
 
 /**
  * Cat class extends abstract Sprite class. Initializes the cat character's list of projectiles (claws).
@@ -59,7 +59,7 @@ public class Cat extends Sprite {
 	 * @param _distance This is the cat's movement speed.
 	 */
 	public void moveX(int _distance) {
-		this.spriteImage.setLayoutX(this.x_pos + _distance);
+		this.spriteImage.setLayoutX(this.spriteImage.getLayoutX() + _distance);
 	}
 
 //=================  GETTERS ===============

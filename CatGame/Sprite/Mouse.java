@@ -25,6 +25,7 @@ public class Mouse extends Sprite {
 	private final int OFFSET = 0;
 	private final double STARTING_X = (ViewManager.getWidth() / 2) - (this.DIMENSIONS / 2);
 	private final double STARTING_Y = ViewManager.getHeight() - (this.DIMENSIONS * 3);
+        private final Group animationGroup;
 
 	public Mouse(AnchorPane _pane) {
 		this.setAnimationFields();
@@ -32,7 +33,8 @@ public class Mouse extends Sprite {
 		this.y_pos = (int) this.STARTING_Y;
 
 		this.initialPos();
-		_pane.getChildren().add(new Group(this.spriteImage));
+                this.animationGroup = new Group(this.spriteImage);
+		_pane.getChildren().add(animationGroup);
 	}
 
 	/**
@@ -55,27 +57,43 @@ public class Mouse extends Sprite {
 	}
 
 	/**
-	 * Use to update the mouse's location in the X axis.
+	 * Use these to update the mouse's location in the X axis.
 	 *
 	 * @param _distance This is the mouse's movement speed.
 	 */
-	public void moveX(int _distance) {
-		this.spriteImage.setLayoutX(this.x_pos + _distance);
+	public void moveXLeft(int _distance) {
+            if(this.animationGroup.getLayoutX() >= -(ViewManager.getWidth() / 2))
+                this.animationGroup.setLayoutX(this.animationGroup.getLayoutX() + _distance);
+	}
+
+        public void moveXRight(int _distance) {
+            if(this.animationGroup.getLayoutX() <= (ViewManager.getWidth() / 2))
+                this.animationGroup.setLayoutX(this.animationGroup.getLayoutX() + _distance);
 	}
 
 	/**
-	 * Use to update the mouse's location in the X axis.
+	 * Use these to update the mouse's location in the X axis.
 	 *
 	 * @param _distance This is the mouse's movement speed.
 	 */
-	public void moveY(int _distance) {
-		this.spriteImage.setLayoutY(this.y_pos + _distance);
+	public void moveYUp(int _distance) {
+            if(this.animationGroup.getLayoutY() >= -ViewManager.getHeight() + (3 * this.DIMENSIONS))
+                this.animationGroup.setLayoutY(this.animationGroup.getLayoutY() + _distance);
+	}
+
+        public void moveYDown(int _distance) {
+            if(this.animationGroup.getLayoutY() <= this.DIMENSIONS)
+                this.animationGroup.setLayoutY(this.animationGroup.getLayoutY() + _distance);
 	}
 
 //=================  GETTERS ===============
 	public ArrayList<Cheese> getCheeseObjList() {
 		return this.cheeseList;
 	}
+
+        public Group getAnimationGroup() {
+            return animationGroup;
+        }
 
 //=================  SETTERS ===============
 	public void setProjectileObjList(ArrayList<Cheese> _cheeseObjList) {
