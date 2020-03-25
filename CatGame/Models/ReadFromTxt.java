@@ -15,7 +15,7 @@ public class ReadFromTxt {
 
 	public void openFile() throws FileNotFoundException {
 		try {
-			scores = new Scanner(new File("C:\\Users\\antho\\Documents\\netbeans projects\\RuntimeTerrors\\src\\resources\\GameScores.txt"));
+			scores = new Scanner(new File("src/resources/GameScores.txt"));
 		} catch (FileNotFoundException e) {
 			System.out.println("could not find file");
 		}
@@ -32,7 +32,6 @@ public class ReadFromTxt {
 		}
 	}
 	//close the file
-
 	public void closeFile() {
 		scores.close();
 	}

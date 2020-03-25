@@ -21,7 +21,7 @@ public class ScoreSort {
 		TreeMap<Integer, List<String>> highestScores = new TreeMap<Integer, List<String>>();
 		//try to open the dummyScores.txt file
 		try {
-			reader = new BufferedReader(new FileReader("C:resources\\dummyScores.txt"));
+			reader = new BufferedReader(new FileReader("src/resources/dummyScores.txt"));
 		} catch (FileNotFoundException e) {
 			System.out.println("Cannot find dummy file");
 		}
