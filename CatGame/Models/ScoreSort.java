@@ -14,10 +14,8 @@ import java.util.Scanner;
 
 public class ScoreSort {
 	//create a BufferedReader
-
 	private BufferedReader reader;
 	//method to sort the scores in the txt file
-
 	public void Sorter() throws IOException {
 		// (key-value pairs) = (high score - (list of players)) sorts scores and handles those that are equal
 		TreeMap<Integer, List<String>> highestScores = new TreeMap<Integer, List<String>>();
@@ -53,7 +51,6 @@ public class ScoreSort {
 		}
 	}
 	//main method
-
 	public static void main(String[] args) throws IOException {
 		ScoreSort sortGame = new ScoreSort();
 		sortGame.Sorter();
