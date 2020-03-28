@@ -38,14 +38,17 @@ public class ScoreSort {
 				playerList = new ArrayList<String>(1); // CREATE a new list
 				playerList.add(playerScores[0]);
 				highestScores.put(Integer.valueOf(playerScores[1]), playerList);
-			} else { // if YES, ADD to the existing list
+			}
+                        // if YES, ADD to the existing list
+                        else {
 				playerList.add(playerScores[0]);
 			}
 		}
 
 		// iterate in descending order
 		for (Integer score : highestScores.descendingKeySet()) {
-			for (String player : highestScores.get(score)) { // iterate over player list
+                    // iterate over player list
+			for (String player : highestScores.get(score)) {
 				System.out.println(player + ": " + score);
 			}
 		}
