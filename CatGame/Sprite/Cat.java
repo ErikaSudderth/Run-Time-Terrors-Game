@@ -8,10 +8,14 @@ package CatGame.Sprite;
 import CatGame.ViewManagers.ViewManager;
 import java.util.ArrayList;
 import javafx.animation.Animation;
+import static javafx.animation.Animation.INDEFINITE;
+import javafx.animation.Interpolator;
+import javafx.animation.PathTransition;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Line;
 import javafx.util.Duration;
 
 public class Cat extends Sprite {
@@ -25,6 +29,7 @@ public class Cat extends Sprite {
     private final int OFFSET = 0;
     private final double STARTING_X = (ViewManager.getWidth() / 2) - (this.DIMENSIONS / 2);
     private final double STARTING_Y = 20;
+    private final int CAT_SPEED = 2;
     private Group animationGroup;
 
     /**
@@ -35,9 +40,9 @@ public class Cat extends Sprite {
         this.x_pos = (int) this.STARTING_X;
         this.y_pos = (int) this.STARTING_Y;
         this.initialPos();
-
         animationGroup = new Group(this.spriteImage);
         _pane.getChildren().add(animationGroup);
+        this.moveCat();
     }
 
     /**
@@ -54,6 +59,20 @@ public class Cat extends Sprite {
         this.spriteImage.setViewport(new Rectangle2D(this.OFFSET, this.OFFSET, this.DIMENSIONS, this.DIMENSIONS));
         this.animation.setCycleCount(Animation.INDEFINITE);
         this.animation.play();
+    }
+
+        /**
+     * Method that creates a path transition on which the cat moves along on the screen.
+     */
+    private void moveCat() {
+        PathTransition pathTransition = new PathTransition();
+        pathTransition.setDuration(Duration.seconds(this.CAT_SPEED));
+        pathTransition.setNode(this.animationGroup);
+        pathTransition.setPath(new Line(0 + this.getCenter() , this.STARTING_Y + this.getCenter(), ViewManager.getWidth() - this.getCenter(), this.STARTING_Y + this.getCenter()));
+        pathTransition.setCycleCount(INDEFINITE);
+        pathTransition.setAutoReverse(true);
+        pathTransition.setInterpolator(Interpolator.LINEAR);
+        pathTransition.play();
     }
 
     /**
@@ -76,6 +95,14 @@ public class Cat extends Sprite {
 
     public Group getAnimationGroup() {
         return animationGroup;
+    }
+
+    public int getDimensions() {
+        return this.DIMENSIONS;
+    }
+
+    public int getCenter() {
+        return this.DIMENSIONS / 2;
     }
 
 //=================  SETTERS ===============

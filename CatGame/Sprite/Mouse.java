@@ -3,7 +3,7 @@ package CatGame.Sprite;
 /**
  * Mouse class that extends abstract Sprite class. Initializes the mouse's list of cheese objects it holds.
  *
- * @author Erika Sudderth, Greg Dwyer Last updated: 3/24/20
+ * @author Erika Sudderth, Greg Dwyer Last updated: 3/31/20
  */
 import CatGame.Models.Input;
 import CatGame.ViewManagers.ViewManager;
