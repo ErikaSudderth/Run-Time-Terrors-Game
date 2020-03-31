@@ -18,7 +18,8 @@ public class WriteToTxt{
 			FileWriter fw = new FileWriter("C:\\Users\\antho\\Documents\\netbeans projects\\RuntimeTerrors\\src\\resources\\GameScores.txt", true);
 			BufferedWriter bw = new BufferedWriter(fw);
 			//String text = "new string for the file";
-			bw.write(_text);
+			bw.newLine();
+                        bw.write(_text);
 			bw.close();
 
 			System.out.println("done");

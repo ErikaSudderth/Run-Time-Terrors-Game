@@ -1,4 +1,3 @@
-
 /**
  * The purpose of this file is so the users can input their name
  *
@@ -39,17 +38,17 @@ public class UserInputSubScene extends Application {
         field.setOnAction(event);
 
         // textfield
-        pane.getChildren().add(field);
         pane.getChildren().add(l);
+        pane.getChildren().add(field);
 
-        Scene scn = new Scene(pane, 400, 400);
+
+        Scene scn = new Scene(pane, 200, 200);
 
         s.setScene(scn);
 
         s.show();
     }
-
     public static void main(String[] args) {
-        launch(args);
-    }
+		launch();
+	}
 }

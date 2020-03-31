@@ -19,6 +19,12 @@ public abstract class Sprite {
     public ImageView getImage() {
 	return this.spriteImage;
     }
+    public int getXPos(){
+        return this.x_pos;
+    }
+     public int getYPos(){
+        return this.y_pos;
+    }
 
 //=================  SETTERS ===============
     public void setImage(String _imagePNG) {

@@ -8,12 +8,12 @@ package CatGame.Controller;
  * Author Hasler, Greg Last updated: 3/9/20
  *
  */
-import CatGame.Models.TwitterConnection;
+import CatGame.Models.PostToConnection;
 import twitter4j.TwitterException;
 
 public class ApiAdaptor {
 
-	private TwitterConnection api = new TwitterConnection();
+	private PostToConnection api = new PostToConnection();
 
 	public void callAPI(String _highscore) throws TwitterException {
 

@@ -6,7 +6,7 @@ package CatGame.Sprite;
  * @author Erika Sudderth, Greg Dwyer
  * Last updated: 3/24/20
  */
-
+import CatGame.Models.CollisionObjects;
 import CatGame.ViewManagers.ViewManager;
 import java.util.ArrayList;
 import javafx.animation.Animation;
@@ -66,11 +66,13 @@ public class Mouse extends Sprite {
     public void moveXLeft(int _distance) {
         if(this.animationGroup.getLayoutX() >= -(ViewManager.getWidth() / 2))
             this.animationGroup.setLayoutX(this.animationGroup.getLayoutX() + _distance);
+        checkCollision();
     }
 
     public void moveXRight(int _distance) {
         if(this.animationGroup.getLayoutX() <= (ViewManager.getWidth() / 2))
-        this.animationGroup.setLayoutX(this.animationGroup.getLayoutX() + _distance);
+            this.animationGroup.setLayoutX(this.animationGroup.getLayoutX() + _distance);
+        checkCollision();
     }
 
     /**
@@ -81,11 +83,20 @@ public class Mouse extends Sprite {
     public void moveYUp(int _distance) {
         if(this.animationGroup.getLayoutY() >= -ViewManager.getHeight() + (3 * this.DIMENSIONS))
             this.animationGroup.setLayoutY(this.animationGroup.getLayoutY() + _distance);
+        checkCollision();
     }
 
     public void moveYDown(int _distance) {
         if(this.animationGroup.getLayoutY() <= this.DIMENSIONS)
             this.animationGroup.setLayoutY(this.animationGroup.getLayoutY() + _distance);
+        checkCollision();
+
+    }
+//Checks for collision.
+    public void checkCollision(){
+        CollisionObjects c = new CollisionObjects();
+        c.withWhatObject();
+
     }
 
 //=================  GETTERS ===============
@@ -96,9 +107,20 @@ public class Mouse extends Sprite {
     public Group getAnimationGroup() {
         return animationGroup;
     }
+    public int getXPos(){
+       return (int) this.animationGroup.getLayoutX();
+    }
+    public int getYPos(){
+       return (int) this.animationGroup.getLayoutY();
+    }
+    public int getRadius(){
+       return this.DIMENSIONS;
+    }
 
 //=================  SETTERS ===============
     public void setProjectileObjList(ArrayList<Cheese> _cheeseObjList) {
 	this.cheeseList = _cheeseObjList;
     }
+
+
 }
