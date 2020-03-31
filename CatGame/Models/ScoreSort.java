@@ -14,16 +14,14 @@ import java.util.Scanner;
 
 public class ScoreSort {
 	//create a BufferedReader
-
 	private BufferedReader reader;
 	//method to sort the scores in the txt file
-
 	public void Sorter() throws IOException {
 		// (key-value pairs) = (high score - (list of players)) sorts scores and handles those that are equal
 		TreeMap<Integer, List<String>> highestScores = new TreeMap<Integer, List<String>>();
 		//try to open the dummyScores.txt file
 		try {
-			reader = new BufferedReader(new FileReader("C:\\Users\\antho\\Documents\\netbeans projects\\RuntimeTerrors\\src\\resources\\dummyScores.txt"));
+			reader = new BufferedReader(new FileReader("src/resources/dummyScores.txt"));
 		} catch (FileNotFoundException e) {
 			System.out.println("Cannot find dummy file");
 		}
@@ -53,7 +51,6 @@ public class ScoreSort {
 		}
 	}
 	//main method
-
 	public static void main(String[] args) throws IOException {
 		ScoreSort sortGame = new ScoreSort();
 		sortGame.Sorter();
