@@ -1,12 +1,15 @@
 package CatGame.ViewManagers;
 
 /**
- * This is the Menu View Manager Author(s) - Greg, Erika Sudderth Last updated - 3/24/20
+ * This is the Menu View Manager 
+ * Author(s) - Greg, Erika Sudderth 
+ * Last updated - 3/31/20
  */
 import CatGame.Controller.GameController;
 import CatGame.Sprite.*;
 import static javafx.animation.Animation.INDEFINITE;
 import javafx.animation.AnimationTimer;
+import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -35,7 +38,7 @@ public class GameView extends ViewManager {
     private Boolean moveRight = false;
     private final int mouseSpeed = 5;
     private int catYPosition = 100;
-    private int catSpeed = 5;
+    private int catSpeed = 2;
 
     public GameView(GameController _cont, Stage _oldStage) {
         this.controller = _cont;
@@ -51,7 +54,7 @@ public class GameView extends ViewManager {
         this.createSprites();
         this.initializeTimer();
         //Call methods for cat movement
-        this.moveCat();
+        //this.moveCat();
 
         BackgroundImage img = new BackgroundImage(new Image(GameView.BACKGROUND, 820, 800, true, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         this.mainPane.setBackground(new Background(img));
@@ -61,9 +64,10 @@ public class GameView extends ViewManager {
         this.mouse = new Mouse(this.mainPane);
         this.cat = new Cat(this.mainPane);
     }
-/**
- * This is the game loop. Anything that needs to happen on the cycle should be put inside the "handle."
- */
+
+    /**
+     * This is the game loop. Anything that needs to happen on the cycle should be put inside the "handle."
+     */
     private void initializeTimer() {
         this.timer = new AnimationTimer() {
             @Override
@@ -81,9 +85,10 @@ public class GameView extends ViewManager {
         PathTransition pathTransition = new PathTransition();
         pathTransition.setDuration(Duration.seconds(catSpeed));
         pathTransition.setNode(cat.getAnimationGroup());
-        pathTransition.setPath(new Line(0, catYPosition, ViewManager.getWidth(), catYPosition));
+        pathTransition.setPath(new Line(0 + cat.getCenter() , catYPosition, ViewManager.getWidth() - cat.getCenter(), catYPosition));
         pathTransition.setCycleCount(INDEFINITE);
         pathTransition.setAutoReverse(true);
+        pathTransition.setInterpolator(Interpolator.LINEAR);
         pathTransition.play();
     }
 
@@ -95,7 +100,7 @@ public class GameView extends ViewManager {
     public Mouse getMouse() {
         return this.mouse;
     }
-    
+
     public Scene getMainScene() {
         return this.mainScene;
     }

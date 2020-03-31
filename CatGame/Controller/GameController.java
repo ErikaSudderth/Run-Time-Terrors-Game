@@ -1,5 +1,8 @@
 package CatGame.Controller;
 
+/**
+ * This class will route the calls from the Game view. Author(s): Greg Dwyer Last Updated: 3/31/20
+ */
 import CatGame.Models.Input;
 import CatGame.Models.KeyboardInput;
 import CatGame.Sprite.Mouse;
@@ -9,9 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-/**
- * This class will route the calls from the Game view. Author(s): Greg Dwyer Last Updated: 3/25/20
- */
 public class GameController {
 
     private final GameView VIEW;
@@ -23,7 +23,6 @@ public class GameController {
         this.VIEW = new GameView(this, MENUSTAGE);
         this.input = new KeyboardInput(this);
     }
-
 
     public void moveMouse(Mouse _mouse) {
         _mouse.moveMouse(this.input);

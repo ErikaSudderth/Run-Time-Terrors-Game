@@ -1,9 +1,7 @@
 package CatGame.Models;
 
 /**
- * This class lays out the keyboard functionality for gameplay.
- * Author(s): Greg Dwyer, Erika Sudderth
- * Last Updated: 3/25/20
+ * This class lays out the keyboard functionality for gameplay. Author(s): Greg Dwyer, Erika Sudderth Last Updated: 3/25/20
  */
 import CatGame.Controller.GameController;
 import javafx.event.EventHandler;
@@ -35,25 +33,25 @@ public class KeyboardInput extends Input {
                 switch (event.getCode()) {
                     case UP:
                         up = true;
-                        if(down) {
+                        if (down) {
                             down = false;
                         }
                         break;
                     case DOWN:
                         down = true;
-                        if(up) {
+                        if (up) {
                             up = false;
                         }
                         break;
                     case LEFT:
                         left = true;
-                        if(right) {
+                        if (right) {
                             right = false;
                         }
                         break;
                     case RIGHT:
                         right = true;
-                        if(left) {
+                        if (left) {
                             left = false;
                         }
                         break;
