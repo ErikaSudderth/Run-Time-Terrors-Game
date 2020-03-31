@@ -3,8 +3,7 @@ package CatGame.Sprite;
 /**
  * Abstract sprite class. Every movable object will have a location and a size and will inherit this class.
  *
- * @author Erika Sudderth, Greg
- * Last updated: 3/24/20
+ * @author Erika Sudderth, Greg Last updated: 3/24/20
  */
 import javafx.scene.image.ImageView;
 
@@ -17,11 +16,11 @@ public abstract class Sprite {
 
 //=================  GETTERS ===============
     public ImageView getImage() {
-	return this.spriteImage;
+        return this.spriteImage;
     }
 
 //=================  SETTERS ===============
     public void setImage(String _imagePNG) {
-	this.spriteImage = new ImageView(_imagePNG);
+        this.spriteImage = new ImageView(_imagePNG);
     }
 }
