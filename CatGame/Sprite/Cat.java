@@ -3,7 +3,7 @@ package CatGame.Sprite;
 /**
  * Cat class extends abstract Sprite class. Initializes the cat character's list of projectiles (claws).
  *
- * @author Erika Sudderth, Greg Dwyer Last updated: 3/24/20
+ * @author Erika Sudderth, Greg Dwyer Last updated: 3/31/20
  */
 import CatGame.ViewManagers.ViewManager;
 import java.util.ArrayList;
