@@ -1,29 +1,22 @@
 package CatGame.ViewManagers;
 
 /**
- * This is the Menu View Manager 
- * Author(s) - Greg, Erika Sudderth 
+ * This is the Menu View Manager
+ * Author(s) - Greg, Erika Sudderth
  * Last updated - 3/31/20
  */
 import CatGame.Controller.GameController;
 import CatGame.Sprite.*;
-import static javafx.animation.Animation.INDEFINITE;
 import javafx.animation.AnimationTimer;
-import javafx.animation.Interpolator;
-import javafx.animation.PathTransition;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.shape.Line;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class GameView extends ViewManager {
 
@@ -32,13 +25,6 @@ public class GameView extends ViewManager {
     private GameController controller;
     private Cat cat;
     private Mouse mouse;
-    private Boolean moveUp = false;
-    private Boolean moveDown = false;
-    private Boolean moveLeft = false;
-    private Boolean moveRight = false;
-    private final int mouseSpeed = 5;
-    private int catYPosition = 100;
-    private int catSpeed = 2;
 
     public GameView(GameController _cont, Stage _oldStage) {
         this.controller = _cont;

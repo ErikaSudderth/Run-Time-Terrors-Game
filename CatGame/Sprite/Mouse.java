@@ -5,6 +5,7 @@ package CatGame.Sprite;
  *
  * @author Erika Sudderth, Greg Dwyer Last updated: 3/31/20
  */
+
 import CatGame.Models.Input;
 import CatGame.ViewManagers.ViewManager;
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ public class Mouse extends Sprite {
     private final double STARTING_Y = ViewManager.getHeight() - (this.DIMENSIONS);
     private final int MOUSE_SPEED = 5;
     private final Group animationGroup;
+    private final int x_pos;
+    private final int y_pos;
+
 
     public Mouse(AnchorPane _pane) {
         this.setAnimationFields();
@@ -37,25 +41,6 @@ public class Mouse extends Sprite {
         this.initialPos();
         this.animationGroup = new Group(this.spriteImage);
         _pane.getChildren().add(animationGroup);
-    }
-
-    /**
-     * This method can be used to set an explicit location for the sprite.
-     */
-    private void initialPos() {
-        this.spriteImage.setLayoutX(this.x_pos);
-        this.spriteImage.setLayoutY(this.y_pos);
-    }
-
-    /**
-     * This method sets up the animation for the sprite.
-     */
-    private void setAnimationFields() {
-        this.spriteImage = new ImageView(this.IMAGE);
-        this.animation = new SpriteAnimation(this.spriteImage, this.FRAME_DURATION, this.FRAME_COUNT, this.SPRITE_COLUMNS, this.OFFSET, this.OFFSET, this.DIMENSIONS, this.DIMENSIONS);
-        this.spriteImage.setViewport(new Rectangle2D(this.OFFSET, this.OFFSET, this.DIMENSIONS, this.DIMENSIONS));
-        this.animation.setCycleCount(Animation.INDEFINITE);
-        this.animation.play();
     }
 
     /**
@@ -108,6 +93,25 @@ public class Mouse extends Sprite {
         if (_input.isRight()) {
             this.moveXRight();
         }
+    }
+
+    /**
+     * This method can be used to set an explicit location for the sprite.
+     */
+    private void initialPos() {
+        this.spriteImage.setLayoutX(this.x_pos);
+        this.spriteImage.setLayoutY(this.y_pos);
+    }
+
+    /**
+     * This method sets up the animation for the sprite.
+     */
+    private void setAnimationFields() {
+        this.spriteImage = new ImageView(this.IMAGE);
+        this.animation = new SpriteAnimation(this.spriteImage, this.FRAME_DURATION, this.FRAME_COUNT, this.SPRITE_COLUMNS, this.OFFSET, this.OFFSET, this.DIMENSIONS, this.DIMENSIONS);
+        this.spriteImage.setViewport(new Rectangle2D(this.OFFSET, this.OFFSET, this.DIMENSIONS, this.DIMENSIONS));
+        this.animation.setCycleCount(Animation.INDEFINITE);
+        this.animation.play();
     }
 
 //=================  GETTERS ===============
