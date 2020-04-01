@@ -48,6 +48,7 @@ public class GameView extends ViewManager {
         this.mainStage.setScene(this.mainScene);
         this.mainStage.setTitle(this.TITLE);
         this.mainStage.setResizable(false);
+        this.mainStage.sizeToScene();
         _oldStage.hide();
         mainStage.show();
         //Create cat and mouse objects

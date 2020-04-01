@@ -24,6 +24,11 @@ public class GameController {
         this.input = new KeyboardInput(this);
     }
 
+    public void exitGame() {
+        this.getViewStage().close();
+        this.MENUSTAGE.show();
+    }
+
     public void moveMouse(Mouse _mouse) {
         _mouse.moveMouse(this.input);
     }

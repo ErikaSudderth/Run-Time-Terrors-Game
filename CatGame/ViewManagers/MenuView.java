@@ -3,7 +3,6 @@ package CatGame.ViewManagers;
 /**
  * This is the Menu View Manager Author(s) - Greg Last updated - 3/6/20
  */
-
 import CatGame.ButtonExt;
 import CatGame.Controller.MenuController;
 import CatGame.Events.EventCodes;
@@ -29,6 +28,9 @@ public class MenuView extends ViewManager {
     protected MenuController controller;
     protected ButtonExt exitButton;
     private SubSceneExt subSceneOnScreen;
+    protected SubSceneExt SETTINGS;
+    protected SubSceneExt HOW_TO_PLAY;
+    protected SubSceneExt HIGHSCORES;
 
     public MenuView(MenuController _cont) {
         this.mainPane = new AnchorPane();
@@ -37,8 +39,12 @@ public class MenuView extends ViewManager {
         this.mainStage.setScene(this.mainScene);
         this.mainStage.setTitle(this.TITLE);
         this.mainStage.setResizable(false);
+        this.mainStage.sizeToScene();
         this.controller = _cont;
         this.createMenuButtons();
+        this.populateSettings();
+        this.populateHowToPlay();
+        this.populateHighscores();
 
         BackgroundImage img = new BackgroundImage(new Image(MenuView.BACKGROUND, MenuView.BCKGRD_WIDTH, MenuView.BCKGRD_HEIGHT, true, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         this.mainPane.setBackground(new Background(img));
@@ -53,22 +59,62 @@ public class MenuView extends ViewManager {
     }
 
     private void createMenuButtons() {
-        this.createButton("Game", EventCodes.START_GAME);
-        this.createButton("How to Play", EventCodes.HOW_TO_PLAY);
-        this.createButton("Highscores", EventCodes.HIGHSCORES);
-        this.createButton("Settings", EventCodes.SETTINGS_MENU);
-        this.createButton("Exit", EventCodes.EXIT);
+        this.createMenuButton("Start Game", EventCodes.START_GAME);
+        this.createMenuButton("How to Play", EventCodes.HOW_TO_PLAY);
+        this.createMenuButton("Highscores", EventCodes.HIGHSCORES);
+        this.createMenuButton("Settings", EventCodes.SETTINGS_MENU);
+        this.createMenuButton("Exit", EventCodes.EXIT);
     }
 
-    private void createButton(String _text, int _code) {
+    private void createMenuButton(String _text, int _code) {
         ButtonExt button = new ButtonExt(_text, MenuView.BUTTON_START_X, (MenuView.BUTTON_START_Y + this.mainPane.getChildren().size() * MenuView.BUTTON_SPACING));
-        this.mainPane.getChildren().add(button);
-        button.setOnAction(new EventHandler<ActionEvent>() {
+        this.placeButton(button, _code, this.mainPane);
+    }
+
+    private void placeButton(ButtonExt _button, int _code, AnchorPane _pane) {
+        _pane.getChildren().add(_button);
+        _button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 controller.handle(_code);
             }
         });
+    }
+
+    private void createSubSceneButton(String _text, int _code, SubSceneExt _scene) {
+        ButtonExt button = new ButtonExt(_text, _scene.getButtonLayoutX(), (_scene.getButtonLayoutY() + _scene.getSubAnchor().getChildren().size() * _scene.getButtonSpacing()));
+        this.placeButton(button, _code, _scene.getSubAnchor());
+    }
+
+    private void populateSettings() {
+        this.SETTINGS = new SubSceneExt();
+        this.createSubSceneButton("Volume Up", EventCodes.VOL_UP, this.SETTINGS);
+        this.createSubSceneButton("Volume Down", EventCodes.VOL_DOWN, this.SETTINGS);
+        this.createSubSceneButton("Toggle SFX", EventCodes.TOGGLE_SFX, this.SETTINGS);
+        this.createSubSceneButton("Toggle Music", EventCodes.TOGGLE_MUSIC, this.SETTINGS);
+        this.mainPane.getChildren().add(this.SETTINGS);
+    }
+
+    private void populateHowToPlay() {
+        this.HOW_TO_PLAY = new SubSceneExt();
+        this.mainPane.getChildren().add(this.HOW_TO_PLAY);
+    }
+
+    private void populateHighscores() {
+        this.HIGHSCORES = new SubSceneExt();
+        this.mainPane.getChildren().add(this.HIGHSCORES);
+    }
+
+    public void showSettings() {
+        this.showSubScene(this.SETTINGS);
+    }
+
+    public void showHowToPlay() {
+        this.showSubScene(this.HOW_TO_PLAY);
+    }
+
+    public void showHighscores() {
+        this.showSubScene(this.HIGHSCORES);
     }
 
     //=================  GETTERS ===============
