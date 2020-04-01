@@ -3,12 +3,13 @@ package CatGame.ViewManagers;
 /**
  * This is the Menu View Manager
  * Author(s) - Greg, Erika Sudderth
- * Last updated - 3/24/20
+ * Last updated - 3/31/20
  */
-
+import CatGame.Controller.GameController;
 import CatGame.Sprite.*;
 import static javafx.animation.Animation.INDEFINITE;
 import javafx.animation.AnimationTimer;
+import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -26,10 +27,10 @@ import javafx.util.Duration;
 
 public class GameView extends ViewManager {
 
-    private static final String BACKGROUND = "/resources/imgs/background.png";
+    private static final String BACKGROUND = "/resources/imgs/game_background.png";
     private AnimationTimer timer;
-    private static final long FPS30 = 33333333;
-    private Cat cat;
+    private GameController controller;
+    public  Cat cat;
     private Mouse mouse;
     private Boolean moveUp = false;
     private Boolean moveDown = false;
@@ -37,168 +38,70 @@ public class GameView extends ViewManager {
     private Boolean moveRight = false;
     private final int mouseSpeed = 5;
     private int catYPosition = 100;
-    private int catSpeed = 5;
+    private int catSpeed = 2;
 
-    public GameView(Stage _oldStage) {
-	this.mainPane = new AnchorPane();
-	this.mainScene = new Scene(this.mainPane, MenuView.WIDTH, MenuView.HEIGHT);
-	this.mainStage = new Stage();
-	this.mainStage.setScene(this.mainScene);
-	this.mainStage.setTitle(this.TITLE);
-	this.mainStage.setMaxHeight(this.HEIGHT);
-	this.mainStage.setMaxWidth(this.WIDTH);
-	this.mainStage.setMinHeight(this.HEIGHT);
-	this.mainStage.setMinWidth(this.WIDTH);
-	this.initializeTimer();
-	_oldStage.hide();
-	mainStage.show();
+    public GameView(GameController _cont, Stage _oldStage) {
+        this.controller = _cont;
+        this.mainPane = new AnchorPane();
+        this.mainScene = new Scene(this.mainPane, GameView.WIDTH, GameView.HEIGHT);
+        this.mainStage = new Stage();
+        this.mainStage.setScene(this.mainScene);
+        this.mainStage.setTitle(this.TITLE);
+        this.mainStage.setResizable(false);
+        _oldStage.hide();
+        mainStage.show();
         //Create cat and mouse objects
-	this.createSprites();
-        //Call methods for cat and mouse movement
-        this.createKeyPressedEvent();
-        this.createKeyReleasedEvent();
-        this.moveMouse();
-        this.moveCat();
+        this.createSprites();
+        this.initializeTimer();
+        //Call methods for cat movement
+        //this.moveCat();
 
-	BackgroundImage img = new BackgroundImage(new Image(GameView.BACKGROUND, GameView.WIDTH, GameView.HEIGHT, false, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-	this.mainPane.setBackground(new Background(img));
+        BackgroundImage img = new BackgroundImage(new Image(GameView.BACKGROUND, 820, 800, true, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        this.mainPane.setBackground(new Background(img));
     }
 
     private void createSprites() {
-	this.cat = new Cat(this.mainPane);
-	this.mouse = new Mouse(this.mainPane);
+        this.mouse = new Mouse(this.mainPane);
+        this.cat = new Cat(this.mainPane);
     }
 
+    /**
+     * This is the game loop. Anything that needs to happen on the cycle should be put inside the "handle."
+     */
     private void initializeTimer() {
-	this.timer = new AnimationTimer() {
-            long lastUpdate = 0;
-            int i = 0;
-
+        this.timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                //This if block will update every 30th of a second for animations.
-                if (now - lastUpdate >= GameView.FPS30) {
-                    lastUpdate = now;
-                    i++;
-                }
+                controller.moveMouse(mouse);
             }
         };
-	timer.start();
+        this.timer.start();
     }
 
     /**
-     * Method that handles the event of an arrow key being pressed. Will
-     * be used in the moveMouse method to determine which direction the
-     * mouse will move and when it starts moving.
-     *
-     * Cannot use this.moveUp within the handle method.
-     */
-    private void createKeyPressedEvent() {
-        //Create key event
-        this.mainScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                switch (event.getCode()) {
-                    case UP:
-                        moveUp = true;
-                        break;
-                    case DOWN:
-                        moveDown = true;
-                        break;
-                    case LEFT:
-                        moveLeft = true;
-                        break;
-                    case RIGHT:
-                        moveRight = true;
-                        break;
-                    case SPACE:
-                        break;
-                }
-            }
-        }
-        );
-    }
-
-    /**
-     * Method that handles the event of a key being released. Will be used
-     * in the moveMouse method to determine when the mouse stops moving
-     * in a certain direction.
-     *
-     * Cannot use this.moveUp within the handle method.
-     */
-    private void createKeyReleasedEvent() {
-        //Create key event
-        this.mainScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                switch (event.getCode()) {
-                    case UP:
-                        moveUp = false;
-                        break;
-                    case DOWN:
-                        moveDown = false;
-                        break;
-                    case LEFT:
-                        moveLeft = false;
-                        break;
-                    case RIGHT:
-                        moveRight = false;
-                        break;
-                    case SPACE:
-                        break;
-                }
-            }
-        }
-        );
-    }
-
-    /**
-     * Method that calls the moveY and moveX methods in response to the
-     * key event. Continues movement as long as the key is pressed.
-     */
-    private void moveMouse() {
-
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                if (moveUp) {
-                    mouse.moveYUp(-mouseSpeed);
-                }
-                if (moveDown) {
-                    mouse.moveYDown(mouseSpeed);
-                }
-                if (moveLeft) {
-                    mouse.moveXLeft(-mouseSpeed);
-                }
-                if (moveRight) {
-                    mouse.moveXRight(mouseSpeed);
-                }
-            }
-        };
-        timer.start();
-    }
-
-    /**
-     * Method that creates a path transition on which the cat moves along on
-     * the screen.
+     * Method that creates a path transition on which the cat moves along on the screen.
      */
     private void moveCat() {
         PathTransition pathTransition = new PathTransition();
         pathTransition.setDuration(Duration.seconds(catSpeed));
         pathTransition.setNode(cat.getAnimationGroup());
-        pathTransition.setPath(new Line(0, catYPosition, ViewManager.getWidth(), catYPosition));
+        pathTransition.setPath(new Line(0 + cat.getCenter() , catYPosition, ViewManager.getWidth() - cat.getCenter(), catYPosition));
         pathTransition.setCycleCount(INDEFINITE);
         pathTransition.setAutoReverse(true);
-        //checkCollision();
+        pathTransition.setInterpolator(Interpolator.LINEAR);
         pathTransition.play();
     }
 
 //=================  GETTERS ===============
     public Cat getCat() {
-	return this.cat;
+        return this.cat;
     }
 
     public Mouse getMouse() {
         return this.mouse;
+    }
+
+    public Scene getMainScene() {
+        return this.mainScene;
     }
 }

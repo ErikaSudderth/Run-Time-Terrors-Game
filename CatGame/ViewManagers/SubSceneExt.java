@@ -17,8 +17,8 @@ import javafx.util.Duration;
 public class SubSceneExt extends SubScene {
 
 	private Boolean isHidden = true;
-	private final static int PREF_HEIGHT = 200;
-	private final static int PREF_WIDTH = 300;
+	private final static int PREF_HEIGHT = 400;
+	private final static int PREF_WIDTH = 400;
 	private final static int LAYOUT_X = ViewManager.WIDTH;
 	private final static int LAYOUT_Y = 150;
 	private final static String BACKGROUND = "/resources/imgs/subscene_background.png";

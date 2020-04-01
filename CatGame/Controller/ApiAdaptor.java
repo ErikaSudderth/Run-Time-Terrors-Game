@@ -13,11 +13,13 @@ import twitter4j.TwitterException;
 
 public class ApiAdaptor {
 
+
 	private PostToConnection api = new PostToConnection();
 
-	public void callAPI(String _highscore) throws TwitterException {
 
-		api.postToTwitter(_highscore);
+    public void callAPI(String _highscore) throws TwitterException {
 
-	}
+        api.postToTwitter(_highscore);
+
+    }
 }

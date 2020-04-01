@@ -19,7 +19,8 @@ public class PostToConnection {
     private String token ="1222276825969131520-3iuVn78RpduNEViVwixUHDx6sFYBtT";
     private String tokenSecret ="AsYy7yoPW8lvkbY5fdQdcztktoBDq295Fr55AGsHQMKNz";
 
-	ConfigurationBuilder cb = new ConfigurationBuilder();
+    ConfigurationBuilder cb = new ConfigurationBuilder();
+
 
 	public void postToTwitter(String _highscore) throws TwitterException {
 		cb.setDebugEnabled(true)
@@ -31,4 +32,5 @@ public class PostToConnection {
 		Twitter twitter = tf.getInstance();
 		twitter.updateStatus(_highscore);
 	}
+
 }

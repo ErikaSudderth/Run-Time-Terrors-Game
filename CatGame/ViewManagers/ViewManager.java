@@ -9,23 +9,37 @@ import javafx.stage.Stage;
 
 public abstract class ViewManager {
 
-	protected static final int WIDTH = 800;
-	protected static final int HEIGHT = 600;
-	protected static final String TITLE = "Quesadilla Ratón";
-	AnchorPane mainPane;
-	Scene mainScene;
-	Stage mainStage;
+    protected static final int WIDTH = 800;
+    protected static final int HEIGHT = 600;
+    protected static final int BCKGRD_WIDTH = 820;
+    protected static final int BCKGRD_HEIGHT = 800;
+    protected static final String TITLE = "Quesadilla Ratón";
+    AnchorPane mainPane;
+    Scene mainScene;
+    Stage mainStage;
 
-	public ViewManager() {
+    public ViewManager() {
 
-	}
+    }
 //=================  GETTERS ===============
 
-	public static int getWidth() {
-		return ViewManager.WIDTH;
-	}
+    public static int getWidth() {
+        return ViewManager.WIDTH;
+    }
 
-	public static int getHeight() {
-		return ViewManager.HEIGHT;
-	}
+    public static int getHeight() {
+        return ViewManager.HEIGHT;
+    }
+
+    public AnchorPane getMainPane() {
+        return this.mainPane;
+    }
+
+    public Scene getMainScene() {
+        return this.mainScene;
+    }
+
+    public Stage getMainStage() {
+        return this.mainStage;
+    }
 }

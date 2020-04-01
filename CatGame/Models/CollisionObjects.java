@@ -10,6 +10,7 @@ import CatGame.Sprite.Cat;
 import CatGame.Sprite.Mouse;
 import CatGame.Sprite.Cheese;
 import CatGame.Sprite.Hairball;
+import CatGame.Sprite.Sprite;
 import static java.lang.Math.sqrt;
 
 public class CollisionObjects  {
