@@ -11,8 +11,7 @@ import java.util.Scanner;
 public class ReadFromTxt {
 
 	private Scanner scores;
-	//open the text file & display error message if file is not found
-
+	//open the text file & display error message if file is not foun
 	public void openFile() throws FileNotFoundException {
 		try {
 			scores = new Scanner(new File("src/resources/GameScores.txt"));
@@ -22,17 +21,14 @@ public class ReadFromTxt {
 	}
 
 	//reads the contents using the scanner. Sets the variables of the text file
+        int counter = 0;
 	public void readFile() {
-		while (scores.hasNext()) {
-			//String rank = scores.next();
-			String player = scores.next();
-			//String score = scores.next();
-			//format the output of the txt
-			System.out.printf("%s", player);
+		while (scores.hasNextLine() && counter < 5) {
+                    System.out.println(scores.nextLine());
 		}
 	}
 	//close the file
 	public void closeFile() {
 		scores.close();
 	}
-}
+    }

@@ -19,7 +19,7 @@ public class WriteToTxt extends UserInputSubScene{
 			FileWriter fw = new FileWriter("src/resources/GameScores.txt", true);
 			BufferedWriter bw = new BufferedWriter(fw);
 			//String text = "new string for the file";
-			bw.write(_text);
+			bw.write(_text + ":" + " " + "15");
                         bw.newLine();
 			bw.close();
 

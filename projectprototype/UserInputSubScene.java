@@ -55,7 +55,7 @@ public class UserInputSubScene extends Application {
         // textfield
         pane.getChildren().add(l);
         pane.getChildren().add(field);
-       
+
 
         Scene scn = new Scene(pane, 400, 400);
 
@@ -66,6 +66,6 @@ public class UserInputSubScene extends Application {
 
     public static void main(String[] args) throws IOException {
         launch(args);
-      
+
     }
 }
