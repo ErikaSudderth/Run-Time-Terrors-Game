@@ -16,7 +16,7 @@ public class MenuController {
 
     public MenuController() {
         this.VIEW = new MenuView(this);
-        SFX.startMusic();
+        //SFX.startMusic();
     }
 
     public void handle(int _code) {
