@@ -5,7 +5,6 @@ package CatGame.Sprite;
  *
  * @author Erika Sudderth, Greg Dwyer Last updated: 3/31/20
  */
-
 import CatGame.Models.Input;
 import CatGame.ViewManagers.ViewManager;
 import java.util.ArrayList;
@@ -31,7 +30,6 @@ public class Mouse extends Sprite {
     private final Group animationGroup;
     private final int x_pos;
     private final int y_pos;
-
 
     public Mouse(AnchorPane _pane) {
         this.setAnimationFields();
@@ -123,7 +121,19 @@ public class Mouse extends Sprite {
         return animationGroup;
     }
 
+    public int getXPos() {
+        return (int) (this.animationGroup.getLayoutX() + this.STARTING_X) + this.getCenter();
+    }
+
+    public int getYPos() {
+        return (int) (this.animationGroup.getLayoutY() + this.STARTING_Y)+ this.getCenter();
+    }
+    
+    public int getCenter() {
+        return this.DIMENSIONS / 2;
+    }
 //=================  SETTERS ===============
+
     public void setProjectileObjList(ArrayList<Cheese> _cheeseObjList) {
         this.cheeseList = _cheeseObjList;
     }

@@ -11,8 +11,8 @@ public abstract class ViewManager {
 
     protected static final int WIDTH = 800;
     protected static final int HEIGHT = 600;
-    protected static final int BCKGRD_WIDTH = 820;
-    protected static final int BCKGRD_HEIGHT = 800;
+    protected static final int BCKGRD_WIDTH = 830;
+    protected static final int BCKGRD_HEIGHT = 830;
     protected static final String TITLE = "Quesadilla Ratón";
     AnchorPane mainPane;
     Scene mainScene;
