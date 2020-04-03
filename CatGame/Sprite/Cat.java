@@ -1,12 +1,10 @@
 package CatGame.Sprite;
 
 /**
- * Cat class extends abstract Sprite class. Initializes the cat and calls
- * on it to move and shoot claws.
+ * Cat class extends abstract Sprite class. Initializes the cat and calls on it to move and shoot claws.
  *
  * @author Erika Sudderth, Greg Dwyer Last updated: 3/31/20
  */
-
 import CatGame.ViewManagers.ViewManager;
 import javafx.animation.Animation;
 import static javafx.animation.Animation.INDEFINITE;
@@ -34,8 +32,8 @@ public class Cat extends Sprite {
     private final int OFFSET = 0;
     private final double STARTING_X = (ViewManager.getWidth() / 2) - (this.DIMENSIONS / 2);
     private final double STARTING_Y = 20;
-    private final int CAT_SPEED = 5;
-    private final int clawSpeed = 2;
+    private final int CAT_SPEED = 7;
+    private final int CLAW_SPEED = 2;
     private Group animationGroup;
     AnchorPane pane;
 
@@ -56,7 +54,7 @@ public class Cat extends Sprite {
      */
     public void shootClaws() {
         Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(1000), event -> this.createClawPath()));
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(500), event -> this.createClawPath()));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
@@ -71,7 +69,7 @@ public class Cat extends Sprite {
 
     private void moveCat() {
         //Create the lines the cat will follow in sequence.
-        Polyline lines = new Polyline(new double[] {
+        Polyline lines = new Polyline(new double[]{
             this.STARTING_X, this.STARTING_Y + this.getCenter(),
             (double) ViewManager.getWidth(), this.STARTING_Y + this.getCenter(),
             0, this.STARTING_Y + this.getCenter(),
@@ -89,24 +87,23 @@ public class Cat extends Sprite {
     }
 
     /**
-     * Method that creates a path for shooting the claws. The path begins at
-     * the cat's location at the time and continues along a straight line down
-     * to the bottom of the screen.
+     * Method that creates a path for shooting the claws. The path begins at the cat's location at the time and continues along a straight line down to the bottom of the screen.
      */
     public void createClawPath() {
         Projectiles claw = new Projectiles(this.pane);
         PathTransition pathTransition = new PathTransition();
-        pathTransition.setDuration(Duration.seconds(this.clawSpeed));
+        pathTransition.setDuration(Duration.seconds(this.CLAW_SPEED));
         pathTransition.setNode(claw.getClawGroup());
         //To create a Line: Line(initial x, initital y, final x, final y).
         pathTransition.setPath(new Line(this.animationGroup.getTranslateX() + this.getCenter(), this.STARTING_Y + this.getCenter(), this.animationGroup.getTranslateX() + this.getCenter(), ViewManager.getHeight() + this.getCenter()));
         pathTransition.play();
         //Remove class once it has left the screen.
-        pathTransition.onFinishedProperty().set((EventHandler<ActionEvent>) (ActionEvent event) -> {claw.removeClaw();});
+        pathTransition.onFinishedProperty().set((EventHandler<ActionEvent>) (ActionEvent event) -> {
+            claw.removeClaw();
+        });
     }
 
 //=================  GETTERS ===============
-
     public Group getAnimationGroup() {
         return this.animationGroup;
     }
@@ -117,5 +114,13 @@ public class Cat extends Sprite {
 
     public int getCenter() {
         return this.DIMENSIONS / 2;
+    }
+
+    public int getXPos() {
+        return (int) this.animationGroup.getTranslateX() + this.getCenter();
+    }
+
+    public int getYPos() {
+        return (int) this.animationGroup.getTranslateY() + this.getCenter();
     }
 }

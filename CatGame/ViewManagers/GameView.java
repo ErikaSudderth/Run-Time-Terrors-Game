@@ -34,6 +34,7 @@ public class GameView extends ViewManager {
         this.mainStage.setScene(this.mainScene);
         this.mainStage.setTitle(this.TITLE);
         this.mainStage.setResizable(false);
+        this.mainStage.sizeToScene();
         _oldStage.hide();
         mainStage.show();
         //Create cat and mouse objects
@@ -57,6 +58,11 @@ public class GameView extends ViewManager {
             @Override
             public void handle(long now) {
                 controller.moveMouse(mouse);
+                System.out.print("cat:" + cat.getXPos() + "," + cat.getYPos() + " mouse:" + mouse.getXPos() + "," + mouse.getYPos());
+                if((Math.abs(mouse.getXPos() - cat.getXPos()) < 64) && Math.abs(mouse.getYPos() - cat.getYPos()) < 64){
+                    System.out.print(" Collided");
+                }
+                System.out.println("");
             }
         };
         this.timer.start();

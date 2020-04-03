@@ -59,6 +59,7 @@ public class KeyboardInput extends Input {
                         space = true;
                         break;
                     case ESCAPE:
+                        controller.exitGame();
                         esc = true;
                         break;
                 }
