@@ -7,23 +7,18 @@ package CatGame.ViewManagers;
  */
 import CatGame.Controller.GameController;
 import CatGame.Sprite.*;
-import static javafx.animation.Animation.INDEFINITE;
+import CatGame.Models.CollisionObjects;
 import javafx.animation.AnimationTimer;
-import javafx.animation.Interpolator;
-import javafx.animation.PathTransition;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.shape.Line;
 import javafx.stage.Stage;
-import javafx.util.Duration;
+
 
 public class GameView extends ViewManager {
 
@@ -32,13 +27,7 @@ public class GameView extends ViewManager {
     private GameController controller;
     public  Cat cat;
     private Mouse mouse;
-    private Boolean moveUp = false;
-    private Boolean moveDown = false;
-    private Boolean moveLeft = false;
-    private Boolean moveRight = false;
-    private final int mouseSpeed = 5;
-    private int catYPosition = 100;
-    private int catSpeed = 2;
+    private CollisionObjects collision;
 
     public GameView(GameController _cont, Stage _oldStage) {
         this.controller = _cont;
@@ -53,8 +42,6 @@ public class GameView extends ViewManager {
         //Create cat and mouse objects
         this.createSprites();
         this.initializeTimer();
-        //Call methods for cat movement
-        //this.moveCat();
 
         BackgroundImage img = new BackgroundImage(new Image(GameView.BACKGROUND, 820, 800, true, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         this.mainPane.setBackground(new Background(img));
@@ -73,23 +60,10 @@ public class GameView extends ViewManager {
             @Override
             public void handle(long now) {
                 controller.moveMouse(mouse);
+                mouse.collision(cat);
             }
         };
         this.timer.start();
-    }
-
-    /**
-     * Method that creates a path transition on which the cat moves along on the screen.
-     */
-    private void moveCat() {
-        PathTransition pathTransition = new PathTransition();
-        pathTransition.setDuration(Duration.seconds(catSpeed));
-        pathTransition.setNode(cat.getAnimationGroup());
-        pathTransition.setPath(new Line(0 + cat.getCenter() , catYPosition, ViewManager.getWidth() - cat.getCenter(), catYPosition));
-        pathTransition.setCycleCount(INDEFINITE);
-        pathTransition.setAutoReverse(true);
-        pathTransition.setInterpolator(Interpolator.LINEAR);
-        pathTransition.play();
     }
 
 //=================  GETTERS ===============

@@ -6,34 +6,40 @@ package CatGame.Models;
  * @author Hasler Zuniga last updated: 3/28/20
  */
 
-import CatGame.Sprite.Cat;
 import CatGame.Sprite.Mouse;
 import CatGame.Sprite.Cheese;
 import CatGame.Sprite.Hairball;
 import CatGame.Sprite.Sprite;
 import static java.lang.Math.sqrt;
+import CatGame.ViewManagers.GameView;
 
 public class CollisionObjects  {
-    private Cat cat;
     private Mouse mouse;
-    private Cheese cheese;
-    private Hairball hairball;
-// Checks every object to see which one the mouse collided with)
-    public void withWhatObject(){
+    private Sprite cat;
+    private int xVal;
+    private int yVal;
 
-        if (collisionCheck(mouse,cat) == true)
-            System.out.println("Collided with Cat!");
-
+    public CollisionObjects(int _mouseX, int _mouseY){
+        this.xVal = _mouseX;
+        this.yVal = _mouseY;
     }
 
+// Checks every object to see which one the mouse collided with)
+//    public void withWhatObject(){
+//
+//        if (collisionCheck(this.cat))
+//            System.out.println("Collided with Cat!");
+//        System.out.println("nothing");
+//    }
+
 //This method detects collisions between objects.
-   public boolean collisionCheck(Sprite object1, Sprite object2) {
-        int radius = object1.
-        int distanceX = object1.getXPos() - object2.getXPos();
-        int distanceY = object1.getYPos() - object2.getYPos();
+   public boolean collisionCheck(Sprite _cat) {
+        int radius = 128;
+        int distanceX =  this.xVal - _cat.getX();
+        int distanceY = this.yVal - _cat.getY();
         int distance = (int) sqrt((distanceX * distanceX) + (distanceY * distanceY));
         System.out.println(distance);
-        if(distance <= object1.get){
+        if(distance <= radius){
             return true;
         }
 

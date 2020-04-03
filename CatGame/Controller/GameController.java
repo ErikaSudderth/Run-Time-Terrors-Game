@@ -6,11 +6,11 @@ package CatGame.Controller;
 import CatGame.Models.Input;
 import CatGame.Models.KeyboardInput;
 import CatGame.Sprite.Mouse;
-import CatGame.Sprite.Sprite;
 import CatGame.ViewManagers.GameView;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
 
 public class GameController {
 

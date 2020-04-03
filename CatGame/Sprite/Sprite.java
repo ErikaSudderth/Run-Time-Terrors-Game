@@ -1,29 +1,34 @@
 package CatGame.Sprite;
 
 /**
- * Abstract sprite class. Every movable object will have a location and a size and will inherit this class.
+ * Abstract sprite class. Every movable object will have an image.
  *
- * @author Erika Sudderth, Greg Last updated: 3/24/20
+ * @author Erika Sudderth, Greg Last updated: 3/31/20
  */
+
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 
 public abstract class Sprite {
 
     protected ImageView spriteImage;
     protected SpriteAnimation animation;
-    protected int x_pos;
-    protected int y_pos;
+    protected Group animationGroup;
 
 //=================  GETTERS ===============
     public ImageView getImage() {
         return this.spriteImage;
     }
-    public int getXPos(){
-        return this.x_pos;
+    public Group getAnimationGroup(){
+        return this.animationGroup;
     }
-     public int getYPos(){
-        return this.y_pos;
-    }
+    public abstract Rectangle2D getBounds();
+
+    public abstract int getX();
+
+    public abstract int getY();
+
 
 //=================  SETTERS ===============
     public void setImage(String _imagePNG) {

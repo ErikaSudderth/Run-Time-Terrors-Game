@@ -1,5 +1,7 @@
 package CatGame.Sprite;
 
+import javafx.geometry.Rectangle2D;
+
 /**
  * Cheese class that extends the Sprite class. Each object will have a Boolean variable to determine if it has been collected by the mouse.
  *
@@ -15,6 +17,9 @@ public class Cheese extends Sprite {
 //=================  GETTERS ===============
     public Boolean getIsCollected() {
         return this.isCollected;
+    }
+     public Rectangle2D getBounds(){
+        return new Rectangle2D(getAnimationGroup().getTranslateX(), getAnimationGroup().getTranslateY(),this.DIMENSIONS,this.DIMENSIONS);
     }
 
 //=================  SETTERS ===============
