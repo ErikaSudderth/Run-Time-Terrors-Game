@@ -72,7 +72,7 @@ public class Mouse extends Sprite {
     }
 
     public void moveYDown() {
-        if (this.animationGroup.getLayoutY() <= this.DIMENSIONS) {
+        if (this.animationGroup.getLayoutY() <= 0) {
             this.animationGroup.setLayoutY(this.animationGroup.getLayoutY() + this.MOUSE_SPEED);
         }
     }

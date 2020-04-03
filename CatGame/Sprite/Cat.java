@@ -4,7 +4,7 @@ package CatGame.Sprite;
  * Cat class extends abstract Sprite class. Initializes the cat and calls
  * on it to move and shoot claws.
  *
- * @author Erika Sudderth, Greg Dwyer Last updated: 3/31/20
+ * @author Erika Sudderth, Greg Dwyer Last updated: 4/1/20
  */
 
 import CatGame.ViewManagers.ViewManager;
@@ -45,20 +45,10 @@ public class Cat extends Sprite {
     public Cat(AnchorPane _pane) {
         this.pane = _pane;
         this.setAnimationFields();
-        animationGroup = new Group(this.spriteImage);
-        _pane.getChildren().add(animationGroup);
+        this.animationGroup = new Group(this.spriteImage);
+        _pane.getChildren().add(this.animationGroup);
         this.moveCat();
         this.shootClaws();
-    }
-
-    /**
-     * Method that shoots a claw every x seconds.
-     */
-    public void shootClaws() {
-        Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(1000), event -> this.createClawPath()));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
     }
 
     private void setAnimationFields() {
@@ -93,16 +83,29 @@ public class Cat extends Sprite {
      * the cat's location at the time and continues along a straight line down
      * to the bottom of the screen.
      */
-    public void createClawPath() {
+    private void createClawPath() {
         Projectiles claw = new Projectiles(this.pane);
+        //Set initial image to beginning of path transition to prevent flickering image.
+        claw.getClawGroup().setTranslateX(this.animationGroup.getTranslateX() + this.getCenter());
+        claw.getClawGroup().setTranslateY(this.animationGroup.getTranslateY() + this.getCenter());
         PathTransition pathTransition = new PathTransition();
         pathTransition.setDuration(Duration.seconds(this.clawSpeed));
         pathTransition.setNode(claw.getClawGroup());
         //To create a Line: Line(initial x, initital y, final x, final y).
         pathTransition.setPath(new Line(this.animationGroup.getTranslateX() + this.getCenter(), this.STARTING_Y + this.getCenter(), this.animationGroup.getTranslateX() + this.getCenter(), ViewManager.getHeight() + this.getCenter()));
         pathTransition.play();
-        //Remove class once it has left the screen.
+        //Remove object once it has left the screen.
         pathTransition.onFinishedProperty().set((EventHandler<ActionEvent>) (ActionEvent event) -> {claw.removeClaw();});
+    }
+
+     /**
+     * Method that shoots a claw every x seconds.
+     */
+    private void shootClaws() {
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(1000), event -> this.createClawPath()));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
 //=================  GETTERS ===============

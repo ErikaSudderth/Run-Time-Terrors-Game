@@ -7,6 +7,7 @@ package CatGame.ViewManagers;
  */
 import CatGame.Controller.GameController;
 import CatGame.Sprite.*;
+import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -47,6 +48,13 @@ public class GameView extends ViewManager {
     private void createSprites() {
         this.mouse = new Mouse(this.mainPane);
         this.cat = new Cat(this.mainPane);
+
+        for(int numHairballs = 1; numHairballs <= 10; numHairballs++) {
+            Random randGen = new Random();
+            int xPos = randGen.nextInt(800);
+            int yPos = randGen.nextInt(600);
+            Hairball hairBall = new Hairball(this.mainPane, xPos, yPos);
+        }
     }
 
     /**
