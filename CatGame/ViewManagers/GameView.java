@@ -59,7 +59,7 @@ public class GameView extends ViewManager {
             public void handle(long now) {
                 controller.moveMouse(mouse);
                 System.out.print("cat:" + cat.getXPos() + "," + cat.getYPos() + " mouse:" + mouse.getXPos() + "," + mouse.getYPos());
-                if((Math.abs(mouse.getXPos() - cat.getXPos()) < 64) && Math.abs(mouse.getYPos() - cat.getYPos()) < 64){
+                if((Math.abs(mouse.getXPos() - cat.getXPos()) < 64) && Math.abs(mouse.getYPos() - cat.getYPos()) < 64 ){
                     System.out.print(" Collided");
                 }
                 System.out.println("");

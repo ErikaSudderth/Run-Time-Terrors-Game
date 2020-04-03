@@ -126,9 +126,9 @@ public class Mouse extends Sprite {
     }
 
     public int getYPos() {
-        return (int) (this.animationGroup.getLayoutY() + this.STARTING_Y)+ this.getCenter();
+        return (int) (this.animationGroup.getLayoutY() + this.STARTING_Y) + this.getCenter();
     }
-    
+
     public int getCenter() {
         return this.DIMENSIONS / 2;
     }

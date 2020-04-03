@@ -54,7 +54,7 @@ public class Cat extends Sprite {
      */
     public void shootClaws() {
         Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(500), event -> this.createClawPath()));
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(666), event -> this.createClawPath()));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
