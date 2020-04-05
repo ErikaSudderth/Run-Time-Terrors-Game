@@ -49,20 +49,7 @@ public class Cat extends Sprite {
         this.moveCat();
         this.shootClaws();
     }
-
-<<<<<<< HEAD
-    /**
-     * Method that shoots a claw every x seconds.
-     */
-    public void shootClaws() {
-        Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(666), event -> this.createClawPath()));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-    }
-
-=======
->>>>>>> 0529dab6a1c7d41f9051289f605321df169f514c
+    
     private void setAnimationFields() {
         this.spriteImage = new ImageView(this.IMAGE);
         this.animation = new SpriteAnimation(this.spriteImage, this.FRAME_DURATION, this.FRAME_COUNT, this.SPRITE_COLUMNS, this.OFFSET, this.OFFSET, this.DIMENSIONS, this.DIMENSIONS);
