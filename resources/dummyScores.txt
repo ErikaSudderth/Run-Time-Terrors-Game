@@ -1,0 +1,5 @@
+Anthony: 12
+Hasler: 16
+Greg: 18
+Erika: 25
+dummy: 9
