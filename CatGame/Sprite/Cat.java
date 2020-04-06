@@ -129,4 +129,14 @@ public class Cat extends Sprite {
     public int getYPos() {
         return (int) this.animationGroup.getTranslateY() + this.getCenter();
     }
+
+    @Override
+    public int getX() {
+        return getXPos();
+    }
+
+    @Override
+    public int getY() {
+        return getYPos();
+    }
 }

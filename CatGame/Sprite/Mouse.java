@@ -5,8 +5,10 @@ package CatGame.Sprite;
  *
  * @author Erika Sudderth, Greg Dwyer Last updated: 3/31/20
  */
+import CatGame.Models.CollisionObjects;
 import CatGame.Models.Input;
 import CatGame.ViewManagers.ViewManager;
+import static java.lang.Math.sqrt;
 import java.util.ArrayList;
 import javafx.animation.Animation;
 import javafx.geometry.Rectangle2D;
@@ -30,6 +32,7 @@ public class Mouse extends Sprite {
     private final Group animationGroup;
     private final int x_pos;
     private final int y_pos;
+    private CollisionObjects collision;
 
     public Mouse(AnchorPane _pane) {
         this.setAnimationFields();
@@ -112,6 +115,17 @@ public class Mouse extends Sprite {
         this.animation.play();
     }
 
+    public void checkCollision(Sprite _cat) {
+        int radius = 128;
+        int distanceX = getX() - _cat.getX();
+        int distanceY = getY() - _cat.getY();
+        int distance = (int) sqrt((distanceX * distanceX) + (distanceY * distanceY));
+        System.out.println(distance);
+        if (distance <= radius) {
+            System.out.println("Collied");
+        }
+    }
+
 //=================  GETTERS ===============
     public ArrayList<Cheese> getCheeseObjList() {
         return this.cheeseList;
@@ -126,11 +140,21 @@ public class Mouse extends Sprite {
     }
 
     public int getYPos() {
-        return (int) (this.animationGroup.getLayoutY() + this.STARTING_Y)+ this.getCenter();
+        return (int) (this.animationGroup.getLayoutY() + this.STARTING_Y) + this.getCenter();
     }
-    
+
     public int getCenter() {
         return this.DIMENSIONS / 2;
+    }
+
+    @Override
+    public int getX() {
+        return getXPos();
+    }
+
+    @Override
+    public int getY() {
+        return getYPos();
     }
 //=================  SETTERS ===============
 
