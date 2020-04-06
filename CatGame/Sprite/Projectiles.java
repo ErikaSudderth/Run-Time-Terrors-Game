@@ -1,29 +1,55 @@
 package CatGame.Sprite;
 
-import javafx.scene.image.ImageView;
-
 /**
- * Projectile class (for claws) that extends the Sprite class. Each object will have a Boolean value to determine if it has been thrown or not.
+ * Projectile class (for claws) that extends the Sprite class. Calls on
+ * method to rotate claws.
  *
- * @author Erika Sudderth
- * Last updated: 3/24/20
+ * @author Erika Sudderth Last updated: 3/31/20
  */
+
+import javafx.animation.Animation;
+import javafx.animation.RotateTransition;
+import javafx.scene.Group;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+
 public class Projectiles extends Sprite {
 
-    protected Boolean isThrown;
-    protected String clawImage = "/resources/imgs/claw.png";
+    private final String clawImage = "/resources/imgs/claw.png";
+    AnchorPane pane;
+    private final int rotationAngle = 360;
+    private Group animationGroup;
 
-    public Projectiles() {
-        spriteImage = new ImageView(clawImage);
+
+    public Projectiles(AnchorPane _pane) {
+        this.spriteImage = new ImageView(this.clawImage);
+        this.pane = _pane;
+        this.clawAnimation();
+        this.pane.getChildren().add(this.animationGroup);
+    }
+
+    /**
+     * Removes the claw animation node from pane.
+     */
+    public void removeClaw() {
+        this.pane.getChildren().remove(this.animationGroup);
+    }
+
+    /**
+     * Animates the sprite image to rotate indefinitely.
+     */
+    private void clawAnimation() {
+        RotateTransition rotation = new RotateTransition();
+        rotation.setNode(this.spriteImage);
+        rotation.setByAngle(rotationAngle);
+        rotation.setCycleCount(Animation.INDEFINITE);
+
+        this.animationGroup = new Group(this.spriteImage);
+        rotation.play();
     }
 
 //=================  GETTERS ===============
-    public Boolean getIsThrown() {
-	return this.isThrown;
-    }
-
-//=================  SETTERS ===============
-    public void setIsThrown(Boolean _isThrown) {
-	this.isThrown = _isThrown;
+    public Group getClawGroup() {
+	return this.animationGroup;
     }
 }

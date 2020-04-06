@@ -9,7 +9,6 @@ import java.io.*;
 import java.util.Scanner;
 
 public class ReadFromTxt {
-
 	private Scanner scores;
 	//open the text file & display error message if file is not foun
 	public void openFile() throws FileNotFoundException {
@@ -25,6 +24,7 @@ public class ReadFromTxt {
 	public void readFile() {
 		while (scores.hasNextLine() && counter < 5) {
                     System.out.println(scores.nextLine());
+                    counter++;
 		}
 	}
 	//close the file

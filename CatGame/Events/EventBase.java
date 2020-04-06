@@ -7,17 +7,17 @@ import java.util.EventObject;
 
 public abstract class EventBase extends EventObject {
 
-	private int code;
+    private int code;
 
-	public EventBase(Object _source) {
-		super(_source);
-	}
+    public EventBase(Object _source) {
+        super(_source);
+    }
 
-	public void setCode(int _code) {
-		this.code = _code;
-	}
+    public void setCode(int _code) {
+        this.code = _code;
+    }
 
-	public int getCode() {
-		return this.code;
-	}
+    public int getCode() {
+        return this.code;
+    }
 }

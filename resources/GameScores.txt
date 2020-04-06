@@ -1,8 +1,8 @@
 anthony: 15
-hasler: 15
-greg: 15
-erika: 15
-jackie: 15
-spencer: 15
-leila: 15
+seth: 15
 sara: 15
+lucy: 15
+hasler: 15
+ruby: 15
+anthony: 15
+jolie: 15
