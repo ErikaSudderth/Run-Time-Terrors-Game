@@ -5,6 +5,7 @@ package CatGame.Controller;
  *
  */
 import CatGame.Events.EventCodes;
+import CatGame.SFX;
 import CatGame.ViewManagers.MenuView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -15,6 +16,7 @@ public class MenuController {
 
     public MenuController() {
         this.VIEW = new MenuView(this);
+        //SFX.startMusic();
     }
 
     public void handle(int _code) {
@@ -23,16 +25,27 @@ public class MenuController {
                 GameController game = new GameController(this.getViewStage());
                 break;
             case EventCodes.HOW_TO_PLAY:
-                //show how to play
+                this.VIEW.showHowToPlay();
                 break;
             case EventCodes.HIGHSCORES:
-                //Display High scores
+                this.VIEW.showHighscores();
                 break;
             case EventCodes.SETTINGS_MENU:
-                //open settings menu
+                this.VIEW.showSettings();
                 break;
             case EventCodes.EXIT:
                 this.VIEW.getMainStage().close();
+                break;
+            case EventCodes.VOL_UP:
+                SFX.volUp();
+                break;
+            case EventCodes.VOL_DOWN:
+                SFX.volDown();
+            case EventCodes.TOGGLE_SFX:
+                SFX.toggleSFXMute();
+                break;
+            case EventCodes.TOGGLE_MUSIC:
+                SFX.toggleMusicMute();
                 break;
         }
     }

@@ -8,6 +8,7 @@ package CatGame.Sprite;
  */
 
 import javafx.animation.Animation;
+import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
@@ -42,6 +43,7 @@ public class Projectiles extends Sprite {
         RotateTransition rotation = new RotateTransition();
         rotation.setNode(this.spriteImage);
         rotation.setByAngle(rotationAngle);
+        rotation.setInterpolator(Interpolator.LINEAR);
         rotation.setCycleCount(Animation.INDEFINITE);
 
         this.animationGroup = new Group(this.spriteImage);

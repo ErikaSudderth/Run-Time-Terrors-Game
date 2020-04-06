@@ -24,4 +24,11 @@ public class EventCodes {
     public static final int CLAW_FIRED = 13;
     public static final int CHEESE_DROPOFF = 14;
 
+    //These are additional menu events.
+    public static final int VOL_UP = 15;
+    public static final int VOL_DOWN = 16;
+    public static final int TOGGLE_SFX = 17;
+    public static final int TOGGLE_MUSIC = 18;
+    
+
 }

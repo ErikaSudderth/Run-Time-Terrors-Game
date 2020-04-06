@@ -7,6 +7,7 @@ package CatGame.ViewManagers;
  */
 import CatGame.Controller.GameController;
 import CatGame.Sprite.*;
+import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -34,6 +35,7 @@ public class GameView extends ViewManager {
         this.mainStage.setScene(this.mainScene);
         this.mainStage.setTitle(this.TITLE);
         this.mainStage.setResizable(false);
+        this.mainStage.sizeToScene();
         _oldStage.hide();
         mainStage.show();
         //Create cat and mouse objects
@@ -47,6 +49,13 @@ public class GameView extends ViewManager {
     private void createSprites() {
         this.mouse = new Mouse(this.mainPane);
         this.cat = new Cat(this.mainPane);
+
+        for(int numHairballs = 1; numHairballs <= 10; numHairballs++) {
+            Random randGen = new Random();
+            int xPos = randGen.nextInt(800);
+            int yPos = randGen.nextInt(600);
+            Hairball hairBall = new Hairball(this.mainPane, xPos, yPos);
+        }
     }
 
     /**
@@ -57,6 +66,11 @@ public class GameView extends ViewManager {
             @Override
             public void handle(long now) {
                 controller.moveMouse(mouse);
+                System.out.print("cat:" + cat.getXPos() + "," + cat.getYPos() + " mouse:" + mouse.getXPos() + "," + mouse.getYPos());
+                if((Math.abs(mouse.getXPos() - cat.getXPos()) < 64) && Math.abs(mouse.getYPos() - cat.getYPos()) < 64){
+                    System.out.print(" Collided");
+                }
+                System.out.println("");
             }
         };
         this.timer.start();

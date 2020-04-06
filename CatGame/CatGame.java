@@ -14,7 +14,6 @@ public class CatGame extends Application {
         MenuController controller = new MenuController();
         _mainMenu = controller.getViewStage();
         _mainMenu.show();
-        //SFX.music();
     }
 
     public static void main(String[] args) {
