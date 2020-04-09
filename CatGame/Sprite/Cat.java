@@ -58,6 +58,9 @@ public class Cat extends Sprite {
         this.animation.play();
     }
 
+    /**
+     * Method that sets up cat movement
+     */
     private void moveCat() {
         //Create the lines the cat will follow in sequence.
         Polyline lines = new Polyline(new double[]{

@@ -6,12 +6,14 @@ package CatGame.Sprite;
  * @author Erika Sudderth, Greg Last updated: 3/31/20
  */
 
+import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 
 public abstract class Sprite {
 
     protected ImageView spriteImage;
     protected SpriteAnimation animation;
+    protected Group animationGroup;
 
 //=================  GETTERS ===============
     public ImageView getImage() {

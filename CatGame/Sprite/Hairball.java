@@ -1,5 +1,6 @@
 package CatGame.Sprite;
 
+import java.util.Random;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -14,13 +15,17 @@ public class Hairball extends Sprite {
     private final String hairballImage = "/resources/imgs/hairball.png";
     private final AnchorPane pane;
 
-    public Hairball(AnchorPane _pane, int _xPos, int _yPos) {
+    public Hairball(AnchorPane _pane) {
         this.pane = _pane;
         this.spriteImage = new ImageView(hairballImage);
 
-        this.getImage().setLayoutX(_xPos);
-        this.getImage().setLayoutY(_yPos);
-
         //this.pane.getChildren().add(this.getImage());
+    }
+
+    public void placeHairball() {
+        Random randGen = new Random();
+        int xPos = randGen.nextInt(800);
+        int yPos = randGen.nextInt(600);
+        Hairball hairBall = new Hairball(this.pane);
     }
 }
