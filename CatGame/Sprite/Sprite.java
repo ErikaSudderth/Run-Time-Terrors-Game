@@ -19,6 +19,9 @@ public abstract class Sprite {
     public ImageView getImage() {
         return this.spriteImage;
     }
+    public abstract int getX();
+
+    public abstract int getY();
 
 //=================  SETTERS ===============
     public void setImage(String _imagePNG) {

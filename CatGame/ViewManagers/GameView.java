@@ -6,6 +6,7 @@ package CatGame.ViewManagers;
  * Last updated - 3/31/20
  */
 import CatGame.Controller.GameController;
+import CatGame.Models.CollisionObjects;
 import CatGame.Sprite.*;
 import java.util.Random;
 import javafx.animation.AnimationTimer;
@@ -59,11 +60,8 @@ public class GameView extends ViewManager {
             @Override
             public void handle(long now) {
                 controller.moveMouse(mouse);
-                System.out.print("cat:" + cat.getXPos() + "," + cat.getYPos() + " mouse:" + mouse.getXPos() + "," + mouse.getYPos());
-                if((Math.abs(mouse.getXPos() - cat.getXPos()) < 64) && Math.abs(mouse.getYPos() - cat.getYPos()) < 64){
-                    System.out.print(" Collided");
-                }
-                System.out.println("");
+                mouse.checkCollision(cat);
+                mouse.checkCollision(cat);
             }
         };
         this.timer.start();

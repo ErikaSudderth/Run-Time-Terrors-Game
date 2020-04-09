@@ -22,10 +22,21 @@ public class Hairball extends Sprite {
         //this.pane.getChildren().add(this.getImage());
     }
 
+
     public void placeHairball() {
         Random randGen = new Random();
         int xPos = randGen.nextInt(800);
         int yPos = randGen.nextInt(600);
         Hairball hairBall = new Hairball(this.pane);
+    }
+
+    @Override
+    public int getX() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getY() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
