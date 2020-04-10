@@ -68,7 +68,7 @@ public class GameView extends ViewManager {
             public void handle(long now) {
                 controller.moveMouse(mouse);
                 mouse.checkCollision(cat);
-                mouse.checkCollision(cat);
+                //mouse.checkCollision(cat);
             }
         };
         this.timer.start();
