@@ -48,15 +48,18 @@ public class GameView extends ViewManager {
     }
 
     private void createSprites() {
+        int maxHairballNum = 20;
+        for(int counter = 0; counter < maxHairballNum; counter++) {
+            Hairball hairball = new Hairball(this.mainPane);
+        }
+
+        int maxCheeseNum = 20;
+        for(int counter = 0; counter < maxHairballNum; counter++) {
+            Cheese cheese = new Cheese(this.mainPane);
+        }
+
         this.mouse = new Mouse(this.mainPane);
         this.cat = new Cat(this.mainPane);
-
-        for(int numHairballs = 1; numHairballs <= 10; numHairballs++) {
-            Random randGen = new Random();
-            int xPos = randGen.nextInt(800);
-            int yPos = randGen.nextInt(600);
-            Hairball hairBall = new Hairball(this.mainPane, xPos, yPos);
-        }
     }
 
     /**
