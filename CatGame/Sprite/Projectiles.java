@@ -4,7 +4,7 @@ package CatGame.Sprite;
  * Projectile class (for claws) that extends the Sprite class. Calls on
  * method to rotate claws.
  *
- * @author Erika Sudderth Last updated: 3/31/20
+ * @author Erika Sudderth Last updated: 4/9/20
  */
 
 import javafx.animation.Animation;
@@ -51,8 +51,8 @@ public class Projectiles extends Sprite {
     }
 
 //=================  GETTERS ===============
-    public Group getClawGroup() {
-	return this.animationGroup;
+    public Group getAnimationGroup() {
+        return this.animationGroup;
     }
 
     @Override

@@ -3,8 +3,9 @@ package CatGame.Sprite;
 /**
  * Cat class extends abstract Sprite class. Initializes the cat and calls on it to move and shoot claws.
  *
- * @author Erika Sudderth, Greg Dwyer Last updated: 4/1/20
+ * @author Erika Sudderth, Greg Dwyer Last updated: 4/9/20
  */
+
 import CatGame.ViewManagers.ViewManager;
 import javafx.animation.Animation;
 import static javafx.animation.Animation.INDEFINITE;
@@ -58,6 +59,9 @@ public class Cat extends Sprite {
         this.animation.play();
     }
 
+    /**
+     * Method that sets up cat movement
+     */
     private void moveCat() {
         //Create the lines the cat will follow in sequence.
         Polyline lines = new Polyline(new double[]{
@@ -83,11 +87,11 @@ public class Cat extends Sprite {
     private void createClawPath() {
         Projectiles claw = new Projectiles(this.pane);
         //Set initial image to beginning of path transition to prevent flickering image.
-        claw.getClawGroup().setTranslateX(this.animationGroup.getTranslateX() + this.getCenter());
-        claw.getClawGroup().setTranslateY(this.animationGroup.getTranslateY() + this.getCenter());
+        claw.getAnimationGroup().setTranslateX(this.animationGroup.getTranslateX() + this.getCenter());
+        claw.getAnimationGroup().setTranslateY(this.animationGroup.getTranslateY() + this.getCenter());
         PathTransition pathTransition = new PathTransition();
         pathTransition.setDuration(Duration.seconds(this.CLAW_SPEED));
-        pathTransition.setNode(claw.getClawGroup());
+        pathTransition.setNode(claw.getAnimationGroup());
         //To create a Line: Line(initial x, initital y, final x, final y).
         pathTransition.setPath(new Line(this.animationGroup.getTranslateX() + this.getCenter(), this.STARTING_Y + this.getCenter(), this.animationGroup.getTranslateX() + this.getCenter(), ViewManager.getHeight() + this.getCenter()));
         pathTransition.play();
@@ -110,10 +114,6 @@ public class Cat extends Sprite {
     }
 
 //=================  GETTERS ===============
-    public Group getAnimationGroup() {
-        return this.animationGroup;
-    }
-
     public int getDimensions() {
         return this.DIMENSIONS;
     }
@@ -138,5 +138,9 @@ public class Cat extends Sprite {
     @Override
     public int getY() {
         return getYPos();
+    }
+
+    public double getStartingY() {
+        return this.STARTING_Y;
     }
 }
