@@ -117,11 +117,10 @@ public class Mouse extends Sprite {
     }
 
     public void checkCollision(Sprite _cat) {
-        int radius = 128;
+        int radius = 128 / 2;
         int distanceX = getX() - _cat.getX();
         int distanceY = getY() - _cat.getY();
         int distance = (int) sqrt((distanceX * distanceX) + (distanceY * distanceY));
-        System.out.println(distance);
         if (distance <= radius) {
             System.out.println("Collied");
         }
