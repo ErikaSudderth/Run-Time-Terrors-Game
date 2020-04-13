@@ -55,6 +55,9 @@ public class Cat extends Sprite {
         this.shootClaws();
     }
     
+    /**
+     * This method creates the animation group for the cat object.
+     */
     private void setAnimationFields() {
         this.spriteImage = new ImageView(this.IMAGE);
         this.animation = new SpriteAnimation(this.spriteImage, this.FRAME_DURATION, this.FRAME_COUNT, this.SPRITE_COLUMNS, this.OFFSET, this.OFFSET, this.DIMENSIONS, this.DIMENSIONS);

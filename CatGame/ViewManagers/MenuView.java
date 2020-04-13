@@ -50,6 +50,10 @@ public class MenuView extends ViewManager {
         this.mainPane.setBackground(new Background(img));
     }
 
+    /**
+     * Use this method to show the passed subscene.
+     * @param _subscene 
+     */
     public void showSubScene(SubSceneExt _subscene) {
         if (subSceneOnScreen != null) {
             subSceneOnScreen.moveSubScene();
@@ -57,7 +61,9 @@ public class MenuView extends ViewManager {
         _subscene.moveSubScene();
         subSceneOnScreen = _subscene;
     }
-
+    /**
+     * This method will populate the main menu with the proper buttons and set their actions.
+     */
     private void createMenuButtons() {
         this.createMenuButton("Start Game", EventCodes.START_GAME);
         this.createMenuButton("How to Play", EventCodes.HOW_TO_PLAY);
@@ -66,11 +72,23 @@ public class MenuView extends ViewManager {
         this.createMenuButton("Exit", EventCodes.EXIT);
     }
 
+    /**
+     * This method is a helper to createMenuButtons. 
+     * This one repeats the placement and code setting for each button.
+     * @param _text
+     * @param _code 
+     */
     private void createMenuButton(String _text, int _code) {
         ButtonExt button = new ButtonExt(_text, MenuView.BUTTON_START_X, (MenuView.BUTTON_START_Y + this.mainPane.getChildren().size() * MenuView.BUTTON_SPACING));
         this.placeButton(button, _code, this.mainPane);
     }
 
+    /**
+     * This method handles the actual placement of the button on the screen
+     * @param _button
+     * @param _code
+     * @param _pane 
+     */
     private void placeButton(ButtonExt _button, int _code, AnchorPane _pane) {
         _pane.getChildren().add(_button);
         _button.setOnAction(new EventHandler<ActionEvent>() {
@@ -81,11 +99,20 @@ public class MenuView extends ViewManager {
         });
     }
 
+    /**
+     * This method creates buttons that will have an attached subscene.
+     * @param _text
+     * @param _code
+     * @param _scene 
+     */
     private void createSubSceneButton(String _text, int _code, SubSceneExt _scene) {
         ButtonExt button = new ButtonExt(_text, _scene.getButtonLayoutX(), (_scene.getButtonLayoutY() + _scene.getSubAnchor().getChildren().size() * _scene.getButtonSpacing()));
         this.placeButton(button, _code, _scene.getSubAnchor());
     }
 
+    /**
+     * This method populates the settings subscene.
+     */
     private void populateSettings() {
         this.SETTINGS = new SubSceneExt();
         this.createSubSceneButton("Volume Up", EventCodes.VOL_UP, this.SETTINGS);
@@ -95,24 +122,39 @@ public class MenuView extends ViewManager {
         this.mainPane.getChildren().add(this.SETTINGS);
     }
 
+    /**
+     * This method populates the how to play subscene.
+     */
     private void populateHowToPlay() {
         this.HOW_TO_PLAY = new SubSceneExt();
         this.mainPane.getChildren().add(this.HOW_TO_PLAY);
     }
 
+    /**
+     * This method populates the high scores subscene.
+     */
     private void populateHighscores() {
         this.HIGHSCORES = new SubSceneExt();
         this.mainPane.getChildren().add(this.HIGHSCORES);
     }
 
+    /**
+     * This method will show the settings subscene.
+     */
     public void showSettings() {
         this.showSubScene(this.SETTINGS);
     }
 
+    /**
+     * This method will show the how to play subscene.
+     */
     public void showHowToPlay() {
         this.showSubScene(this.HOW_TO_PLAY);
     }
 
+    /**
+     * This method will show the high scores subscene.
+     */
     public void showHighscores() {
         this.showSubScene(this.HIGHSCORES);
     }
