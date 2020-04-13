@@ -24,6 +24,9 @@ public class GameController {
         this.input = new KeyboardInput(this);
     }
 
+    public void checkCollisions(AnchorPane _pane, Mouse _mouse) {
+        _mouse.checkCollisionsList(_pane.getChildren());
+    }
     public void exitGame() {
         this.getViewStage().close();
         this.MENUSTAGE.show();

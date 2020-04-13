@@ -5,15 +5,17 @@ package CatGame.Sprite;
  *
  * @author Erika Sudderth, Greg Dwyer Last updated: 4/9/20
  */
-
-import CatGame.Models.CollisionObjects;
 import CatGame.Models.Input;
+import CatGame.SFX;
 import CatGame.ViewManagers.ViewManager;
 import static java.lang.Math.sqrt;
 import java.util.ArrayList;
+import java.util.List;
 import javafx.animation.Animation;
+import javafx.geometry.Bounds;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
@@ -31,18 +33,20 @@ public class Mouse extends Sprite {
     private final double STARTING_Y = ViewManager.getHeight() - (this.DIMENSIONS);
     private final int MOUSE_SPEED = 5;
     private final Group animationGroup;
-    private final int x_pos;
-    private final int y_pos;
-    private CollisionObjects collision;
+
+    private ArrayList<Node> collisionList = new ArrayList();
+    private boolean collided = false;
+    private final String ID = "mouse";
+    private boolean hasCheese = false;
+    private Node collectedCheese;
 
     public Mouse(AnchorPane _pane) {
         this.setAnimationFields();
-        this.x_pos = (int) this.STARTING_X;
-        this.y_pos = (int) this.STARTING_Y;
-
         this.initialPos();
         this.animationGroup = new Group(this.spriteImage);
-        _pane.getChildren().add(animationGroup);
+        Node mouseNode = this.animationGroup;
+        mouseNode.setId(this.ID);
+        _pane.getChildren().add(mouseNode);
     }
 
     /**
@@ -95,14 +99,19 @@ public class Mouse extends Sprite {
         if (_input.isRight()) {
             this.moveXRight();
         }
+        if(this.hasCheese) {
+            Bounds mouseBounds = this.animationGroup.getBoundsInParent();
+            this.collectedCheese.setLayoutX(mouseBounds.getMinX());
+            this.collectedCheese.setLayoutY(mouseBounds.getMinY() - (this.DIMENSIONS / 4));
+        }
     }
 
     /**
      * This method can be used to set an explicit location for the sprite.
      */
     private void initialPos() {
-        this.spriteImage.setLayoutX(this.x_pos);
-        this.spriteImage.setLayoutY(this.y_pos);
+        this.spriteImage.setLayoutX(this.STARTING_X);
+        this.spriteImage.setLayoutY(this.STARTING_Y);
     }
 
     /**
@@ -116,18 +125,77 @@ public class Mouse extends Sprite {
         this.animation.play();
     }
 
-    public void checkCollision(Sprite _cat) {
-        int radius = 128;
-        int distanceX = getX() - _cat.getX();
-        int distanceY = getY() - _cat.getY();
-        int distance = (int) sqrt((distanceX * distanceX) + (distanceY * distanceY));
-        System.out.println(distance);
-        if (distance <= radius) {
-            System.out.println("Collied");
+    private void checkEnemyCollision(Node _node) {
+        if (this.checkCollision(_node)) {
+            if (!this.collided) {
+                SFX.playCollision();
+                System.out.println("Collided with " + _node.getId());
+                this.collisionList.add(_node);
+                this.collided = true;
+                //Decrement Health.
+            }
+        } else {
+            if (this.collisionList.contains(_node)) {
+                this.collisionList.remove(_node);
+            }
+            if (this.collisionList.isEmpty()) {
+                this.collided = false;
+            }
         }
     }
 
+    private boolean checkCollision(Node _node) {
+        Bounds nodeBounds = _node.getBoundsInParent();
+        Bounds mouseBounds = this.animationGroup.getBoundsInParent();
+        return mouseBounds.intersects(nodeBounds);
+    }
+
+    private void checkCheeseCollision(Node _cheese) {
+        if (this.checkCollision(_cheese) && !this.hasCheese) {
+            SFX.playCollect();
+            this.collectedCheese = _cheese;
+            this.hasCheese = true;
+        }
+    }
+
+    private boolean checkDoorCollision(Node _door) {
+        if (this.checkCollision(_door)) {
+            //Increase score.
+            this.hasCheese = false;
+            SFX.playPoint();
+            return true;
+        }
+        return false;
+    }
+
+    public void checkCollisionsList(List<Node> _nodes) {
+        for (Node n : _nodes) {
+            switch (n.getId()) {
+                case "cat":
+                //Fall through.
+                case "hairball":
+                //Fall through.
+                case "claw":
+                    //Fall through.
+                    this.checkEnemyCollision(n);
+                    break;
+                case "cheese":
+                    if (!this.hasCheese) {
+                        this.checkCheeseCollision(n);
+                    }
+                    break;
+                case "door":
+                    if (this.hasCheese) {
+                        if(this.checkDoorCollision(n)) {
+                            _nodes.remove(this.collectedCheese);
+                        }
+                    }
+                    break;
+            }
+        }
+    }
 //=================  GETTERS ===============
+
     public ArrayList<Cheese> getCheeseObjList() {
         return this.cheeseList;
     }
@@ -144,15 +212,6 @@ public class Mouse extends Sprite {
         return this.DIMENSIONS / 2;
     }
 
-    @Override
-    public int getX() {
-        return getXPos();
-    }
-
-    @Override
-    public int getY() {
-        return getYPos();
-    }
 //=================  SETTERS ===============
 
     public void setProjectileObjList(ArrayList<Cheese> _cheeseObjList) {

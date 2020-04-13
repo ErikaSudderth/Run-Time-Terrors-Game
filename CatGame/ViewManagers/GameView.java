@@ -6,7 +6,6 @@ package CatGame.ViewManagers;
  * Last updated - 3/31/20
  */
 import CatGame.Controller.GameController;
-import CatGame.Models.CollisionObjects;
 import CatGame.Sprite.*;
 import java.util.Random;
 import javafx.animation.AnimationTimer;
@@ -57,7 +56,7 @@ public class GameView extends ViewManager {
         for(int counter = 0; counter < maxHairballNum; counter++) {
             Cheese cheese = new Cheese(this.mainPane);
         }
-
+        Door door = new Door(this.mainPane);
         this.mouse = new Mouse(this.mainPane);
         this.cat = new Cat(this.mainPane);
     }
@@ -70,7 +69,7 @@ public class GameView extends ViewManager {
             @Override
             public void handle(long now) {
                 controller.moveMouse(mouse);
-                mouse.checkCollision(cat);
+                controller.checkCollisions(mainPane, mouse);
             }
         };
         this.timer.start();
