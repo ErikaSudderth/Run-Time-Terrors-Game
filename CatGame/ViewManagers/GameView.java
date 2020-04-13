@@ -48,9 +48,11 @@ public class GameView extends ViewManager {
     }
 
     private void createSprites() {
-        int maxHairballNum = 20;
+        int maxHairballNum = 24;
+
         for(int counter = 0; counter < maxHairballNum; counter++) {
-            Hairball hairball = new Hairball(this.mainPane);
+            Hairball hairball = new Hairball(this.mainPane, maxHairballNum);
+            System.out.println("xVal = " + hairball.getX() + " yVal = " + hairball.getY());
         }
 
         int maxCheeseNum = 20;
