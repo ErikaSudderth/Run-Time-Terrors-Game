@@ -68,6 +68,9 @@ public class KeyboardInput extends Input {
         );
     }
 
+    /**
+     * This method will reset the input values when a key is released.
+     */
     private void setKeyboardReleasedAction() {
         this.controller.getViewScene().setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override

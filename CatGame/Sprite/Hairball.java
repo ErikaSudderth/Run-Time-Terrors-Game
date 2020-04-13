@@ -11,6 +11,7 @@ import java.util.Random;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import CatGame.ViewManagers.ViewManager;
+import javafx.scene.Node;
 
 public class Hairball extends Sprite {
 
@@ -20,12 +21,14 @@ public class Hairball extends Sprite {
     private final int lowerBound = ViewManager.getHeight() - 50;
     private final int leftBound = 5;
     private final int rightBound = ViewManager.getWidth() - 5;
+    private final String ID = "hairball";
 
     public Hairball(AnchorPane _pane) {
         this.pane = _pane;
         this.spriteImage = new ImageView(hairballImage);
-
-        this.pane.getChildren().add(this.spriteImage);
+        Node hairballNode = this.spriteImage;
+        hairballNode.setId(this.ID);
+        this.pane.getChildren().add(hairballNode);
         this.placeHairball();
     }
 
@@ -41,13 +44,4 @@ public class Hairball extends Sprite {
         this.spriteImage.setLayoutX(xRand);
     }
 
-    @Override
-    public int getX() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getY() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
