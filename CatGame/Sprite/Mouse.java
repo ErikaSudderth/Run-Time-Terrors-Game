@@ -187,7 +187,12 @@ public class Mouse extends Sprite {
                 case "door":
                     if (this.hasCheese) {
                         if(this.checkDoorCollision(n)) {
-                            _nodes.remove(this.collectedCheese);
+                            try{
+                                _nodes.remove(this.collectedCheese);
+                            }
+                            catch(Exception e){
+                                System.out.println(e);
+                            }
                         }
                     }
                     break;

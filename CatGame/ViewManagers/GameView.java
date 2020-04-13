@@ -46,6 +46,9 @@ public class GameView extends ViewManager {
         this.mainPane.setBackground(new Background(img));
     }
 
+    public void stopGame() {
+        this.timer.stop();
+    }
     private void createSprites() {
         int maxHairballNum = 20;
         for(int counter = 0; counter < maxHairballNum; counter++) {

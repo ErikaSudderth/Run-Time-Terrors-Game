@@ -28,8 +28,9 @@ public class GameController {
         _mouse.checkCollisionsList(_pane.getChildren());
     }
     public void exitGame() {
-        this.getViewStage().close();
-        this.MENUSTAGE.show();
+        this.VIEW.stopGame();
+        //this.getViewStage().close();
+        //this.MENUSTAGE.show();
     }
 
     public void moveMouse(Mouse _mouse) {
