@@ -2,8 +2,8 @@ package CatGame.ViewManagers;
 
 /**
  * This is the Menu View Manager
- * Author(s) - Greg, Erika Sudderth
- * Last updated - 3/31/20
+ * Author(s) - Greg, Erika Sudderth, anthony
+ * Last updated - 4/06/20
  */
 import CatGame.Controller.GameController;
 import CatGame.Sprite.*;
@@ -18,7 +18,9 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
-
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 public class GameView extends ViewManager {
 
     private static final String BACKGROUND = "/resources/imgs/game_background.png";
@@ -26,10 +28,16 @@ public class GameView extends ViewManager {
     private GameController controller;
     private Cat cat;
     private Mouse mouse;
+    private Label score;
 
     public GameView(GameController _cont, Stage _oldStage) {
+        //create score label, set the font, set color
+        score = new Label("SCORE: 0");
+        score.setFont(new Font("arial", 25));
+        score.setTextFill(Color.web("yellow"));
         this.controller = _cont;
         this.mainPane = new AnchorPane();
+        this.mainPane.getChildren().add(score);
         this.mainScene = new Scene(this.mainPane, GameView.WIDTH, GameView.HEIGHT);
         this.mainStage = new Stage();
         this.mainStage.setScene(this.mainScene);
