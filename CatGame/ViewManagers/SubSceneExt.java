@@ -40,6 +40,9 @@ public class SubSceneExt extends SubScene {
         this.SUB_ANCHOR.setBackground(new Background(img));
     }
 
+    /**
+     * This method moves the subscene from its hidden position off screen, onto the screen.
+     */
     public void moveSubScene() {
         TranslateTransition transition = new TranslateTransition();
         transition.setDuration(Duration.seconds(0.3));

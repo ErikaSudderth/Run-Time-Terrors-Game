@@ -3,9 +3,10 @@ package CatGame.Sprite;
 /**
  * Abstract sprite class. Every movable object will have an image.
  *
- * @author Erika Sudderth, Greg Last updated: 3/31/20
+ * @author Erika Sudderth, Greg Last updated: 4/9/20
  */
 
+import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 
 public abstract class Sprite {

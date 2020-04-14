@@ -3,8 +3,10 @@ package CatGame.Sprite;
 /**
  * Cat class extends abstract Sprite class. Initializes the cat and calls on it to move and shoot claws.
  *
- * @author Erika Sudderth, Greg Dwyer Last updated: 4/1/20
+ * @author Erika Sudderth, Greg Dwyer Last updated: 4/9/20
  */
+
+import CatGame.SFX;
 import CatGame.ViewManagers.ViewManager;
 import javafx.animation.Animation;
 import static javafx.animation.Animation.INDEFINITE;
@@ -16,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
@@ -45,11 +48,16 @@ public class Cat extends Sprite {
         this.pane = _pane;
         this.setAnimationFields();
         this.animationGroup = new Group(this.spriteImage);
-        _pane.getChildren().add(this.animationGroup);
+        Node catNode = this.animationGroup;
+        catNode.setId("cat");
+        _pane.getChildren().add(catNode);
         this.moveCat();
         this.shootClaws();
     }
-
+    
+    /**
+     * This method creates the animation group for the cat object.
+     */
     private void setAnimationFields() {
         this.spriteImage = new ImageView(this.IMAGE);
         this.animation = new SpriteAnimation(this.spriteImage, this.FRAME_DURATION, this.FRAME_COUNT, this.SPRITE_COLUMNS, this.OFFSET, this.OFFSET, this.DIMENSIONS, this.DIMENSIONS);
@@ -58,6 +66,9 @@ public class Cat extends Sprite {
         this.animation.play();
     }
 
+    /**
+     * Method that sets up cat movement
+     */
     private void moveCat() {
         //Create the lines the cat will follow in sequence.
         Polyline lines = new Polyline(new double[]{
@@ -83,14 +94,15 @@ public class Cat extends Sprite {
     private void createClawPath() {
         Projectiles claw = new Projectiles(this.pane);
         //Set initial image to beginning of path transition to prevent flickering image.
-        claw.getClawGroup().setTranslateX(this.animationGroup.getTranslateX() + this.getCenter());
-        claw.getClawGroup().setTranslateY(this.animationGroup.getTranslateY() + this.getCenter());
+        claw.getAnimationGroup().setTranslateX(this.animationGroup.getTranslateX() + this.getCenter());
+        claw.getAnimationGroup().setTranslateY(this.animationGroup.getTranslateY() + this.getCenter());
         PathTransition pathTransition = new PathTransition();
         pathTransition.setDuration(Duration.seconds(this.CLAW_SPEED));
-        pathTransition.setNode(claw.getClawGroup());
+        pathTransition.setNode(claw.getAnimationGroup());
         //To create a Line: Line(initial x, initital y, final x, final y).
         pathTransition.setPath(new Line(this.animationGroup.getTranslateX() + this.getCenter(), this.STARTING_Y + this.getCenter(), this.animationGroup.getTranslateX() + this.getCenter(), ViewManager.getHeight() + this.getCenter()));
         pathTransition.play();
+        SFX.playThrow();
 
         //Remove object once it has left the screen.
         pathTransition.onFinishedProperty().set((EventHandler<ActionEvent>) (ActionEvent event) -> {
@@ -110,10 +122,6 @@ public class Cat extends Sprite {
     }
 
 //=================  GETTERS ===============
-    public Group getAnimationGroup() {
-        return this.animationGroup;
-    }
-
     public int getDimensions() {
         return this.DIMENSIONS;
     }
@@ -128,5 +136,9 @@ public class Cat extends Sprite {
 
     public int getYPos() {
         return (int) this.animationGroup.getTranslateY() + this.getCenter();
+    }
+
+    public double getStartingY() {
+        return this.STARTING_Y;
     }
 }

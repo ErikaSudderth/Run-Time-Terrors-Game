@@ -4,13 +4,14 @@ package CatGame.Sprite;
  * Projectile class (for claws) that extends the Sprite class. Calls on
  * method to rotate claws.
  *
- * @author Erika Sudderth Last updated: 3/31/20
+ * @author Erika Sudderth Last updated: 4/9/20
  */
 
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -20,12 +21,15 @@ public class Projectiles extends Sprite {
     AnchorPane pane;
     private final int rotationAngle = 360;
     private Group animationGroup;
+    private final String ID = "claw";
 
 
     public Projectiles(AnchorPane _pane) {
         this.spriteImage = new ImageView(this.clawImage);
         this.pane = _pane;
         this.clawAnimation();
+        Node clawNode = this.animationGroup;
+        clawNode.setId(this.ID);
         this.pane.getChildren().add(this.animationGroup);
     }
 
@@ -51,7 +55,7 @@ public class Projectiles extends Sprite {
     }
 
 //=================  GETTERS ===============
-    public Group getClawGroup() {
-	return this.animationGroup;
+    public Group getAnimationGroup() {
+        return this.animationGroup;
     }
 }

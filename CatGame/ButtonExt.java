@@ -19,6 +19,12 @@ public class ButtonExt extends Button {
     private final static int PREF_HEIGHT = 40;
     private final static int DEFAULT_FONT_SIZE = 15;
 
+    /**
+     * This constructor creates an Extended Button
+     * @param _text This is the text for the button.
+     * @param _x    This is the X position value.
+     * @param _y    This is the Y position value.
+     */
     public ButtonExt(String _text, int _x, int _y) {
         this.setText(_text);
         this.setId(_text);
@@ -31,6 +37,13 @@ public class ButtonExt extends Button {
         this.setLayoutY(_y);
     }
 
+    /**
+     * This constructor creates an Extended Button
+     * @param _text This is the text for the button.
+     * @param _x    This is the X position value.
+     * @param _y    This is the Y position value.
+     * @param _font_size This is the font size.
+     */
     public ButtonExt(String _text, int _x, int _y, int _font_size) {
         this.setText(_text);
         this.setId(_text);
@@ -43,6 +56,11 @@ public class ButtonExt extends Button {
         this.setLayoutY(_y);
     }
 
+    /**
+     * Use this method to change the font size of the button's text.
+     * If this method cannot find the font specified in the class, it will default to Veranda.
+     * @param _size This is the font size to be used.
+     */
     private void setButtonFont(int _size) {
         try {
             this.setFont(Font.loadFont(new FileInputStream(ButtonExt.FONT_PATH), _size));
@@ -53,21 +71,30 @@ public class ButtonExt extends Button {
 
     }
 
+    /**
+     * Use this to set the button to the pre defined pressed style.
+     */
     private void setButtonPressedStyle() {
         this.setStyle(ButtonExt.BUTTON_PRESSED_STYLE);
     }
 
+    /**
+     * Use this to set the button to the pre defined released style.
+     */
     private void setButtonReleasedStyle() {
         this.setStyle(ButtonExt.BUTTON_FREE_STYLE);
     }
 
+    /**
+     * This method sets the button styles and sounds for the clicks. 
+     */
     private void initializeButtonListeners() {
         setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 if (event.getButton().equals(MouseButton.PRIMARY)) {
                     setButtonPressedStyle();
-                    SFX.playClick();
+                        SFX.playClick();
                 }
             }
         });
@@ -77,7 +104,7 @@ public class ButtonExt extends Button {
             public void handle(MouseEvent event) {
                 if (event.getButton().equals(MouseButton.PRIMARY)) {
                     setButtonReleasedStyle();
-                    SFX.playRelease();
+                        SFX.playRelease();
                 }
             }
         });

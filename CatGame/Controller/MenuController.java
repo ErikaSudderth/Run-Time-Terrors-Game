@@ -16,9 +16,12 @@ public class MenuController {
 
     public MenuController() {
         this.VIEW = new MenuView(this);
-        //SFX.startMusic();
+        SFX.startMusic();
     }
 
+    /**
+     * This method takes an event code from the view and calls the correct classes.
+     */
     public void handle(int _code) {
         switch (_code) {
             case EventCodes.START_GAME:
@@ -49,7 +52,7 @@ public class MenuController {
                 break;
         }
     }
-
+//==================GETTERS======================
     public AnchorPane getViewPane() {
         return this.VIEW.getMainPane();
     }

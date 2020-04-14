@@ -1,14 +1,14 @@
 package CatGame.ViewManagers;
 
 /**
- * This is the Menu View Manager
- * Author(s) - Greg, Erika Sudderth, anthony
- * Last updated - 4/06/20
+ * This is the Menu View Manager Author(s) - Greg, Erika Sudderth, anthony
+ * updated - 4/06/20
  */
 import CatGame.Controller.GameController;
 import CatGame.Sprite.*;
 import java.util.Random;
 import javafx.animation.AnimationTimer;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+
 public class GameView extends ViewManager {
 
     private static final String BACKGROUND = "/resources/imgs/game_background.png";
@@ -28,16 +29,30 @@ public class GameView extends ViewManager {
     private GameController controller;
     private Cat cat;
     private Mouse mouse;
-    private Label score;
+    private Label points;
+    private Label lives;
+
+    private int score = 0;
+    private int health = 5;
+    //The lower, the harder for difficulty.
+    private final int DIFFICULTY = 3;
+    private boolean increaseDifficulty = false;
+    private final int STARTING_CHEESE = 10;
+    private final int STARTING_HAIRBALLS = 20;
 
     public GameView(GameController _cont, Stage _oldStage) {
         //create score label, set the font, set color
-        score = new Label("SCORE: 0");
-        score.setFont(new Font("arial", 25));
-        score.setTextFill(Color.web("yellow"));
+        points = new Label("score: ");
+        points.setFont(new Font("arial", 25));
+        points.setTextFill(Color.web("blue"));
+        lives = new Label("lives: ");
+        lives.setFont(new Font("arial", 25));
+        lives.setTextFill(Color.web("red"));
+        lives.relocate(0, 25);
         this.controller = _cont;
         this.mainPane = new AnchorPane();
-        this.mainPane.getChildren().add(score);
+        this.mainPane.getChildren().add(points);
+        this.mainPane.getChildren().add(lives);
         this.mainScene = new Scene(this.mainPane, GameView.WIDTH, GameView.HEIGHT);
         this.mainStage = new Stage();
         this.mainStage.setScene(this.mainScene);
@@ -46,45 +61,70 @@ public class GameView extends ViewManager {
         this.mainStage.sizeToScene();
         _oldStage.hide();
         mainStage.show();
-        //Create cat and mouse objects
+                //Create cat and mouse objects
         this.createSprites();
         this.initializeTimer();
 
         BackgroundImage img = new BackgroundImage(new Image(GameView.BACKGROUND, 820, 800, true, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         this.mainPane.setBackground(new Background(img));
-    }
 
-    private void createSprites() {
-        this.mouse = new Mouse(this.mainPane);
-        this.cat = new Cat(this.mainPane);
-
-        for(int numHairballs = 1; numHairballs <= 10; numHairballs++) {
-            Random randGen = new Random();
-            int xPos = randGen.nextInt(800);
-            int yPos = randGen.nextInt(600);
-            Hairball hairBall = new Hairball(this.mainPane, xPos, yPos);
-        }
     }
 
     /**
-     * This is the game loop. Anything that needs to happen on the cycle should be put inside the "handle."
+     * This method populates the necessary sprites for a game.
+     */
+    private void createSprites() {
+        Door door = new Door(this.mainPane);
+        for (int counter = 0; counter < this.STARTING_HAIRBALLS; counter++) {
+            Hairball hairball = new Hairball(this.mainPane);
+        }
+        for (int counter = 0; counter < this.STARTING_CHEESE; counter++) {
+            Cheese cheese = new Cheese(this.mainPane);
+        }
+        this.mouse = new Mouse(this.mainPane);
+        this.cat = new Cat(this.mainPane);
+    }
+
+    /**
+     * This is the game loop. Anything that needs to happen on the cycle should
+     * be put inside the "handle."
      */
     private void initializeTimer() {
         this.timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 controller.moveMouse(mouse);
-                System.out.print("cat:" + cat.getXPos() + "," + cat.getYPos() + " mouse:" + mouse.getXPos() + "," + mouse.getYPos());
-                if((Math.abs(mouse.getXPos() - cat.getXPos()) < 64) && Math.abs(mouse.getYPos() - cat.getYPos()) < 64){
-                    System.out.print(" Collided");
+                controller.checkCollisions();
+                if (increaseDifficulty) {
+                    Hairball hairball = new Hairball(mainPane);
+                    increaseDifficulty = false;
+                    System.out.println("New Hairball");
                 }
-                System.out.println("");
             }
         };
         this.timer.start();
     }
 
+    /**
+     * This method replaces a collected cheese.
+     *
+     * @param _cheese This is the cheese to be replaced.
+     */
+    public void replaceCheese(Node _cheese) {
+        this.score++;
+        System.out.println("Current Score: " + this.score);
+        Cheese.placeCheese(_cheese);
+        if (this.score % this.DIFFICULTY == 0) {
+            this.increaseDifficulty = true;
+        }
+    }
+
+    public void enemyCollision() {
+        this.health--;
+        System.out.println("Remaining Health: " + this.health);
+    }
 //=================  GETTERS ===============
+
     public Cat getCat() {
         return this.cat;
     }
