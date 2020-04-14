@@ -1,7 +1,7 @@
 package CatGame.Sprite;
 
 /**
- * Hairball class that simply initializes the location and size of the stationary hairballs on scree.
+ * Hairball class that simply initializes the location and size of the stationary hairballs on screen.
  *
  * @author Erika Sudderth
  * Last updated: 4/13/20
@@ -52,7 +52,7 @@ public class Hairball extends Sprite {
     /**
      * Method that generates random x and y coordinates for this hairball object.
      */
-    public void placeHairball() {
+    private void placeHairball() {
         Random randNum = new Random();
         // The upper bound is less than the lower bound due to flipped y coordinates.
         yRand = randNum.nextInt(yRange) + this.upperBound;
@@ -66,7 +66,7 @@ public class Hairball extends Sprite {
     /**
      * Method that determines which of the six sections this hairball has been placed into.
      */
-    public void assignSection() {
+    private void assignSection() {
         if((this.yRand > this.upperBound) && (this.yRand < this.yRange / 3 + this.upperBound)) {
             if((this.xRand > this.leftBound) && (this.xRand < this.xRange / 3 + this.leftBound)) {
                 Hairball.section1++;
@@ -94,7 +94,7 @@ public class Hairball extends Sprite {
     /**
      * Method that returns whether a placement is within a section with too many other hairballs.
      */
-    public Boolean isGoodPlacement() {
+    private Boolean isGoodPlacement() {
         //The number of sections is always going to be 6. Add one because integer division drops the remainder.
         int hairballsPerSection = this.maxHairballs / 6 + 1;
 

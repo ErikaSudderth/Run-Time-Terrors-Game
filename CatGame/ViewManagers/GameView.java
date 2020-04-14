@@ -3,7 +3,7 @@ package CatGame.ViewManagers;
 /**
  * This is the Menu View Manager
  * Author(s) - Greg, Erika Sudderth
- * Last updated - 3/31/20
+ * Last updated - 4/13/20
  */
 import CatGame.Controller.GameController;
 import CatGame.Sprite.*;
