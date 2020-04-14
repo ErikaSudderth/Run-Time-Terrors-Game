@@ -6,7 +6,6 @@ package CatGame.Sprite;
  * @author Erika Sudderth, Greg Last updated: 4/9/20
  */
 
-import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 
 public abstract class Sprite {
@@ -18,10 +17,6 @@ public abstract class Sprite {
     public ImageView getImage() {
         return this.spriteImage;
     }
-
-    public abstract int getX();
-
-    public abstract int getY();
 
 //=================  SETTERS ===============
     public void setImage(String _imagePNG) {

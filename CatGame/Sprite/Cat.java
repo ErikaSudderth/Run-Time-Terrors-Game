@@ -6,6 +6,7 @@ package CatGame.Sprite;
  * @author Erika Sudderth, Greg Dwyer Last updated: 4/9/20
  */
 
+import CatGame.SFX;
 import CatGame.ViewManagers.ViewManager;
 import javafx.animation.Animation;
 import static javafx.animation.Animation.INDEFINITE;
@@ -17,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
@@ -46,11 +48,16 @@ public class Cat extends Sprite {
         this.pane = _pane;
         this.setAnimationFields();
         this.animationGroup = new Group(this.spriteImage);
-        _pane.getChildren().add(this.animationGroup);
+        Node catNode = this.animationGroup;
+        catNode.setId("cat");
+        _pane.getChildren().add(catNode);
         this.moveCat();
         this.shootClaws();
     }
-
+    
+    /**
+     * This method creates the animation group for the cat object.
+     */
     private void setAnimationFields() {
         this.spriteImage = new ImageView(this.IMAGE);
         this.animation = new SpriteAnimation(this.spriteImage, this.FRAME_DURATION, this.FRAME_COUNT, this.SPRITE_COLUMNS, this.OFFSET, this.OFFSET, this.DIMENSIONS, this.DIMENSIONS);
@@ -95,6 +102,7 @@ public class Cat extends Sprite {
         //To create a Line: Line(initial x, initital y, final x, final y).
         pathTransition.setPath(new Line(this.animationGroup.getTranslateX() + this.getCenter(), this.STARTING_Y + this.getCenter(), this.animationGroup.getTranslateX() + this.getCenter(), ViewManager.getHeight() + this.getCenter()));
         pathTransition.play();
+        SFX.playThrow();
 
         //Remove object once it has left the screen.
         pathTransition.onFinishedProperty().set((EventHandler<ActionEvent>) (ActionEvent event) -> {
@@ -128,16 +136,6 @@ public class Cat extends Sprite {
 
     public int getYPos() {
         return (int) this.animationGroup.getTranslateY() + this.getCenter();
-    }
-
-    @Override
-    public int getX() {
-        return getXPos();
-    }
-
-    @Override
-    public int getY() {
-        return getYPos();
     }
 
     public double getStartingY() {
