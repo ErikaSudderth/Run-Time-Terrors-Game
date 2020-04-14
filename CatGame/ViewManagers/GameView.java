@@ -100,7 +100,7 @@ public class GameView extends ViewManager {
             this.increaseDifficulty = true;
         }
     }
-    
+
     public void enemyCollision() {
         this.health--;
         System.out.println("Remaining Health: " + this.health);
