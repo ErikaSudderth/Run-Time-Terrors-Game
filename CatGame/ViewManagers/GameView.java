@@ -34,6 +34,7 @@ public class GameView extends ViewManager {
     private boolean increaseDifficulty = false;
     private final int STARTING_CHEESE = 10;
     private final int STARTING_HAIRBALLS = 20;
+    private int newHairBalls = 0;
 
     public GameView(GameController _cont, Stage _oldStage) {
         this.controller = _cont;
@@ -58,11 +59,12 @@ public class GameView extends ViewManager {
      * This method populates the necessary sprites for a game.
      */
     private void createSprites() {
+
         Door door = new Door(this.mainPane);
         for(int counter = 0; counter < this.STARTING_HAIRBALLS; counter++) {
-            Hairball hairball = new Hairball(this.mainPane);
+            Hairball hairball = new Hairball(this.mainPane, this.STARTING_HAIRBALLS);
         }
-        for(int counter = 0; counter < this.STARTING_CHEESE; counter++) {
+        for(int counter2 = 0; counter2 < this.STARTING_CHEESE; counter2++) {
             Cheese cheese = new Cheese(this.mainPane);
         }
         this.mouse = new Mouse(this.mainPane);
@@ -79,7 +81,7 @@ public class GameView extends ViewManager {
                 controller.moveMouse(mouse);
                 controller.checkCollisions();
                 if(increaseDifficulty){
-                    Hairball hairball = new Hairball(mainPane);
+                    Hairball hairball = new Hairball(mainPane, STARTING_HAIRBALLS + newHairBalls);
                     increaseDifficulty = false;
                     System.out.println("New Hairball");
                 }
@@ -100,7 +102,7 @@ public class GameView extends ViewManager {
             this.increaseDifficulty = true;
         }
     }
-    
+
     public void enemyCollision() {
         this.health--;
         System.out.println("Remaining Health: " + this.health);
