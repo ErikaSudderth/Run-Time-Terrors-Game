@@ -130,6 +130,7 @@ public class Mouse extends Sprite {
      */
     public void addCollision(Node _node) {
         this.collisionList.add(_node);
+
     }
 
     /**
