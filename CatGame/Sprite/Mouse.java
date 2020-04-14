@@ -124,23 +124,13 @@ public class Mouse extends Sprite {
         this.animation.play();
     }
 
-<<<<<<< HEAD
-    public void checkCollision(Sprite _cat) {
-        int radius = 128 / 2;
-        int distanceX = getX() - _cat.getX();
-        int distanceY = getY() - _cat.getY();
-        int distance = (int) sqrt((distanceX * distanceX) + (distanceY * distanceY));
-        if (distance <= radius) {
-            System.out.println("Collied");
-        }
-=======
     /**
      * This method adds a collision to the mouse's collision list.
      * @param _node This is the collided node.
      */
     public void addCollision(Node _node) {
         this.collisionList.add(_node);
->>>>>>> 04718cfffaa2f45f37662f19df000b93177d115c
+
     }
 
     /**

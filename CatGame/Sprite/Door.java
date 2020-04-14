@@ -15,7 +15,7 @@ public class Door extends Sprite{
     private final int STARTING_X = (ViewManager.getWidth() / 2) - (this.DIMENSIONS / 2);
     private final int STARTING_Y = 0;
     private final String ID = "door";
-    
+
     public Door(AnchorPane _pane) {
         this.spriteImage = new ImageView(this.IMAGE);
         Node doorNode = this.spriteImage;
