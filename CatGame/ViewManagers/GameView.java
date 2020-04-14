@@ -6,10 +6,10 @@ package CatGame.ViewManagers;
  * Last updated - 3/31/20
  */
 import CatGame.Controller.GameController;
-import CatGame.Models.CollisionObjects;
 import CatGame.Sprite.*;
 import java.util.Random;
 import javafx.animation.AnimationTimer;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -27,6 +27,13 @@ public class GameView extends ViewManager {
     private GameController controller;
     private Cat cat;
     private Mouse mouse;
+    private int score = 0;
+    private int health = 5;
+    //The lower, the harder for difficulty.
+    private final int DIFFICULTY = 3;
+    private boolean increaseDifficulty = false;
+    private final int STARTING_CHEESE = 10;
+    private final int STARTING_HAIRBALLS = 20;
 
     public GameView(GameController _cont, Stage _oldStage) {
         this.controller = _cont;
@@ -47,17 +54,17 @@ public class GameView extends ViewManager {
         this.mainPane.setBackground(new Background(img));
     }
 
+    /**
+     * This method populates the necessary sprites for a game.
+     */
     private void createSprites() {
-        int maxHairballNum = 20;
-        for(int counter = 0; counter < maxHairballNum; counter++) {
+        Door door = new Door(this.mainPane);
+        for(int counter = 0; counter < this.STARTING_HAIRBALLS; counter++) {
             Hairball hairball = new Hairball(this.mainPane);
         }
-
-        int maxCheeseNum = 20;
-        for(int counter = 0; counter < maxHairballNum; counter++) {
+        for(int counter = 0; counter < this.STARTING_CHEESE; counter++) {
             Cheese cheese = new Cheese(this.mainPane);
         }
-
         this.mouse = new Mouse(this.mainPane);
         this.cat = new Cat(this.mainPane);
     }
@@ -70,12 +77,38 @@ public class GameView extends ViewManager {
             @Override
             public void handle(long now) {
                 controller.moveMouse(mouse);
+<<<<<<< HEAD
                 mouse.checkCollision(cat);
+=======
+                controller.checkCollisions();
+                if(increaseDifficulty){
+                    Hairball hairball = new Hairball(mainPane);
+                    increaseDifficulty = false;
+                    System.out.println("New Hairball");
+                }
+>>>>>>> 04718cfffaa2f45f37662f19df000b93177d115c
             }
         };
         this.timer.start();
     }
 
+    /**
+     * This method replaces a collected cheese.
+     * @param _cheese This is the cheese to be replaced.
+     */
+    public void replaceCheese(Node _cheese) {
+        this.score++;
+        System.out.println("Current Score: " + this.score);
+        Cheese.placeCheese(_cheese);
+        if(this.score % this.DIFFICULTY == 0){
+            this.increaseDifficulty = true;
+        }
+    }
+    
+    public void enemyCollision() {
+        this.health--;
+        System.out.println("Remaining Health: " + this.health);
+    }
 //=================  GETTERS ===============
     public Cat getCat() {
         return this.cat;

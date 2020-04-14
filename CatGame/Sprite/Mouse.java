@@ -3,17 +3,19 @@ package CatGame.Sprite;
 /**
  * Mouse class that extends abstract Sprite class. Initializes the mouse's list of cheese objects it holds.
  *
- * @author Erika Sudderth, Greg Dwyer Last updated: 4/9/20
+ * @author Erika Sudderth, Greg Dwyer, Hasler Zuniga Last updated: 4/9/20
  */
-
-import CatGame.Models.CollisionObjects;
 import CatGame.Models.Input;
+import CatGame.SFX;
 import CatGame.ViewManagers.ViewManager;
 import static java.lang.Math.sqrt;
 import java.util.ArrayList;
+import java.util.List;
 import javafx.animation.Animation;
+import javafx.geometry.Bounds;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
@@ -31,18 +33,19 @@ public class Mouse extends Sprite {
     private final double STARTING_Y = ViewManager.getHeight() - (this.DIMENSIONS);
     private final int MOUSE_SPEED = 5;
     private final Group animationGroup;
-    private final int x_pos;
-    private final int y_pos;
-    private CollisionObjects collision;
+    private ArrayList<Node> collisionList = new ArrayList();
+    private boolean collided = false;
+    private final String ID = "mouse";
+    private boolean hasCheese = false;
+    private Node collectedCheese;
 
     public Mouse(AnchorPane _pane) {
         this.setAnimationFields();
-        this.x_pos = (int) this.STARTING_X;
-        this.y_pos = (int) this.STARTING_Y;
-
         this.initialPos();
         this.animationGroup = new Group(this.spriteImage);
-        _pane.getChildren().add(animationGroup);
+        Node mouseNode = this.animationGroup;
+        mouseNode.setId(this.ID);
+        _pane.getChildren().add(mouseNode);
     }
 
     /**
@@ -95,14 +98,19 @@ public class Mouse extends Sprite {
         if (_input.isRight()) {
             this.moveXRight();
         }
+        if(this.hasCheese) {
+            Bounds mouseBounds = this.animationGroup.getBoundsInParent();
+            this.collectedCheese.setLayoutX(mouseBounds.getMinX());
+            this.collectedCheese.setLayoutY(mouseBounds.getMinY() - (this.DIMENSIONS / 4));
+        }
     }
 
     /**
      * This method can be used to set an explicit location for the sprite.
      */
     private void initialPos() {
-        this.spriteImage.setLayoutX(this.x_pos);
-        this.spriteImage.setLayoutY(this.y_pos);
+        this.spriteImage.setLayoutX(this.STARTING_X);
+        this.spriteImage.setLayoutY(this.STARTING_Y);
     }
 
     /**
@@ -116,6 +124,7 @@ public class Mouse extends Sprite {
         this.animation.play();
     }
 
+<<<<<<< HEAD
     public void checkCollision(Sprite _cat) {
         int radius = 128 / 2;
         int distanceX = getX() - _cat.getX();
@@ -124,9 +133,25 @@ public class Mouse extends Sprite {
         if (distance <= radius) {
             System.out.println("Collied");
         }
+=======
+    /**
+     * This method adds a collision to the mouse's collision list.
+     * @param _node This is the collided node.
+     */
+    public void addCollision(Node _node) {
+        this.collisionList.add(_node);
+>>>>>>> 04718cfffaa2f45f37662f19df000b93177d115c
     }
 
+    /**
+     * This method removes a previously collided node, if it is no longer colliding.
+     * @param _node This is the node to be removed.
+     */
+    public void removeCollision(Node _node) {
+        this.collisionList.remove(_node);
+    }
 //=================  GETTERS ===============
+
     public ArrayList<Cheese> getCheeseObjList() {
         return this.cheeseList;
     }
@@ -143,18 +168,41 @@ public class Mouse extends Sprite {
         return this.DIMENSIONS / 2;
     }
 
-    @Override
-    public int getX() {
-        return getXPos();
+    public boolean hasCheese(){
+        return this.hasCheese;
     }
 
-    @Override
-    public int getY() {
-        return getYPos();
+    public Node getCollectedCheese() {
+        return this.collectedCheese;
     }
+
+    public Group getAnimationGroup() {
+        return this.animationGroup;
+    }
+
+    public boolean isCollided() {
+        return this.collided;
+    }
+
+    public ArrayList getCollisionList() {
+        return this.collisionList;
+    }
+
 //=================  SETTERS ===============
 
     public void setProjectileObjList(ArrayList<Cheese> _cheeseObjList) {
         this.cheeseList = _cheeseObjList;
+    }
+
+    public void setCollectedCheese(Node _cheese) {
+        this.collectedCheese = _cheese;
+    }
+
+    public void setHasCheese(boolean _hasCheese) {
+        this.hasCheese = _hasCheese;
+    }
+
+    public void setCollided(boolean _collided) {
+        this.collided = _collided;
     }
 }
