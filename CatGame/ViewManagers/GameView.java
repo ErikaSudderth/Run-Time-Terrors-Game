@@ -11,6 +11,7 @@ import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -29,16 +30,22 @@ public class GameView extends ViewManager {
     private Mouse mouse;
     private int score = 0;
     private int health = 5;
-    //The lower, the harder for difficulty.
+    //The lower, the harder for di fficulty.
     private final int DIFFICULTY = 3;
     private boolean increaseDifficulty = false;
     private final int STARTING_CHEESE = 10;
     private final int STARTING_HAIRBALLS = 20;
     private int newHairBalls = 0;
+    private Label scoreLabel;
 
     public GameView(GameController _cont, Stage _oldStage) {
+        scoreLabel = new Label("Score: 0");
+//        scoreLabel.setText("Score: 0");
+        Node score = scoreLabel;
+        score.setId("scoreLabel");
         this.controller = _cont;
         this.mainPane = new AnchorPane();
+        this.mainPane.getChildren().add(score);
         this.mainScene = new Scene(this.mainPane, GameView.WIDTH, GameView.HEIGHT);
         this.mainStage = new Stage();
         this.mainStage.setScene(this.mainScene);
@@ -59,7 +66,6 @@ public class GameView extends ViewManager {
      * This method populates the necessary sprites for a game.
      */
     private void createSprites() {
-
         Door door = new Door(this.mainPane);
         for(int counter = 0; counter < this.STARTING_HAIRBALLS; counter++) {
             Hairball hairball = new Hairball(this.mainPane, this.STARTING_HAIRBALLS);
@@ -85,6 +91,7 @@ public class GameView extends ViewManager {
                     increaseDifficulty = false;
                     System.out.println("New Hairball");
                 }
+
             }
         };
         this.timer.start();
