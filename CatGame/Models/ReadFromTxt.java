@@ -9,31 +9,26 @@ import java.io.*;
 import java.util.Scanner;
 
 public class ReadFromTxt {
+	private Scanner scores;
+	//open the text file & display error message if file is not foun
+	public void openFile() throws FileNotFoundException {
+		try {
+			scores = new Scanner(new File("src/resources/GameScores.txt"));
+		} catch (FileNotFoundException e) {
+			System.out.println("could not find file");
+		}
+	}
 
-    private Scanner scores;
-    //open the text file & display error message if file is not found
-
-    public void openFile() throws FileNotFoundException {
-        try {
-            scores = new Scanner(new File("src/resources/GameScores.txt"));
-        } catch (FileNotFoundException e) {
-            System.out.println("could not find file");
-        }
+	//reads the contents using the scanner. Sets the variables of the text file
+        int counter = 0;
+	public void readFile() {
+		while (scores.hasNextLine() && counter < 5) {
+                    System.out.println(scores.nextLine());
+                    counter++;
+		}
+	}
+	//close the file
+	public void closeFile() {
+		scores.close();
+	}
     }
-
-    //reads the contents using the scanner. Sets the variables of the text file
-    public void readFile() {
-        while (scores.hasNext()) {
-            //String rank = scores.next();
-            String player = scores.next();
-            //String score = scores.next();
-            //format the output of the txt
-            System.out.printf("%s", player);
-        }
-    }
-    //close the file
-
-    public void closeFile() {
-        scores.close();
-    }
-}
