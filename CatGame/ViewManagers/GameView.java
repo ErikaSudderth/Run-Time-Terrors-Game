@@ -43,7 +43,6 @@ public class GameView extends ViewManager {
     private Label livesLabel;
 
     public GameView(GameController _cont, Stage _oldStage) {
-
         scoreLabel = new Label();
         scoreLabel.setText("Score:" + getScore());
         scoreLabel.setFont(Font.font("Verdana", 26));
@@ -126,6 +125,7 @@ public class GameView extends ViewManager {
      */
     public void replaceCheese(Node _cheese) {
         this.score++;
+
         System.out.println("Current Score: " + this.score);
         Cheese.placeCheese(_cheese);
         if (this.score % this.DIFFICULTY == 0) {
@@ -150,7 +150,7 @@ public class GameView extends ViewManager {
     public Scene getMainScene() {
         return this.mainScene;
     }
-    
+
     public int getHealth(){
         return health;
     }
