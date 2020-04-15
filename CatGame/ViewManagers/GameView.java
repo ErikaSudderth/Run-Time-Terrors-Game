@@ -1,7 +1,7 @@
 package CatGame.ViewManagers;
 
 /**
- * This is the Menu View Manager Author(s) - Greg, Erika Sudderth, anthony
+ * This is the Menu View Manager Author(s) - Greg, Erika Sudderth, anthony, hasler
  * updated - 4/15/20
  */
 import CatGame.Controller.GameController;
@@ -45,6 +45,7 @@ public class GameView extends ViewManager {
     private final String LABEL_ID = "label";
 
     public GameView(GameController _cont, Stage _oldStage) {
+
         scoreLabel = new Label();
         scoreLabel.setText("Score:" + getScore());
         scoreLabel.setFont(this.FONT);
@@ -128,6 +129,7 @@ public class GameView extends ViewManager {
         this.score++;
 
         System.out.println("Current Score: " + this.score);
+          scoreLabel.setText("Score:" + score);
         Cheese.placeCheese(_cheese);
         if (this.score % this.DIFFICULTY == 0) {
             this.increaseDifficulty = true;
@@ -148,7 +150,9 @@ public class GameView extends ViewManager {
      */
     public void enemyCollision() {
         this.health--;
-        System.out.println("Remaining Health: " + this.health);
+        livesLabel.setText("lives:" + this.health);
+        System.out.println("Remaining Health: " + health);
+        
     }
 //=================  GETTERS ===============
 
@@ -162,12 +166,5 @@ public class GameView extends ViewManager {
 
     public Scene getMainScene() {
         return this.mainScene;
-    }
-
-    public int getHealth(){
-        return health;
-    }
-    public int getScore(){
-        return score;
     }
 }
