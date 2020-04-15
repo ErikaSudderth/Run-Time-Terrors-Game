@@ -39,8 +39,8 @@ public class GameView extends ViewManager {
     private Label scoreLabel;
 
     public GameView(GameController _cont, Stage _oldStage) {
-        scoreLabel = new Label("Score: 0");
-//        scoreLabel.setText("Score: 0");
+        scoreLabel = new Label();
+        scoreLabel.setText("Score: 0");
         Node score = scoreLabel;
         score.setId("scoreLabel");
         this.controller = _cont;
@@ -103,6 +103,7 @@ public class GameView extends ViewManager {
      */
     public void replaceCheese(Node _cheese) {
         this.score++;
+        
         System.out.println("Current Score: " + this.score);
         Cheese.placeCheese(_cheese);
         if(this.score % this.DIFFICULTY == 0){
