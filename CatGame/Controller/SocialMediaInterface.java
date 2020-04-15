@@ -1,3 +1,5 @@
+package CatGame.Controller;
+
 /**
  * This interface defines the methods that need to be implemented for any
  * valid API translator class.

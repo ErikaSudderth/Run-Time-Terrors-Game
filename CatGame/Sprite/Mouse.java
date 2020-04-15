@@ -3,14 +3,11 @@ package CatGame.Sprite;
 /**
  * Mouse class that extends abstract Sprite class. Initializes the mouse's list of cheese objects it holds.
  *
- * @author Erika Sudderth, Greg Dwyer, Hasler Zuniga Last updated: 4/9/20
+ * @author Erika Sudderth, Greg Dwyer, Hasler Zuniga Last updated: 4/15/20
  */
 import CatGame.Models.Input;
-import CatGame.SFX;
 import CatGame.ViewManagers.ViewManager;
-import static java.lang.Math.sqrt;
 import java.util.ArrayList;
-import java.util.List;
 import javafx.animation.Animation;
 import javafx.geometry.Bounds;
 import javafx.geometry.Rectangle2D;
