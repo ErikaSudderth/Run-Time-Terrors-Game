@@ -39,7 +39,8 @@ public class Cat extends Sprite {
     private final int CLAW_SPEED = 2;
     private int shootingSpeed = 666;
     private Group animationGroup;
-    AnchorPane pane;
+    private AnchorPane pane;
+    private Timeline clawTimeline;
 
     /**
      * This constructor sets the image and starting position, then begins the animation.
@@ -54,7 +55,7 @@ public class Cat extends Sprite {
         this.moveCat();
         this.shootClaws();
     }
-    
+
     /**
      * This method creates the animation group for the cat object.
      */
@@ -115,10 +116,17 @@ public class Cat extends Sprite {
      * Method that shoots a claw every x seconds.
      */
     private void shootClaws() {
-        Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(this.shootingSpeed), event -> this.createClawPath()));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+        this.clawTimeline = new Timeline();
+        this.clawTimeline.getKeyFrames().add(new KeyFrame(Duration.millis(this.shootingSpeed), event -> this.createClawPath()));
+        this.clawTimeline.setCycleCount(Animation.INDEFINITE);
+        this.clawTimeline.play();
+    }
+
+    /**
+     * This method ends the claw timeline. It is called during the cleanup for exiting the game.
+     */
+    public void endTimeline() {
+       this.clawTimeline.stop();
     }
 
 //=================  GETTERS ===============

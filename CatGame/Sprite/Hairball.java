@@ -43,6 +43,7 @@ public class Hairball extends Sprite {
         Node hairballNode = this.spriteImage;
         hairballNode.setId(this.ID);
         this.pane.getChildren().add(hairballNode);
+        this.pane.getChildren().get(this.pane.getChildren().indexOf(hairballNode)).toBack();
         this.placeHairball();
         if(!this.isGoodPlacement()) {
             this.placeHairball();

@@ -6,6 +6,7 @@ package CatGame.ViewManagers;
  */
 import CatGame.Controller.GameController;
 import CatGame.Sprite.*;
+import java.io.FileInputStream;
 import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Node;
@@ -41,19 +42,20 @@ public class GameView extends ViewManager {
     private int newHairBalls = 0;
     private Label scoreLabel;
     private Label livesLabel;
+    private final String LABEL_ID = "label";
 
     public GameView(GameController _cont, Stage _oldStage) {
-
+        
         scoreLabel = new Label();
         scoreLabel.setText("Score:" + getScore());
-        scoreLabel.setFont(Font.font("Verdana", 26));
+        scoreLabel.setFont(this.FONT);
         scoreLabel.setTextFill(Color.web("orange"));
         Node score = scoreLabel;
-        score.setId("scoreLabel");
+        score.setId(this.LABEL_ID);
 
         livesLabel = new Label();
         livesLabel.setText("Lives:" + getHealth());
-        livesLabel.setFont(Font.font("Verdana", 26));
+        livesLabel.setFont(this.FONT);
         livesLabel.setTextFill(Color.web("red"));
         livesLabel.relocate(0, 25);
         Node lives = livesLabel;
@@ -111,7 +113,6 @@ public class GameView extends ViewManager {
                 if (increaseDifficulty) {
                     Hairball hairball = new Hairball(mainPane, STARTING_HAIRBALLS + newHairBalls);
                     increaseDifficulty = false;
-                    System.out.println("New Hairball");
                 }
 
             }
@@ -133,6 +134,18 @@ public class GameView extends ViewManager {
         }
     }
 
+    /**
+     * Use this method to clear the game pane in order to exit.
+     */
+    public void exitGame() {
+        this.timer.stop();
+        this.mainPane.getChildren().clear();
+        this.controller.endClaws(this.cat);
+    }
+
+    /**
+     * This method decrements the player's health after a collision.
+     */
     public void enemyCollision() {
         this.health--;
         System.out.println("Remaining Health: " + this.health);
@@ -150,7 +163,7 @@ public class GameView extends ViewManager {
     public Scene getMainScene() {
         return this.mainScene;
     }
-    
+
     public int getHealth(){
         return health;
     }

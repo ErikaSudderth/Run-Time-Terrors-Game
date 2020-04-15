@@ -123,6 +123,8 @@ public class CollisionChecker {
                         }
                     }
                     break;
+                default:
+                    //Ignore the node and continue.
             }
         }
     }
