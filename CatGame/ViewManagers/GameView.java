@@ -2,7 +2,7 @@ package CatGame.ViewManagers;
 
 /**
  * This is the Menu View Manager Author(s) - Greg, Erika Sudderth, anthony
- * updated - 4/06/20
+ * updated - 4/15/20
  */
 import CatGame.Controller.GameController;
 import CatGame.Sprite.*;
@@ -45,10 +45,6 @@ public class GameView extends ViewManager {
     private final String LABEL_ID = "label";
 
     public GameView(GameController _cont, Stage _oldStage) {
-<<<<<<< HEAD
-        
-=======
->>>>>>> 820b03d64ca284f022c76b3659148abafd2146e4
         scoreLabel = new Label();
         scoreLabel.setText("Score:" + getScore());
         scoreLabel.setFont(this.FONT);

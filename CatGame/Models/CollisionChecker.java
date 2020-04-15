@@ -4,7 +4,7 @@ package CatGame.Models;
 /**
  * This class holds the logic for checking collisions.
  * Author(s) Gregory Dwyer, Hasler Zuniga
- * Last updated: 4/13/20
+ * Last updated: 4/15/20
  */
 
 import CatGame.Controller.GameController;

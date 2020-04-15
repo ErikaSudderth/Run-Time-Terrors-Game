@@ -3,8 +3,8 @@ package CatGame.Sprite;
 /**
  * Hairball class that simply initializes the location and size of the stationary hairballs on scree.
  *
- * @author Erika Sudderth
- * Last updated: 4/13/20
+ * @author Erika Sudderth, Gregory Dwyer
+ * Last updated: 4/15/20
  */
 
 import java.util.Random;
