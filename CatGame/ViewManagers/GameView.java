@@ -139,7 +139,7 @@ public class GameView extends ViewManager {
         this.health--;
         livesLabel.setText("lives:" + this.health);
         System.out.println("Remaining Health: " + health);
-        
+
     }
 //=================  GETTERS ===============
 
