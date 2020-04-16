@@ -52,7 +52,7 @@ public class MenuView extends ViewManager {
 
     /**
      * Use this method to show the passed subscene.
-     * @param _subscene 
+     * @param _subscene
      */
     public void showSubScene(SubSceneExt _subscene) {
         if (subSceneOnScreen != null) {
@@ -73,10 +73,10 @@ public class MenuView extends ViewManager {
     }
 
     /**
-     * This method is a helper to createMenuButtons. 
+     * This method is a helper to createMenuButtons.
      * This one repeats the placement and code setting for each button.
      * @param _text
-     * @param _code 
+     * @param _code
      */
     private void createMenuButton(String _text, int _code) {
         ButtonExt button = new ButtonExt(_text, MenuView.BUTTON_START_X, (MenuView.BUTTON_START_Y + this.mainPane.getChildren().size() * MenuView.BUTTON_SPACING));
@@ -87,7 +87,7 @@ public class MenuView extends ViewManager {
      * This method handles the actual placement of the button on the screen
      * @param _button
      * @param _code
-     * @param _pane 
+     * @param _pane
      */
     private void placeButton(ButtonExt _button, int _code, AnchorPane _pane) {
         _pane.getChildren().add(_button);
@@ -103,7 +103,7 @@ public class MenuView extends ViewManager {
      * This method creates buttons that will have an attached subscene.
      * @param _text
      * @param _code
-     * @param _scene 
+     * @param _scene
      */
     private void createSubSceneButton(String _text, int _code, SubSceneExt _scene) {
         ButtonExt button = new ButtonExt(_text, _scene.getButtonLayoutX(), (_scene.getButtonLayoutY() + _scene.getSubAnchor().getChildren().size() * _scene.getButtonSpacing()));

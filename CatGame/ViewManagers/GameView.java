@@ -44,14 +44,14 @@ public class GameView extends ViewManager {
 
     public GameView(GameController _cont, Stage _oldStage) {
         scoreLabel = new Label();
-        scoreLabel.setText("Score:" + getScore());
+        scoreLabel.setText("Score:" + this.score);
         scoreLabel.setFont(Font.font("Verdana", 26));
         scoreLabel.setTextFill(Color.web("orange"));
         Node score = scoreLabel;
         score.setId("scoreLabel");
 
         livesLabel = new Label();
-        livesLabel.setText("Lives:" + getHealth());
+        livesLabel.setText("Lives:" + this.health);
         livesLabel.setFont(Font.font("Verdana", 26));
         livesLabel.setTextFill(Color.web("red"));
         livesLabel.relocate(0, 25);
@@ -127,6 +127,7 @@ public class GameView extends ViewManager {
         this.score++;
 
         System.out.println("Current Score: " + this.score);
+        scoreLabel.setText("Score:" + this.score);
         Cheese.placeCheese(_cheese);
         if (this.score % this.DIFFICULTY == 0) {
             this.increaseDifficulty = true;
@@ -136,6 +137,7 @@ public class GameView extends ViewManager {
     public void enemyCollision() {
         this.health--;
         System.out.println("Remaining Health: " + this.health);
+        livesLabel.setText("Lives:" + this.health);
     }
 //=================  GETTERS ===============
 
@@ -155,6 +157,6 @@ public class GameView extends ViewManager {
         return health;
     }
     public int getScore(){
-        return score;
+        return this.score;
     }
 }
