@@ -6,6 +6,7 @@ package CatGame.Controller;
 import CatGame.Models.CollisionChecker;
 import CatGame.Models.Input;
 import CatGame.Models.KeyboardInput;
+import CatGame.Sprite.Cat;
 import CatGame.Sprite.Mouse;
 import CatGame.Sprite.Sprite;
 import CatGame.ViewManagers.GameView;
@@ -56,6 +57,7 @@ public class GameController {
      * KNOWN BUG - All of the path transitions continue to run and play sound after the stage is closed.
      */
     public void exitGame() {
+        this.VIEW.exitGame();
         this.getViewStage().close();
         this.MENUSTAGE.show();
     }
@@ -66,6 +68,14 @@ public class GameController {
      */
     public void moveMouse(Mouse _mouse) {
         _mouse.moveMouse(this.INPUT);
+    }
+
+    /**
+     * This method ends the claw shooting timeline. This is called during the exit game protocol.
+     * @param _cat
+     */
+    public void endClaws(Cat _cat) {
+        _cat.endTimeline();
     }
 
     //================GETTERS======================

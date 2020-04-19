@@ -3,7 +3,7 @@ package CatGame.Sprite;
 /**
  * Hairball class that simply initializes the location and size of the stationary hairballs on screen.
  *
- * @author Erika Sudderth
+ * @author Erika Sudderth, Gregory Dwyer
  * Last updated: 4/18/20
  */
 
@@ -42,6 +42,7 @@ public class Hairball extends Sprite {
         hairballNode.setId(this.ID);
 
         this.pane.getChildren().add(hairballNode);
+        this.pane.getChildren().get(this.pane.getChildren().indexOf(hairballNode)).toBack();
         this.placeHairball();
         if(!this.isGoodPlacement()) {
             this.placeHairball();
