@@ -1,8 +1,9 @@
 package CatGame.ViewManagers;
 
 /**
- * This is the Menu View Manager Author(s) - Greg, Erika Sudderth, anthony, hasler
- * updated - 4/15/20
+<<<<<<< HEAD
+ * This is the Menu View Manager Author(s) - Greg, Erika Sudderth, Anthony, Hasler
+ * Last Updated - 4/15/20
  */
 import CatGame.Controller.GameController;
 import CatGame.Sprite.*;
@@ -152,7 +153,7 @@ public class GameView extends ViewManager {
         this.health--;
         livesLabel.setText("lives:" + this.health);
         System.out.println("Remaining Health: " + health);
-        
+
     }
 //=================  GETTERS ===============
 
@@ -166,5 +167,13 @@ public class GameView extends ViewManager {
 
     public Scene getMainScene() {
         return this.mainScene;
+    }
+
+    public int getHealth() {
+        return this.health;
+    }
+
+    public int getScore() {
+        return this.score;
     }
 }
