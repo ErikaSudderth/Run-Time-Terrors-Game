@@ -1,14 +1,19 @@
 package CatGame.Sprite;
 
+/**
+ * Door class that extends Sprite class. Contains method to place the single
+ * door on screen.
+ *
+ * @author Greg
+ * Last Updated: 4/19/20
+ */
+
 import CatGame.ViewManagers.ViewManager;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-/**
- *
- * @author Latitude
- */
+
 public class Door extends Sprite{
     private final static String IMAGE = "resources/imgs/door.png";
     private final static int DIMENSIONS = 64;

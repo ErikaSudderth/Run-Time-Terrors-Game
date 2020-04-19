@@ -4,7 +4,7 @@ package CatGame.Sprite;
  * Hairball class that simply initializes the location and size of the stationary hairballs on screen.
  *
  * @author Erika Sudderth
- * Last updated: 4/13/20
+ * Last updated: 4/18/20
  */
 
 import java.util.Random;
@@ -17,6 +17,7 @@ public class Hairball extends Sprite {
 
     private final String hairballImage = "/resources/imgs/hairball.png";
     private final AnchorPane pane;
+    private final String ID = "hairball";
     private final int upperBound = 140;
     private final int lowerBound = ViewManager.getHeight() - 50;
     private final int leftBound = 5;
@@ -26,15 +27,12 @@ public class Hairball extends Sprite {
     private final int xRange = (this.rightBound - this.leftBound) + 1;
     private int yRand;
     private int xRand;
-    private static int section1;
-    private static int section2;
-    private static int section3;
-    private static int section4;
-    private static int section5;
-    private static int section6;
     private final int maxHairballs;
+    private static final int yDivisions = 2;
+    private static final int xDivisions = 3;
+    private static final int numSections = yDivisions * xDivisions;
+    private static final int[] sectionArray = new int[numSections];
 
-    private final String ID = "hairball";
 
     public Hairball(AnchorPane _pane, int _maxHairballs) {
         this.pane = _pane;
@@ -42,6 +40,7 @@ public class Hairball extends Sprite {
         this.maxHairballs = _maxHairballs;
         Node hairballNode = this.spriteImage;
         hairballNode.setId(this.ID);
+
         this.pane.getChildren().add(hairballNode);
         this.placeHairball();
         if(!this.isGoodPlacement()) {
@@ -64,29 +63,22 @@ public class Hairball extends Sprite {
     }
 
     /**
-     * Method that determines which of the six sections this hairball has been placed into.
+     * Method that determines which section this hairball has been placed into.
      */
     private void assignSection() {
-        if((this.yRand > this.upperBound) && (this.yRand < this.yRange / 3 + this.upperBound)) {
-            if((this.xRand > this.leftBound) && (this.xRand < this.xRange / 3 + this.leftBound)) {
-                Hairball.section1++;
-            }
-            else if((this.xRand >= this.xRange / 3 + this.leftBound) && this.xRand < ((2 * this.xRange / 3) + this.leftBound)) {
-                Hairball.section2++;
-            }
-            else {
-                Hairball.section3++;
-            }
-        }
-        else {
-            if((this.xRand < this.rightBound) && (this.xRand > this.xRange / 2 + this.leftBound)) {
-                Hairball.section4++;
-            }
-            else if((this.xRand >= this.xRange / 3 + this.leftBound) && this.xRand < ((2 * this.xRange / 3) + this.leftBound)) {
-                Hairball.section5++;
-            }
-            else {
-                Hairball.section6++;
+        int sectionUpper = this.upperBound;
+        int sectionLeft = this.leftBound;
+
+        //The sections are numbered horizontally then vertically.
+        for(int yCounter = 0; yCounter < this.yDivisions; yCounter++)  {
+            if(this.yRand > sectionUpper && this.yRand < ((yCounter + 1) * (this.yRange / this.yDivisions) + this.upperBound)) {
+                for(int xCounter = 0; xCounter < this.xDivisions; xCounter++) {
+                    if(this.xRand > sectionLeft && this.xRand < ((xCounter + 1) * (this.xRange / this.xDivisions) + this.leftBound)) {
+                        Hairball.sectionArray[yCounter + xCounter] += 1;
+                    }
+                    sectionLeft = ((xCounter + 1) * (this.xRange / this.xDivisions) + this.leftBound);
+                }
+                sectionUpper = ((yCounter + 1) * (this.yRange / this.yDivisions) + this.leftBound);
             }
         }
     }
@@ -95,42 +87,15 @@ public class Hairball extends Sprite {
      * Method that returns whether a placement is within a section with too many other hairballs.
      */
     private Boolean isGoodPlacement() {
-        //The number of sections is always going to be 6. Add one because integer division drops the remainder.
-        int hairballsPerSection = this.maxHairballs / 6 + 1;
+        //Add one because integer division drops the remainder.
+        int hairballsPerSection = this.maxHairballs / this.numSections + 1;
 
-        if(Hairball.section1 > hairballsPerSection) {
-            Hairball.section1--;
-            return false;
-        }
-        if(Hairball.section2 > hairballsPerSection) {
-            Hairball.section2--;
-            return false;
-        }
-        if(Hairball.section3 > hairballsPerSection) {
-            Hairball.section3--;
-            return false;
-        }
-        if(Hairball.section4 > hairballsPerSection) {
-            Hairball.section4--;
-            return false;
-        }
-        if(Hairball.section5 > hairballsPerSection) {
-            Hairball.section5--;
-            return false;
-        }
-        if(Hairball.section6 > hairballsPerSection) {
-            Hairball.section6--;
-            return false;
+        for(int counter = 0; counter < Hairball.sectionArray.length; counter++) {
+            if(Hairball.sectionArray[counter] > hairballsPerSection) {
+                Hairball.sectionArray[counter] -= 1;
+                return false;
+            }
         }
         return true;
-    }
-
-//=================  GETTERS ===============
-    public int getX() {
-        return xRand;
-    }
-
-    public int getY() {
-       return yRand;
     }
 }

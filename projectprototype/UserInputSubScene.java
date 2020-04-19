@@ -5,7 +5,7 @@ package projectprototype;
  * The purpose of this file is so the users can input their name
  *
  *
- * Author Hasler Last updated: 3/9/20
+ * Author Hasler, anthony Last updated: 3/9/20
  *
  */
 import CatGame.Models.WriteToTxt;
