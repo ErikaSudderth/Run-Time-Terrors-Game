@@ -1,7 +1,7 @@
 package CatGame.ViewManagers;
 
 /**
- * This is the Menu View Manager Author(s) - Greg Last updated - 3/6/20
+ * This is the Menu View Manager Author(s) - Greg Last updated - 4/22/20
  */
 import CatGame.ButtonExt;
 import CatGame.Controller.MenuController;
@@ -16,11 +16,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BackgroundImage;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
