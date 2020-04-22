@@ -7,6 +7,9 @@ import CatGame.ButtonExt;
 import CatGame.Controller.MenuController;
 import CatGame.Events.EventCodes;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -18,6 +21,8 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class MenuView extends ViewManager {
 
@@ -31,6 +36,7 @@ public class MenuView extends ViewManager {
     protected SubSceneExt SETTINGS;
     protected SubSceneExt HOW_TO_PLAY;
     protected SubSceneExt HIGHSCORES;
+    private final String HTP_INSTRUCTIONS = "src/resources/htp.txt";
 
     public MenuView(MenuController _cont) {
         this.mainPane = new AnchorPane();
@@ -52,7 +58,7 @@ public class MenuView extends ViewManager {
 
     /**
      * Use this method to show the passed subscene.
-     * @param _subscene 
+     * @param _subscene
      */
     public void showSubScene(SubSceneExt _subscene) {
         if (subSceneOnScreen != null) {
@@ -73,10 +79,10 @@ public class MenuView extends ViewManager {
     }
 
     /**
-     * This method is a helper to createMenuButtons. 
+     * This method is a helper to createMenuButtons.
      * This one repeats the placement and code setting for each button.
      * @param _text
-     * @param _code 
+     * @param _code
      */
     private void createMenuButton(String _text, int _code) {
         ButtonExt button = new ButtonExt(_text, MenuView.BUTTON_START_X, (MenuView.BUTTON_START_Y + this.mainPane.getChildren().size() * MenuView.BUTTON_SPACING));
@@ -87,7 +93,7 @@ public class MenuView extends ViewManager {
      * This method handles the actual placement of the button on the screen
      * @param _button
      * @param _code
-     * @param _pane 
+     * @param _pane
      */
     private void placeButton(ButtonExt _button, int _code, AnchorPane _pane) {
         _pane.getChildren().add(_button);
@@ -103,7 +109,7 @@ public class MenuView extends ViewManager {
      * This method creates buttons that will have an attached subscene.
      * @param _text
      * @param _code
-     * @param _scene 
+     * @param _scene
      */
     private void createSubSceneButton(String _text, int _code, SubSceneExt _scene) {
         ButtonExt button = new ButtonExt(_text, _scene.getButtonLayoutX(), (_scene.getButtonLayoutY() + _scene.getSubAnchor().getChildren().size() * _scene.getButtonSpacing()));
@@ -125,8 +131,23 @@ public class MenuView extends ViewManager {
     /**
      * This method populates the how to play subscene.
      */
-    private void populateHowToPlay() {
+    private void populateHowToPlay(){
         this.HOW_TO_PLAY = new SubSceneExt();
+        Text htp = new Text();
+        htp.setLayoutX(this.HOW_TO_PLAY.getTextLayoutX());
+        htp.setLayoutY(this.HOW_TO_PLAY.getTextLayoutY());
+        htp.setWrappingWidth(this.HOW_TO_PLAY.getWidth()- 2 * this.HOW_TO_PLAY.getTextLayoutX());
+        htp.setLineSpacing(this.HOW_TO_PLAY.getTextSpacing());
+        String howToPlay = "Arrow keys to move. Esc to quit.";
+        try{
+            htp.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.HOW_TO_PLAY.getTextSize() ));
+            howToPlay = new String(Files.readAllBytes(Paths.get(this.HTP_INSTRUCTIONS)));
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        htp.setText(howToPlay);
+        this.HOW_TO_PLAY.getSubAnchor().getChildren().add(htp);
         this.mainPane.getChildren().add(this.HOW_TO_PLAY);
     }
 

@@ -44,23 +44,25 @@ public class GameView extends ViewManager {
     private Label scoreLabel;
     private Label livesLabel;
     private final String LABEL_ID = "label";
+    private final String LIVES_COLOR = "red";
+    private final String SCORE_COLOR = "orange";
 
     public GameView(GameController _cont, Stage _oldStage) {
 
         scoreLabel = new Label();
         scoreLabel.setText("Score:" + getScore());
         scoreLabel.setFont(this.FONT);
-        scoreLabel.setTextFill(Color.web("orange"));
+        scoreLabel.setTextFill(Color.web(this.SCORE_COLOR));
         Node score = scoreLabel;
         score.setId(this.LABEL_ID);
 
         livesLabel = new Label();
         livesLabel.setText("Lives:" + getHealth());
         livesLabel.setFont(this.FONT);
-        livesLabel.setTextFill(Color.web("red"));
+        livesLabel.setTextFill(Color.web(this.LIVES_COLOR));
         livesLabel.relocate(0, 25);
         Node lives = livesLabel;
-        lives.setId("livesLabel");
+        lives.setId(this.LABEL_ID);
 
         this.controller = _cont;
         this.mainPane = new AnchorPane();
@@ -151,7 +153,7 @@ public class GameView extends ViewManager {
      */
     public void enemyCollision() {
         this.health--;
-        livesLabel.setText("lives:" + this.health);
+        livesLabel.setText("Lives:" + this.health);
         System.out.println("Remaining Health: " + health);
 
     }

@@ -20,15 +20,15 @@ public class EventCodes {
     public static final int CHEESE_PICKUP = 10;
 
     //These are general game events.
-    public static final int ENEMY_COLLISION = 12;
-    public static final int CLAW_FIRED = 13;
-    public static final int CHEESE_DROPOFF = 14;
+    public static final int ENEMY_COLLISION = 11;
+    public static final int CLAW_FIRED = 12;
+    public static final int CHEESE_DROPOFF = 13;
 
     //These are additional menu events.
-    public static final int VOL_UP = 15;
-    public static final int VOL_DOWN = 16;
-    public static final int TOGGLE_SFX = 17;
-    public static final int TOGGLE_MUSIC = 18;
-    
+    public static final int VOL_UP = 14;
+    public static final int VOL_DOWN = 15;
+    public static final int TOGGLE_SFX = 16;
+    public static final int TOGGLE_MUSIC = 17;
+
 
 }
