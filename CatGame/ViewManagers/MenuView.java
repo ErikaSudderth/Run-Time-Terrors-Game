@@ -31,6 +31,8 @@ public class MenuView extends ViewManager {
     protected SubSceneExt SETTINGS;
     protected SubSceneExt HOW_TO_PLAY;
     protected SubSceneExt HIGHSCORES;
+    private final static int LAYOUT_Y = 150;
+    private final static int LAYOUT_X = ViewManager.WIDTH + 10;
 
     public MenuView(MenuController _cont) {
         this.mainPane = new AnchorPane();
@@ -114,7 +116,7 @@ public class MenuView extends ViewManager {
      * This method populates the settings subscene.
      */
     private void populateSettings() {
-        this.SETTINGS = new SubSceneExt();
+        this.SETTINGS = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
         this.createSubSceneButton("Volume Up", EventCodes.VOL_UP, this.SETTINGS);
         this.createSubSceneButton("Volume Down", EventCodes.VOL_DOWN, this.SETTINGS);
         this.createSubSceneButton("Toggle SFX", EventCodes.TOGGLE_SFX, this.SETTINGS);
@@ -126,7 +128,7 @@ public class MenuView extends ViewManager {
      * This method populates the how to play subscene.
      */
     private void populateHowToPlay() {
-        this.HOW_TO_PLAY = new SubSceneExt();
+        this.HOW_TO_PLAY = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
         this.mainPane.getChildren().add(this.HOW_TO_PLAY);
     }
 
@@ -134,7 +136,7 @@ public class MenuView extends ViewManager {
      * This method populates the high scores subscene.
      */
     private void populateHighscores() {
-        this.HIGHSCORES = new SubSceneExt();
+        this.HIGHSCORES = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
         this.mainPane.getChildren().add(this.HIGHSCORES);
     }
 

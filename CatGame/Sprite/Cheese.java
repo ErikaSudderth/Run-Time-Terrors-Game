@@ -7,7 +7,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 /**
- * Cheese class that extends the Sprite class. Each object will have a Boolean variable to determine if it has been collected by the mouse.
+ * Cheese class that extends the Sprite class. Each cheese object will be
+ * randomly placed.
  *
  * @author Erika Sudderth Last updated: 4/9/20
  */

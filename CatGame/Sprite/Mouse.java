@@ -5,6 +5,7 @@ package CatGame.Sprite;
  *
  * @author Erika Sudderth, Greg Dwyer, Hasler Zuniga Last updated: 4/15/20
  */
+
 import CatGame.Models.Input;
 import CatGame.ViewManagers.ViewManager;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class Mouse extends Sprite {
     private final double STARTING_Y = ViewManager.getHeight() - (this.DIMENSIONS);
     private final int MOUSE_SPEED = 5;
     private final Group animationGroup;
-    private ArrayList<Node> collisionList = new ArrayList();
+    private final ArrayList<Node> collisionList = new ArrayList();
     private boolean collided = false;
     private final String ID = "mouse";
     private boolean hasCheese = false;
@@ -46,7 +47,7 @@ public class Mouse extends Sprite {
     }
 
     /**
-     * Use these to update the mouse's location in the X axis.
+     * Use these methods to update the mouse's location on the X axis.
      *
      * @param _distance This is the mouse's movement speed.
      */
@@ -63,7 +64,7 @@ public class Mouse extends Sprite {
     }
 
     /**
-     * Use these to update the mouse's location in the X axis.
+     * Use these methods to update the mouse's location on the X axis.
      *
      * @param _distance This is the mouse's movement speed.
      */
@@ -103,6 +104,23 @@ public class Mouse extends Sprite {
     }
 
     /**
+     * This method adds a collision to the mouse's collision list.
+     * @param _node This is the collided node.
+     */
+    public void addCollision(Node _node) {
+        this.collisionList.add(_node);
+
+    }
+
+    /**
+     * This method removes a previously collided node, if it is no longer colliding.
+     * @param _node This is the node to be removed.
+     */
+    public void removeCollision(Node _node) {
+        this.collisionList.remove(_node);
+    }
+
+    /**
      * This method can be used to set an explicit location for the sprite.
      */
     private void initialPos() {
@@ -121,22 +139,6 @@ public class Mouse extends Sprite {
         this.animation.play();
     }
 
-    /**
-     * This method adds a collision to the mouse's collision list.
-     * @param _node This is the collided node.
-     */
-    public void addCollision(Node _node) {
-        this.collisionList.add(_node);
-
-    }
-
-    /**
-     * This method removes a previously collided node, if it is no longer colliding.
-     * @param _node This is the node to be removed.
-     */
-    public void removeCollision(Node _node) {
-        this.collisionList.remove(_node);
-    }
 //=================  GETTERS ===============
 
     public ArrayList<Cheese> getCheeseObjList() {

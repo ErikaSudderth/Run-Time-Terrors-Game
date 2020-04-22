@@ -1,8 +1,9 @@
 package CatGame.ViewManagers;
 
 /**
- * This is the Menu View Manager Author(s) - Greg, Erika Sudderth, anthony, hasler
- * updated - 4/15/20
+<<<<<<< HEAD
+ * This is the Menu View Manager Author(s) - Greg, Erika Sudderth, Anthony, Hasler
+ * Last Updated - 4/15/20
  */
 import CatGame.Controller.GameController;
 import CatGame.Sprite.*;
@@ -43,6 +44,10 @@ public class GameView extends ViewManager {
     private Label scoreLabel;
     private Label livesLabel;
     private final String LABEL_ID = "label";
+    protected SubSceneExt ENDGAME;
+    private SubSceneExt subSceneOnScreen;
+    private final static int LAYOUT_Y = 150;
+    private final static int LAYOUT_X = ViewManager.WIDTH + 10;
 
     public GameView(GameController _cont, Stage _oldStage) {
 
@@ -150,10 +155,35 @@ public class GameView extends ViewManager {
      * This method decrements the player's health after a collision.
      */
     public void enemyCollision() {
+
         this.health--;
+        if(this.health == 0){
+            populateEndGame();
+            exitGame();
+            showEndGame();
+        }
+
 
         System.out.println("Remaining Health: " + this.health);
         livesLabel.setText("Lives:" + this.health);
+
+    }
+    private void populateEndGame() {
+        this.ENDGAME = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
+        this.mainPane.getChildren().add(this.ENDGAME);
+    }
+
+
+    public void showSubScene(SubSceneExt _subscene) {
+        if (subSceneOnScreen != null) {
+            subSceneOnScreen.moveSubScene();
+        }
+        _subscene.moveSubScene();
+        subSceneOnScreen = _subscene;
+    }
+
+    public void showEndGame() {
+        this.showSubScene(this.ENDGAME);
     }
 //=================  GETTERS ===============
 

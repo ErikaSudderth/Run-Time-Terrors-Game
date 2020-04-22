@@ -68,7 +68,7 @@ public class Cat extends Sprite {
     }
 
     /**
-     * Method that sets up cat movement
+     * Method that creates cat's movement along the screen.
      */
     private void moveCat() {
         //Create the lines the cat will follow in sequence.
@@ -112,7 +112,7 @@ public class Cat extends Sprite {
 
     }
 
-     /**
+    /**
      * Method that shoots a claw every x seconds.
      */
     private void shootClaws() {

@@ -1,6 +1,5 @@
 package CatGame.Models;
 
-
 /**
  * This class holds the logic for checking collisions.
  * Author(s) Gregory Dwyer, Hasler Zuniga
