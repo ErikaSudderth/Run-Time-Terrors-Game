@@ -25,6 +25,10 @@ public class SubSceneExt extends SubScene {
     private final static int LAYOUT_X = ViewManager.WIDTH + 10;
     private final static int CENTER_X = ViewManager.WIDTH / 2;
     private final static int LAYOUT_Y = 150;
+    private final static int TEXT_LAYOUT_X = 25;
+    private final static int TEXT_LAYOUT_Y = 35;
+    private final static int TEXT_SPACING = 10;
+    private final static int TEXT_SIZE = 12;
     private final static int BUTTON_LAYOUT_X = 75;
     private final static int BUTTON_LAYOUT_Y = 30;
     private final static int BUTTON_SPACING = 100;
@@ -74,4 +78,21 @@ public class SubSceneExt extends SubScene {
     public int getButtonSpacing() {
         return SubSceneExt.BUTTON_SPACING;
     }
+
+    public int getTextLayoutX() {
+        return SubSceneExt.TEXT_LAYOUT_X;
+    }
+
+    public int getTextLayoutY() {
+        return SubSceneExt.TEXT_LAYOUT_Y;
+    }
+
+    public int getTextSpacing() {
+        return SubSceneExt.TEXT_SPACING;
+    }
+
+    public int getTextSize() {
+        return SubSceneExt.TEXT_SIZE;
+    }
+    
 }
