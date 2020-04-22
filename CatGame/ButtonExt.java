@@ -21,9 +21,10 @@ public class ButtonExt extends Button {
 
     /**
      * This constructor creates an Extended Button
+     *
      * @param _text This is the text for the button.
-     * @param _x    This is the X position value.
-     * @param _y    This is the Y position value.
+     * @param _x This is the X position value.
+     * @param _y This is the Y position value.
      */
     public ButtonExt(String _text, int _x, int _y) {
         this.setText(_text);
@@ -39,9 +40,10 @@ public class ButtonExt extends Button {
 
     /**
      * This constructor creates an Extended Button
+     *
      * @param _text This is the text for the button.
-     * @param _x    This is the X position value.
-     * @param _y    This is the Y position value.
+     * @param _x This is the X position value.
+     * @param _y This is the Y position value.
      * @param _font_size This is the font size.
      */
     public ButtonExt(String _text, int _x, int _y, int _font_size) {
@@ -57,8 +59,8 @@ public class ButtonExt extends Button {
     }
 
     /**
-     * Use this method to change the font size of the button's text.
-     * If this method cannot find the font specified in the class, it will default to Veranda.
+     * Use this method to change the font size of the button's text. If this method cannot find the font specified in the class, it will default to Veranda.
+     *
      * @param _size This is the font size to be used.
      */
     private void setButtonFont(int _size) {
@@ -86,7 +88,7 @@ public class ButtonExt extends Button {
     }
 
     /**
-     * This method sets the button styles and sounds for the clicks. 
+     * This method sets the button styles and sounds for the clicks.
      */
     private void initializeButtonListeners() {
         setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -94,7 +96,7 @@ public class ButtonExt extends Button {
             public void handle(MouseEvent event) {
                 if (event.getButton().equals(MouseButton.PRIMARY)) {
                     setButtonPressedStyle();
-                        SFX.playClick();
+                    SFX.playClick();
                 }
             }
         });
@@ -104,7 +106,7 @@ public class ButtonExt extends Button {
             public void handle(MouseEvent event) {
                 if (event.getButton().equals(MouseButton.PRIMARY)) {
                     setButtonReleasedStyle();
-                        SFX.playRelease();
+                    SFX.playRelease();
                 }
             }
         });

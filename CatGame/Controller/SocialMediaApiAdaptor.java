@@ -2,14 +2,9 @@ package CatGame.Controller;
 
 /**
  * The purpose of this file is to call the API.
- *
- *
- *
  * Author Hasler, Greg Last updated: 3/9/20
  *
  */
-
-import twitter4j.TwitterException;
 
 public class SocialMediaApiAdaptor implements SocialMediaInterface{
 
