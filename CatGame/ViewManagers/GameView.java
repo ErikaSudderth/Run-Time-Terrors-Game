@@ -127,7 +127,7 @@ public class GameView extends ViewManager {
     public void replaceCheese(Node _cheese) {
         this.score++;
 
-        System.out.println("Current Score: " + this.score);
+        System.out.println("Current Score: " + score);
           scoreLabel.setText("Score:" + score);
         Cheese.placeCheese(_cheese);
         if (this.score % this.DIFFICULTY == 0) {
@@ -137,7 +137,7 @@ public class GameView extends ViewManager {
 
     public void enemyCollision() {
         this.health--;
-        livesLabel.setText("lives:" + this.health);
+        livesLabel.setText("lives:" + health);
         System.out.println("Remaining Health: " + health);
 
     }
