@@ -130,8 +130,6 @@ public class GameView extends ViewManager {
      */
     public void replaceCheese(Node _cheese) {
         this.score++;
-
-        System.out.println("Current Score: " + this.score);
           scoreLabel.setText("Score:" + score);
         Cheese.placeCheese(_cheese);
         if (this.score % this.DIFFICULTY == 0) {
@@ -143,8 +141,16 @@ public class GameView extends ViewManager {
      * Use this method to clear the game pane in order to exit.
      */
     public void exitGame() {
-        this.timer.stop();
+        this.stopGame();
         this.mainPane.getChildren().clear();
+    }
+
+    /**
+     * This method stops all of the animations and input.
+     */
+    public void stopGame() {
+        this.timer.stop();
+
         this.controller.endClaws(this.cat);
     }
 
@@ -154,7 +160,6 @@ public class GameView extends ViewManager {
     public void enemyCollision() {
         this.health--;
         livesLabel.setText("Lives:" + this.health);
-        System.out.println("Remaining Health: " + health);
 
     }
 //=================  GETTERS ===============
