@@ -3,6 +3,7 @@ package CatGame.Controller;
 /**
  * This class will route the calls from the Game view. Author(s): Greg Dwyer Last Updated: 3/31/20
  */
+import CatGame.Events.EventCodes;
 import CatGame.Models.CollisionChecker;
 import CatGame.Models.Input;
 import CatGame.Models.KeyboardInput;
@@ -10,6 +11,7 @@ import CatGame.Sprite.Cat;
 import CatGame.Sprite.Mouse;
 import CatGame.Sprite.Sprite;
 import CatGame.ViewManagers.GameView;
+import CatGame.ViewManagers.MenuView;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -42,7 +44,16 @@ public class GameController {
      * @param _code
      */
     public void handle(int _code) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        switch (_code) {
+            case EventCodes.YES_POST_TO_SOCIAL_MEDIA:
+                //This is where you would handle the user input with score and api interface 
+                this.VIEW.exitGame();
+                break;
+            case EventCodes.NO_POST_TO_SOCIAL_MEDIA:
+                //This is where you would handle the user input with score
+                break;
+        }
+        this.exitGame();
     }
 
     /**
