@@ -23,7 +23,7 @@ public class SubSceneExt extends SubScene {
     private final static int PREF_HEIGHT = 400;
     private final static int PREF_WIDTH = 350;
     private final static int LAYOUT_X = ViewManager.WIDTH + 10;
-    private final static int CENTER_X = ViewManager.WIDTH / 2;
+    private static int center_x = ViewManager.WIDTH / 2;
     private final static int LAYOUT_Y = 150;
     private final static int BUTTON_LAYOUT_X = 75;
     private final static int BUTTON_LAYOUT_Y = 30;
@@ -43,19 +43,26 @@ public class SubSceneExt extends SubScene {
     /**
      * This method moves the subscene from its hidden position off screen, onto the screen.
      */
-    public void moveSubScene() {
+    public void moveSubScene(int _centerX) {
+        setCenterX(_centerX);
         TranslateTransition transition = new TranslateTransition();
         transition.setDuration(Duration.seconds(0.3));
         transition.setNode(this);
 
         //This block handles if a subscene is already visible or not.
         if (this.isHidden) {
-            transition.setToX(-(SubSceneExt.CENTER_X));
+            transition.setToX(-(SubSceneExt.center_x));
         } else {
-            transition.setToX(SubSceneExt.CENTER_X);
+            transition.setToX(SubSceneExt.center_x);
         }
         this.isHidden = !this.isHidden;
         transition.play();
+    }
+//=================  SETTERS ===============
+
+    public int setCenterX(int _centerX) {
+        center_x = _centerX;
+        return center_x;
     }
 
 //=================  GETTERS ===============

@@ -44,6 +44,7 @@ public class MenuController {
                 break;
             case EventCodes.VOL_DOWN:
                 SFX.volDown();
+                break;
             case EventCodes.TOGGLE_SFX:
                 SFX.toggleSFXMute();
                 break;

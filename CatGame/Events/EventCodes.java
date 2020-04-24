@@ -29,6 +29,6 @@ public class EventCodes {
     public static final int VOL_DOWN = 16;
     public static final int TOGGLE_SFX = 17;
     public static final int TOGGLE_MUSIC = 18;
-    
+
 
 }

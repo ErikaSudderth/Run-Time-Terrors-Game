@@ -44,10 +44,12 @@ public class GameView extends ViewManager {
     private Label scoreLabel;
     private Label livesLabel;
     private final String LABEL_ID = "label";
-    protected SubSceneExt ENDGAME;
-    private SubSceneExt subSceneOnScreen;
+    private final String SUBSCENE_ID = "endGame";
     private final static int LAYOUT_Y = 150;
-    private final static int LAYOUT_X = ViewManager.WIDTH + 10;
+    private final static int LAYOUT_X = ViewManager.WIDTH + 20;
+    private SubSceneExt subSceneOnScreen;
+    protected SubSceneExt ENDGAME;
+    private static int center_x = ViewManager.WIDTH - 210;
 
     public GameView(GameController _cont, Stage _oldStage) {
 
@@ -82,11 +84,23 @@ public class GameView extends ViewManager {
         mainStage.show();
         //Create cat and mouse objects
         this.createSprites();
+        this.populateEndGame();
         this.initializeTimer();
 
         BackgroundImage img = new BackgroundImage(new Image(GameView.BACKGROUND, 820, 800, true, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         this.mainPane.setBackground(new Background(img));
 
+    }
+    /**
+     * This method shows the subscene.
+     * @param _subscene
+     */
+    public void showSubScene(SubSceneExt _subscene) {
+        if (subSceneOnScreen != null) {
+            subSceneOnScreen.moveSubScene(center_x);
+        }
+        _subscene.moveSubScene(center_x);
+        subSceneOnScreen = _subscene;
     }
 
     /**
@@ -158,9 +172,12 @@ public class GameView extends ViewManager {
 
         this.health--;
         if(this.health == 0){
-            populateEndGame();
-            exitGame();
-            showEndGame();
+            this.showEndGameSubscene();
+            //this.exitGame();
+            this.controller.endClaws(this.cat);
+            this.mainPane.getChildren().remove(this.cat);
+            this.timer.stop();
+
         }
 
 
@@ -170,21 +187,17 @@ public class GameView extends ViewManager {
     }
     private void populateEndGame() {
         this.ENDGAME = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
+        Node endgame = this.ENDGAME;
+        endgame.setId(this.SUBSCENE_ID);
         this.mainPane.getChildren().add(this.ENDGAME);
     }
 
-
-    public void showSubScene(SubSceneExt _subscene) {
-        if (subSceneOnScreen != null) {
-            subSceneOnScreen.moveSubScene();
-        }
-        _subscene.moveSubScene();
-        subSceneOnScreen = _subscene;
-    }
-
-    public void showEndGame() {
+    public void showEndGameSubscene() {
         this.showSubScene(this.ENDGAME);
     }
+
+
+
 //=================  GETTERS ===============
 
     public Cat getCat() {

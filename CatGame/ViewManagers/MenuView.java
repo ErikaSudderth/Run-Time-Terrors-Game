@@ -33,6 +33,7 @@ public class MenuView extends ViewManager {
     protected SubSceneExt HIGHSCORES;
     private final static int LAYOUT_Y = 150;
     private final static int LAYOUT_X = ViewManager.WIDTH + 10;
+    private static int center_x = ViewManager.WIDTH / 2;
 
     public MenuView(MenuController _cont) {
         this.mainPane = new AnchorPane();
@@ -58,9 +59,9 @@ public class MenuView extends ViewManager {
      */
     public void showSubScene(SubSceneExt _subscene) {
         if (subSceneOnScreen != null) {
-            subSceneOnScreen.moveSubScene();
+            subSceneOnScreen.moveSubScene(center_x);
         }
-        _subscene.moveSubScene();
+        _subscene.moveSubScene(center_x);
         subSceneOnScreen = _subscene;
     }
     /**

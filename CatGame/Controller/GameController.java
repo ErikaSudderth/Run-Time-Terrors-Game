@@ -51,6 +51,15 @@ public class GameController {
     public void checkCollisions() {
         this.COLLISION_CHECKER.checkCollisionsList(this.VIEW.getMainPane().getChildren());
     }
+    /**
+     * This method ends the game.
+     */
+    public void endSubscene() {
+        this.VIEW.exitGame();
+        this.getViewStage().close();
+        this.MENUSTAGE.show();
+    }
+
 
     /**
      * This method returns the user to the main menu and closes the game stage.
