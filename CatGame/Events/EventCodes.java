@@ -30,5 +30,7 @@ public class EventCodes {
     public static final int TOGGLE_SFX = 16;
     public static final int TOGGLE_MUSIC = 17;
 
-
+    //These are end game events
+    public static final int YES_POST_TO_SOCIAL_MEDIA = 18;
+    public static final int NO_POST_TO_SOCIAL_MEDIA = 19;
 }
