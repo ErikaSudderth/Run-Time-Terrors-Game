@@ -25,9 +25,13 @@ public class SubSceneExt extends SubScene {
     private final static int LAYOUT_X = ViewManager.WIDTH + 10;
     private static int center_x = ViewManager.WIDTH / 2;
     private final static int LAYOUT_Y = 150;
-    private final static int BUTTON_LAYOUT_X = 75;
-    private final static int BUTTON_LAYOUT_Y = 30;
-    private final static int BUTTON_SPACING = 100;
+    private final static int TEXT_LAYOUT_X = 25;
+    private final static int TEXT_LAYOUT_Y = 35;
+    private final static int TEXT_SPACING = 10;
+    private final static int TEXT_SIZE = 12;
+    private static int button_layout_x = 75;
+    private static int button_layout_y = 30;
+    private static int BUTTON_SPACING = 100;
     private final static String BACKGROUND = "/resources/imgs/subscene_background.png";
     private final AnchorPane SUB_ANCHOR;
 
@@ -60,9 +64,17 @@ public class SubSceneExt extends SubScene {
     }
 //=================  SETTERS ===============
 
-    public int setCenterX(int _centerX) {
+    public void setCenterX(int _centerX) {
         center_x = _centerX;
-        return center_x;
+    }
+    public void setButtonSpacing(int _BUTTON_SPACING) {
+        BUTTON_SPACING = _BUTTON_SPACING;
+    }
+     public void setButtonLayoutX(int _button_layout_x) {
+        button_layout_x = _button_layout_x;
+    }
+    public void setButtonLayoutY(int _button_layout_y) {
+        button_layout_y = _button_layout_y;
     }
 
 //=================  GETTERS ===============
@@ -71,14 +83,31 @@ public class SubSceneExt extends SubScene {
     }
 
     public int getButtonLayoutX() {
-        return SubSceneExt.BUTTON_LAYOUT_X;
+        return SubSceneExt.button_layout_x;
     }
 
     public int getButtonLayoutY() {
-        return SubSceneExt.BUTTON_LAYOUT_Y;
+        return SubSceneExt.button_layout_y;
     }
 
     public int getButtonSpacing() {
         return SubSceneExt.BUTTON_SPACING;
     }
+
+    public int getTextLayoutX() {
+        return SubSceneExt.TEXT_LAYOUT_X;
+    }
+
+    public int getTextLayoutY() {
+        return SubSceneExt.TEXT_LAYOUT_Y;
+    }
+
+    public int getTextSpacing() {
+        return SubSceneExt.TEXT_SPACING;
+    }
+
+    public int getTextSize() {
+        return SubSceneExt.TEXT_SIZE;
+    }
+
 }

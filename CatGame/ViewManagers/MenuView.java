@@ -1,29 +1,41 @@
 package CatGame.ViewManagers;
 
 /**
- * This is the Menu View Manager Author(s) - Greg Last updated - 3/6/20
+ * This is the Menu View Manager Author(s) - Greg Last updated - 4/22/20
  */
 import CatGame.ButtonExt;
 import CatGame.Controller.MenuController;
 import CatGame.Events.EventCodes;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BackgroundImage;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class MenuView extends ViewManager {
 
     protected static final int BUTTON_START_X = 100;
     protected static final int BUTTON_START_Y = 100;
     protected static final int BUTTON_SPACING = 100;
+    //This is for subscenes.
+    private static int button_layout_x = 75;
+    private static int button_layout_y = 30;
+    private static int button_spacing = 100;
+
     protected static final String BACKGROUND = "/resources/imgs/menu_background.png";
     protected MenuController controller;
     protected ButtonExt exitButton;
@@ -34,6 +46,8 @@ public class MenuView extends ViewManager {
     private final static int LAYOUT_Y = 150;
     private final static int LAYOUT_X = ViewManager.WIDTH + 10;
     private static int center_x = ViewManager.WIDTH / 2;
+    private final String HTP_INSTRUCTIONS = "src/resources/htp.txt";
+
 
     public MenuView(MenuController _cont) {
         this.mainPane = new AnchorPane();
@@ -109,6 +123,9 @@ public class MenuView extends ViewManager {
      * @param _scene
      */
     private void createSubSceneButton(String _text, int _code, SubSceneExt _scene) {
+        _scene.setButtonLayoutX(button_layout_x);
+        _scene.setButtonLayoutY(button_layout_y);
+        _scene.setButtonSpacing(button_spacing);
         ButtonExt button = new ButtonExt(_text, _scene.getButtonLayoutX(), (_scene.getButtonLayoutY() + _scene.getSubAnchor().getChildren().size() * _scene.getButtonSpacing()));
         this.placeButton(button, _code, _scene.getSubAnchor());
     }
@@ -128,8 +145,25 @@ public class MenuView extends ViewManager {
     /**
      * This method populates the how to play subscene.
      */
-    private void populateHowToPlay() {
+
+    private void populateHowToPlay(){
         this.HOW_TO_PLAY = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
+        Text htp = new Text();
+        htp.setLayoutX(this.HOW_TO_PLAY.getTextLayoutX());
+        htp.setLayoutY(this.HOW_TO_PLAY.getTextLayoutY());
+        htp.setWrappingWidth(this.HOW_TO_PLAY.getWidth()- 2 * this.HOW_TO_PLAY.getTextLayoutX());
+        htp.setLineSpacing(this.HOW_TO_PLAY.getTextSpacing());
+        String howToPlay = "Arrow keys to move. Esc to quit.";
+        try{
+            htp.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.HOW_TO_PLAY.getTextSize() ));
+            howToPlay = new String(Files.readAllBytes(Paths.get(this.HTP_INSTRUCTIONS)));
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        htp.setText(howToPlay);
+        this.HOW_TO_PLAY.getSubAnchor().getChildren().add(htp);
+
         this.mainPane.getChildren().add(this.HOW_TO_PLAY);
     }
 

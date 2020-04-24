@@ -37,6 +37,13 @@ public class GameController {
     public void replaceCheese(Node _cheese) {
         this.VIEW.replaceCheese(_cheese);
     }
+    /**
+     * This method will handle the EndGame buttons action.
+     * @param _code
+     */
+    public void handle(int _code) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     /**
      * This method tells the view that the player has run into an enemy.

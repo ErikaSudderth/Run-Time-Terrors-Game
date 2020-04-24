@@ -51,7 +51,6 @@ public class CollisionChecker {
         if (this.checkCollision(_node)) {
             if (!this.MOUSE.isCollided()) {
                 SFX.playCollision();
-                System.out.println("Collided with " + _node.getId());
                 this.CONTROLLER.enemyCollsion();
                 this.MOUSE.addCollision(_node);
                 this.MOUSE.setCollided(true);
