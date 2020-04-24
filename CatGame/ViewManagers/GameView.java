@@ -148,7 +148,7 @@ public class GameView extends ViewManager {
     /**
      * This method stops all of the animations and input.
      */
-    public void stopGame() {
+    private void stopGame() {
         this.timer.stop();
 
         this.controller.endClaws(this.cat);
