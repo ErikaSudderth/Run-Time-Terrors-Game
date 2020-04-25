@@ -46,7 +46,7 @@ public class GameController {
     public void handle(int _code) {
         switch (_code) {
             case EventCodes.YES_POST_TO_SOCIAL_MEDIA:
-                //This is where you would handle the user input with score and api interface 
+                //This is where you would handle the user input with score and api interface
                 this.VIEW.exitGame();
                 break;
             case EventCodes.NO_POST_TO_SOCIAL_MEDIA:
