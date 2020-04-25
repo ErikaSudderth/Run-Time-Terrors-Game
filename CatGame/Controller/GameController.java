@@ -1,12 +1,13 @@
 package CatGame.Controller;
 
 /**
- * This class will route the calls from the Game view. Author(s): Greg Dwyer Last Updated: 3/31/20
+ * This class will route the calls from the Game view. Author(s): Greg Dwyer, hasler zuniga, anthony barrera Last Updated: 4/24/20
  */
 import CatGame.Events.EventCodes;
 import CatGame.Models.CollisionChecker;
 import CatGame.Models.Input;
 import CatGame.Models.KeyboardInput;
+import CatGame.Models.ScoreSort;
 import CatGame.Models.WriteToTxt;
 import CatGame.Sprite.Cat;
 import CatGame.Sprite.Mouse;
@@ -57,6 +58,7 @@ public class GameController {
                 } catch (IOException ex) {
                     Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
                 this.VIEW.exitGame();
                 break;
             case EventCodes.NO_POST_TO_SOCIAL_MEDIA:
@@ -66,6 +68,7 @@ public class GameController {
                 } catch (IOException ex) {
                     Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
                 break;
         }
         this.exitGame();

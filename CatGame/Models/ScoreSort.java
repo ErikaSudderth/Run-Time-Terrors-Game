@@ -34,12 +34,13 @@ public class ScoreSort {
 			List<String> playerList = null;
 
 			// check if a player with that score already exists
-			if ((playerList = highestScores.get(score)) == null) { // if NOT,
-				playerList = new ArrayList<String>(1); // CREATE a new list
+			if ((playerList = highestScores.get(score)) == null) {
+                            // if not, then create a new list
+				playerList = new ArrayList<String>(1);
 				playerList.add(playerScores[0]);
 				highestScores.put(Integer.valueOf(playerScores[1]), playerList);
 			}
-                        // if YES, ADD to the existing list
+                        // if yes, add them to the list
                         else {
 				playerList.add(playerScores[0]);
 			}
