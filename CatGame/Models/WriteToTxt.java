@@ -8,7 +8,6 @@ package CatGame.Models;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import projectprototype.UserInputSubScene;
 
 public class WriteToTxt {
     //method creates a FileWriter, BufferedWriter, and PrintWriter

@@ -1,5 +1,4 @@
 seth: 1
-sara: 5
-jackie: 8
-lucy: 600
+
+
 

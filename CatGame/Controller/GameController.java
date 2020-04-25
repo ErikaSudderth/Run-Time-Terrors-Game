@@ -7,7 +7,6 @@ import CatGame.Events.EventCodes;
 import CatGame.Models.CollisionChecker;
 import CatGame.Models.Input;
 import CatGame.Models.KeyboardInput;
-import CatGame.Models.ScoreSort;
 import CatGame.Models.WriteToTxt;
 import CatGame.Sprite.Cat;
 import CatGame.Sprite.Mouse;
