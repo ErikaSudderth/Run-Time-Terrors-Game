@@ -41,11 +41,7 @@ public class UserInputSubScene extends Application {
                 l.setText(field.getText());
                 String player = field.getText();
                 
-                try {
-                    write.writeTo(player);
-                } catch (IOException ex) {
-                    Logger.getLogger(UserInputSubScene.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
                 s.close();
             }
         };

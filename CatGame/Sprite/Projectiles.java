@@ -1,8 +1,8 @@
 package CatGame.Sprite;
 
 /**
- * Projectile class (for claws) that extends the Sprite class. Calls on
- * method to rotate claws.
+ * Projectile class (for claws) that extends the Sprite class. Claws follow cat's
+ * location for placement. Contains method to rotate claws.
  *
  * @author Erika Sudderth Last updated: 4/9/20
  */

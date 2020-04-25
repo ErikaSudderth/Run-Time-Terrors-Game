@@ -1,13 +1,20 @@
 package CatGame.ViewManagers;
 
 /**
- * This is the Menu View Manager Author(s) - Greg, Erika Sudderth, anthony, hasler
- * updated - 4/15/20
+ * This is the Menu View Manager Author(s) - Greg, Erika Sudderth, Anthony, Hasler
+ * Last Updated - 4/15/20
  */
+import CatGame.ButtonExt;
 import CatGame.Controller.GameController;
+import CatGame.Events.EventCodes;
 import CatGame.Sprite.*;
+import java.io.FileInputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Random;
 import javafx.animation.AnimationTimer;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -20,8 +27,12 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import CatGame.Models.WriteToTxt;
+
 
 public class GameView extends ViewManager {
 
@@ -30,7 +41,6 @@ public class GameView extends ViewManager {
     private GameController controller;
     private Cat cat;
     private Mouse mouse;
-
     public int score = 0;
     public int health = 5;
     //The lower, the harder for di fficulty.
@@ -41,23 +51,42 @@ public class GameView extends ViewManager {
     private int newHairBalls = 0;
     private Label scoreLabel;
     private Label livesLabel;
+    private final String LABEL_ID = "label";
+    private final String SUBSCENE_ID = "endGame";
+    private final static int LAYOUT_Y = 150;
+    private final static int LAYOUT_X = ViewManager.WIDTH + 20;
+
+    //This for the subscene button and text
+    private static int button_layout_x = 75;
+    private static int button_layout_y = 250;
+    private static int button_spacing = 50;
+
+    private SubSceneExt subSceneOnScreen;
+    protected SubSceneExt ENDGAME;
+    private static int center_x = ViewManager.WIDTH - 210;
+    private final String LIVES_COLOR = "red";
+    private final String SCORE_COLOR = "orange";
+   
+    private TextField field = new TextField();
+
 
     public GameView(GameController _cont, Stage _oldStage) {
 
         scoreLabel = new Label();
         scoreLabel.setText("Score:" + this.score);
-        scoreLabel.setFont(Font.font("Verdana", 26));
-        scoreLabel.setTextFill(Color.web("orange"));
+        scoreLabel.setFont(this.FONT);
+        scoreLabel.setTextFill(Color.web(this.SCORE_COLOR));
+
         Node score = scoreLabel;
-        score.setId("scoreLabel");
-        //create lives label
+        score.setId(this.LABEL_ID);
+
         livesLabel = new Label();
         livesLabel.setText("Lives:" + this.health);
-        livesLabel.setFont(Font.font("Verdana", 26));
-        livesLabel.setTextFill(Color.web("red"));
+        livesLabel.setFont(this.FONT);
+        livesLabel.setTextFill(Color.web(this.LIVES_COLOR));
         livesLabel.relocate(0, 25);
         Node lives = livesLabel;
-        lives.setId("livesLabel");
+        lives.setId(this.LABEL_ID);
 
         this.controller = _cont;
         this.mainPane = new AnchorPane();
@@ -74,11 +103,23 @@ public class GameView extends ViewManager {
         mainStage.show();
         //Create cat and mouse objects
         this.createSprites();
+        this.populateEndGame();
         this.initializeTimer();
 
         BackgroundImage img = new BackgroundImage(new Image(GameView.BACKGROUND, 820, 800, true, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         this.mainPane.setBackground(new Background(img));
 
+    }
+    /**
+     * This method shows the subscene.
+     * @param _subscene
+     */
+    public void showSubScene(SubSceneExt _subscene) {
+        if (subSceneOnScreen != null) {
+            subSceneOnScreen.moveSubScene(center_x);
+        }
+        _subscene.moveSubScene(center_x);
+        subSceneOnScreen = _subscene;
     }
 
     /**
@@ -111,12 +152,27 @@ public class GameView extends ViewManager {
                 if (increaseDifficulty) {
                     Hairball hairball = new Hairball(mainPane, STARTING_HAIRBALLS + newHairBalls);
                     increaseDifficulty = false;
-                    System.out.println("New Hairball");
                 }
 
             }
         };
         this.timer.start();
+    }
+    private void placeButton(ButtonExt _button, int _code, AnchorPane _pane) {
+        _pane.getChildren().add(_button);
+        _button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                controller.handle(_code);
+            }
+        });
+    }
+    private void createSubSceneButton(String _text, int _code, SubSceneExt _scene) {
+        _scene.setButtonLayoutX(button_layout_x);
+        _scene.setButtonLayoutY(button_layout_y);
+        _scene.setButtonSpacing(button_spacing);
+        ButtonExt button = new ButtonExt(_text, _scene.getButtonLayoutX(), (_scene.getButtonLayoutY() + _scene.getSubAnchor().getChildren().size() * _scene.getButtonSpacing()));
+        this.placeButton(button, _code, _scene.getSubAnchor());
     }
 
     /**
@@ -127,6 +183,7 @@ public class GameView extends ViewManager {
     public void replaceCheese(Node _cheese) {
         this.score++;
 
+
         System.out.println("Current Score: " + score);
           scoreLabel.setText("Score:" + score);
         Cheese.placeCheese(_cheese);
@@ -135,12 +192,95 @@ public class GameView extends ViewManager {
         }
     }
 
+    /**
+     * Use this method to clear the game pane in order to exit.
+     */
+    public void exitGame() {
+        this.stopGame();
+        this.mainPane.getChildren().clear();
+    }
+
+    /**
+     * This method stops all of the animations and input.
+     */
+    private void stopGame() {
+        this.timer.stop();
+        this.controller.endClaws(this.cat);
+    }
+
+    /**
+     * This method decrements the player's health after a collision.
+     */
     public void enemyCollision() {
         this.health--;
         livesLabel.setText("lives:" + health);
         System.out.println("Remaining Health: " + health);
+        if(this.health == 0){
+            this.showEndGameSubscene();
+            this.stopGame();
+
+        }
 
     }
+    /**
+     * This method will populate buttons and textfields to the subscene.
+     */
+    private void populateEndGame() {
+        //creating subscene
+        this.ENDGAME = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
+        Node endgame = this.ENDGAME;
+        endgame.setId(this.SUBSCENE_ID);
+
+        //Creating buttons
+        this.createSubSceneButton("YES", EventCodes.YES_POST_TO_SOCIAL_MEDIA, this.ENDGAME);
+        this.createSubSceneButton("NO", EventCodes.NO_POST_TO_SOCIAL_MEDIA, this.ENDGAME);
+
+        //Game over label.
+        String endGame = "GAME OVER!";
+        Label htp = new Label();
+        htp.setLayoutX(this.ENDGAME.getTextLayoutX() + 20);
+        htp.setLayoutY(this.ENDGAME.getTextLayoutY());
+        htp.setLineSpacing(this.ENDGAME.getTextSpacing());
+        htp.setText(endGame);
+        htp.setFont(this.FONT);
+        htp.setTextFill(Color.web(this.LIVES_COLOR));
+
+        //This label is for if they want to post to social media.
+        String instruct = "Enter your name! Then select yes if you want us to display your name and score on our social media";
+        Text instruction = new Text();
+        instruction.setLayoutX(this.ENDGAME.getTextLayoutX() + 20);
+        instruction.setLayoutY(this.ENDGAME.getTextLayoutY() + 80);
+        instruction.setWrappingWidth(this.ENDGAME.getWidth()- 2 * this.ENDGAME.getTextLayoutX());
+        instruction.setLineSpacing(this.ENDGAME.getTextSpacing());
+        instruction.setText(instruct);
+        //This is for the font.
+        try{
+            instruction.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.ENDGAME.getTextSize() ));
+
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        //Input textfield
+        field.setLayoutX(button_layout_x + 20);
+        field.setLayoutY(this.ENDGAME.getTextLayoutY() + 165);
+        
+        this.ENDGAME.getSubAnchor().getChildren().add(instruction);
+        this.ENDGAME.getSubAnchor().getChildren().add(field);
+        this.ENDGAME.getSubAnchor().getChildren().add(htp);
+        this.mainPane.getChildren().add(endgame);
+    }
+
+    /**
+     * This method will show the subscene.
+     */
+    public void showEndGameSubscene() {
+        this.showSubScene(this.ENDGAME);
+    }
+
+//=================  SETTERS ===============
+  
+
 //=================  GETTERS ===============
 
     public Cat getCat() {
@@ -153,5 +293,15 @@ public class GameView extends ViewManager {
 
     public Scene getMainScene() {
         return this.mainScene;
+    }
+    public String getUserInput(){
+       String player = field.getText();
+       return player;
+    }
+    public int getHealth(){
+        return health;
+    }
+    public int getScore(){
+        return score;
     }
 }

@@ -1,8 +1,0 @@
-anthony: 15
-seth: 15
-sara: 15
-lucy: 15
-hasler: 15
-ruby: 15
-anthony: 15
-jolie: 15

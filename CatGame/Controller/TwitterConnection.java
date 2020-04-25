@@ -1,3 +1,5 @@
+package CatGame.Controller;
+
 /**
  * The purpose of this file is to call the API twitter bot so the high score can be posted on to twitter.
  *
