@@ -31,6 +31,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import CatGame.Models.WriteToTxt;
+
 
 public class GameView extends ViewManager {
 
@@ -64,6 +66,9 @@ public class GameView extends ViewManager {
     private static int center_x = ViewManager.WIDTH - 210;
     private final String LIVES_COLOR = "red";
     private final String SCORE_COLOR = "orange";
+   
+    private TextField field = new TextField();
+
 
     public GameView(GameController _cont, Stage _oldStage) {
 
@@ -179,9 +184,8 @@ public class GameView extends ViewManager {
         this.score++;
 
 
-        System.out.println("Current Score: " + this.score);
-        scoreLabel.setText("Score:" + this.score);
-
+        System.out.println("Current Score: " + score);
+          scoreLabel.setText("Score:" + score);
         Cheese.placeCheese(_cheese);
         if (this.score % this.DIFFICULTY == 0) {
             this.increaseDifficulty = true;
@@ -208,17 +212,14 @@ public class GameView extends ViewManager {
      * This method decrements the player's health after a collision.
      */
     public void enemyCollision() {
-
         this.health--;
+        livesLabel.setText("lives:" + health);
+        System.out.println("Remaining Health: " + health);
         if(this.health == 0){
             this.showEndGameSubscene();
             this.stopGame();
 
         }
-
-
-        System.out.println("Remaining Health: " + this.health);
-        livesLabel.setText("Lives:" + this.health);
 
     }
     /**
@@ -245,7 +246,7 @@ public class GameView extends ViewManager {
         htp.setTextFill(Color.web(this.LIVES_COLOR));
 
         //This label is for if they want to post to social media.
-        String instruct = "Enter your name! Then select you want us to display your name and score to our social media";
+        String instruct = "Enter your name! Then select yes if you want us to display your name and score on our social media";
         Text instruction = new Text();
         instruction.setLayoutX(this.ENDGAME.getTextLayoutX() + 20);
         instruction.setLayoutY(this.ENDGAME.getTextLayoutY() + 80);
@@ -261,10 +262,9 @@ public class GameView extends ViewManager {
             System.out.println(e);
         }
         //Input textfield
-        TextField field = new TextField();
         field.setLayoutX(button_layout_x + 20);
         field.setLayoutY(this.ENDGAME.getTextLayoutY() + 165);
-
+        
         this.ENDGAME.getSubAnchor().getChildren().add(instruction);
         this.ENDGAME.getSubAnchor().getChildren().add(field);
         this.ENDGAME.getSubAnchor().getChildren().add(htp);
@@ -278,7 +278,8 @@ public class GameView extends ViewManager {
         this.showSubScene(this.ENDGAME);
     }
 
-
+//=================  SETTERS ===============
+  
 
 //=================  GETTERS ===============
 
@@ -293,5 +294,14 @@ public class GameView extends ViewManager {
     public Scene getMainScene() {
         return this.mainScene;
     }
-
+    public String getUserInput(){
+       String player = field.getText();
+       return player;
+    }
+    public int getHealth(){
+        return health;
+    }
+    public int getScore(){
+        return score;
+    }
 }

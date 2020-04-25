@@ -7,18 +7,22 @@ import CatGame.Events.EventCodes;
 import CatGame.Models.CollisionChecker;
 import CatGame.Models.Input;
 import CatGame.Models.KeyboardInput;
+import CatGame.Models.WriteToTxt;
 import CatGame.Sprite.Cat;
 import CatGame.Sprite.Mouse;
 import CatGame.Sprite.Sprite;
 import CatGame.ViewManagers.GameView;
 import CatGame.ViewManagers.MenuView;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class GameController {
-
+    
     private final GameView VIEW;
     private final Stage MENUSTAGE;
     private final Input INPUT;
@@ -44,13 +48,24 @@ public class GameController {
      * @param _code
      */
     public void handle(int _code) {
+                WriteToTxt write = new WriteToTxt();
         switch (_code) {
             case EventCodes.YES_POST_TO_SOCIAL_MEDIA:
-                //This is where you would handle the user input with score and api interface 
+                //This is where you would handle the user input with score and api interface
+                try {
+                    write.writeTo(this.VIEW.getUserInput(), this.VIEW.getScore());
+                } catch (IOException ex) {
+                    Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 this.VIEW.exitGame();
                 break;
             case EventCodes.NO_POST_TO_SOCIAL_MEDIA:
                 //This is where you would handle the user input with score
+             try {
+                    write.writeTo(this.VIEW.getUserInput(), this.VIEW.getScore());
+                } catch (IOException ex) {
+                    Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 break;
         }
         this.exitGame();
