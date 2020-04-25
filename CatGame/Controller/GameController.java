@@ -7,11 +7,15 @@ import CatGame.Events.EventCodes;
 import CatGame.Models.CollisionChecker;
 import CatGame.Models.Input;
 import CatGame.Models.KeyboardInput;
+import CatGame.Models.WriteToTxt;
 import CatGame.Sprite.Cat;
 import CatGame.Sprite.Mouse;
 import CatGame.Sprite.Sprite;
 import CatGame.ViewManagers.GameView;
 import CatGame.ViewManagers.MenuView;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -23,13 +27,16 @@ public class GameController {
     private final Stage MENUSTAGE;
     private final Input INPUT;
     private final CollisionChecker COLLISION_CHECKER;
+    private final WriteToTxt WRITE;
+    private final SocialMediaApiAdaptor SOCIAL;
 
     public GameController(Stage _menuStage) {
         this.MENUSTAGE = _menuStage;
         this.VIEW = new GameView(this, MENUSTAGE);
         this.INPUT = new KeyboardInput(this);
         this.COLLISION_CHECKER = new CollisionChecker(this, this.VIEW.getMouse());
-
+        this.WRITE = new WriteToTxt();
+        this.SOCIAL = new SocialMediaApiAdaptor();
     }
 
     /**
@@ -47,10 +54,20 @@ public class GameController {
         switch (_code) {
             case EventCodes.YES_POST_TO_SOCIAL_MEDIA:
                 //This is where you would handle the user input with score and api interface
-                this.VIEW.exitGame();
+                try {
+                    this.WRITE.writeTo(this.VIEW.getUserInput(), this.VIEW.getScore());
+                    this.SOCIAL.writeToSocialMedia(this.VIEW.getUserInput(), this.VIEW.getScore());
+                } catch (IOException ex) {
+                    Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 break;
             case EventCodes.NO_POST_TO_SOCIAL_MEDIA:
                 //This is where you would handle the user input with score
+             try {
+                    this.WRITE.writeTo(this.VIEW.getUserInput(), this.VIEW.getScore());
+                } catch (IOException ex) {
+                    Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 break;
         }
         this.exitGame();

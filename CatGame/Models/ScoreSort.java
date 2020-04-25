@@ -19,11 +19,11 @@ public class ScoreSort {
 	public void Sorter() throws IOException {
 		// (key-value pairs) = (high score - (list of players)) sorts scores and handles those that are equal
 		TreeMap<Integer, List<String>> highestScores = new TreeMap<Integer, List<String>>();
-		//try to open the dummyScores.txt file
+		//try to open the GameScores.txt file
 		try {
-			reader = new BufferedReader(new FileReader("src/resources/dummyScores.txt"));
+			reader = new BufferedReader(new FileReader("src/resources/GameScores.txt"));
 		} catch (FileNotFoundException e) {
-			System.out.println("Cannot find dummy file");
+			System.out.println("Cannot find scores file");
 		}
 
 		String line = null;
