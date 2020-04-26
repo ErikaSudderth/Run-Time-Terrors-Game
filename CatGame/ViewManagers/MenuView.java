@@ -4,12 +4,14 @@ package CatGame.ViewManagers;
  * This is the Menu View Manager Author(s) - Greg Last updated - 4/22/20
  */
 import CatGame.ButtonExt;
+import CatGame.Models.ScoreSort;
 import CatGame.Controller.MenuController;
 import CatGame.Events.EventCodes;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -47,6 +49,9 @@ public class MenuView extends ViewManager {
     private final static int LAYOUT_X = ViewManager.WIDTH + 10;
     private static int center_x = ViewManager.WIDTH / 2;
     private final String HTP_INSTRUCTIONS = "src/resources/htp.txt";
+    private ArrayList<String> topScores;
+    ScoreSort sortGame = new ScoreSort();
+
 
 
     public MenuView(MenuController _cont) {
@@ -172,6 +177,9 @@ public class MenuView extends ViewManager {
      */
     private void populateHighscores() {
         this.HIGHSCORES = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
+       topScores  = sortGame.getArrayList();
+        
+        
         this.mainPane.getChildren().add(this.HIGHSCORES);
     }
 

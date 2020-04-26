@@ -23,7 +23,7 @@ public class TwitterConnection implements SocialMediaInterface{
     private ConfigurationBuilder cb = new ConfigurationBuilder();
 
 //    This method hold the api call and writes to twitter feed
-    public void writeToSocialMedia(String _username, int score) {
+    public void writeToSocialMedia(String _username, int _score) {
         cb.setDebugEnabled(true)
                 .setOAuthConsumerKey(this.authConsumerKey)
                 .setOAuthConsumerSecret(this.authConsumerSecret)
@@ -32,7 +32,7 @@ public class TwitterConnection implements SocialMediaInterface{
         TwitterFactory tf = new TwitterFactory(cb.build());
         Twitter twitter = tf.getInstance();
         try {
-            twitter.updateStatus(_username +": " + score);
+            twitter.updateStatus(_username +": " + _score);
         } catch (TwitterException ex) {
             Logger.getLogger(TwitterConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
