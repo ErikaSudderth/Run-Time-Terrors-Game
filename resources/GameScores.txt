@@ -1,1 +1,6 @@
-HaslHoff: 19
+ant: 5
+has: 10
+jack: 76
+jp: 2
+suwoo: 4
+leslie: 69

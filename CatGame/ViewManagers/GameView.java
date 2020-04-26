@@ -32,6 +32,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import CatGame.Models.WriteToTxt;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class GameView extends ViewManager {
@@ -66,14 +69,14 @@ public class GameView extends ViewManager {
     private static int center_x = ViewManager.WIDTH - 210;
     private final String LIVES_COLOR = "red";
     private final String SCORE_COLOR = "orange";
-   
+
     private TextField field = new TextField();
 
 
     public GameView(GameController _cont, Stage _oldStage) {
 
         scoreLabel = new Label();
-        scoreLabel.setText("Score:" + this.score);
+        scoreLabel.setText("Score:" + score);
         scoreLabel.setFont(this.FONT);
         scoreLabel.setTextFill(Color.web(this.SCORE_COLOR));
 
@@ -81,7 +84,7 @@ public class GameView extends ViewManager {
         score.setId(this.LABEL_ID);
 
         livesLabel = new Label();
-        livesLabel.setText("Lives:" + this.health);
+        livesLabel.setText("Lives:" + health);
         livesLabel.setFont(this.FONT);
         livesLabel.setTextFill(Color.web(this.LIVES_COLOR));
         livesLabel.relocate(0, 25);
@@ -264,7 +267,7 @@ public class GameView extends ViewManager {
         //Input textfield
         field.setLayoutX(button_layout_x + 20);
         field.setLayoutY(this.ENDGAME.getTextLayoutY() + 165);
-        
+
         this.ENDGAME.getSubAnchor().getChildren().add(instruction);
         this.ENDGAME.getSubAnchor().getChildren().add(field);
         this.ENDGAME.getSubAnchor().getChildren().add(htp);
@@ -279,7 +282,7 @@ public class GameView extends ViewManager {
     }
 
 //=================  SETTERS ===============
-  
+
 
 //=================  GETTERS ===============
 

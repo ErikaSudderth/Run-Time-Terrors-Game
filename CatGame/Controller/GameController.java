@@ -1,7 +1,7 @@
 package CatGame.Controller;
 
 /**
- * This class will route the calls from the Game view. Author(s): Greg Dwyer Last Updated: 3/31/20
+ * This class will route the calls from the Game view. Author(s): Greg Dwyer, hasler zuniga, anthony barrera Last Updated: 4/24/20
  */
 import CatGame.Events.EventCodes;
 import CatGame.Models.CollisionChecker;
