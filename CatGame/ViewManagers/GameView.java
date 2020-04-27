@@ -66,7 +66,7 @@ public class GameView extends ViewManager {
     private static int center_x = ViewManager.WIDTH - 210;
     private final String LIVES_COLOR = "red";
     private final String SCORE_COLOR = "orange";
-   
+
     private TextField field = new TextField();
 
 
@@ -264,7 +264,7 @@ public class GameView extends ViewManager {
         //Input textfield
         field.setLayoutX(button_layout_x + 20);
         field.setLayoutY(this.ENDGAME.getTextLayoutY() + 165);
-        
+
         this.ENDGAME.getSubAnchor().getChildren().add(instruction);
         this.ENDGAME.getSubAnchor().getChildren().add(field);
         this.ENDGAME.getSubAnchor().getChildren().add(htp);
@@ -279,7 +279,7 @@ public class GameView extends ViewManager {
     }
 
 //=================  SETTERS ===============
-  
+
 
 //=================  GETTERS ===============
 

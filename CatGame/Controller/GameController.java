@@ -10,9 +10,7 @@ import CatGame.Models.KeyboardInput;
 import CatGame.Models.WriteToTxt;
 import CatGame.Sprite.Cat;
 import CatGame.Sprite.Mouse;
-import CatGame.Sprite.Sprite;
 import CatGame.ViewManagers.GameView;
-import CatGame.ViewManagers.MenuView;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -70,7 +68,7 @@ public class GameController {
                 }
                 break;
         }
-        this.exitGame();
+
     }
 
     /**
