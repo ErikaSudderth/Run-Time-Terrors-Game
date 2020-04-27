@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 import java.io.BufferedReader;
-import java.util.Scanner;
 
 public class ScoreSort {
 //create a BufferedReader
@@ -63,8 +62,4 @@ public class ScoreSort {
 public ArrayList<String> getArrayList(){
     return sortedScores;
 }
-    public static void main(String[] args) throws IOException {
-        ScoreSort sortGame = new ScoreSort();
-        sortGame.Sorter();
-    }
 }

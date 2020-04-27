@@ -40,8 +40,8 @@ public class UserInputSubScene extends Application {
             public void handle(ActionEvent e) {
                 l.setText(field.getText());
                 String player = field.getText();
-                
-                
+
+
                 s.close();
             }
         };
