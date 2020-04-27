@@ -54,7 +54,7 @@ public class ScoreSort {
             }
         }
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("ScoreSort: " + e);
         }
     }
 //=================  GETTERS ===============
