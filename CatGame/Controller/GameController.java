@@ -1,15 +1,21 @@
 package CatGame.Controller;
 
 /**
- * This class will route the calls from the Game view. Author(s): Greg Dwyer Last Updated: 3/31/20
+ * This class will route the calls from the Game view.
+ * Author(s): Greg Dwyer, hasler zuniga, anthony barrera
+ * Last Updated: 4/27/20
  */
+import CatGame.Events.EventCodes;
 import CatGame.Models.CollisionChecker;
 import CatGame.Models.Input;
 import CatGame.Models.KeyboardInput;
+import CatGame.Models.WriteToTxt;
 import CatGame.Sprite.Cat;
 import CatGame.Sprite.Mouse;
-import CatGame.Sprite.Sprite;
 import CatGame.ViewManagers.GameView;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -21,21 +27,53 @@ public class GameController {
     private final Stage MENUSTAGE;
     private final Input INPUT;
     private final CollisionChecker COLLISION_CHECKER;
+    private final WriteToTxt WRITE;
+    private final SocialMediaApiAdaptor SOCIAL;
 
     public GameController(Stage _menuStage) {
         this.MENUSTAGE = _menuStage;
         this.VIEW = new GameView(this, MENUSTAGE);
         this.INPUT = new KeyboardInput(this);
         this.COLLISION_CHECKER = new CollisionChecker(this, this.VIEW.getMouse());
-
+        this.WRITE = new WriteToTxt();
+        this.SOCIAL = new SocialMediaApiAdaptor();
     }
 
     /**
      * This method tells the view to put a collected cheese item back on the board.
+     *
      * @param _cheese This is the cheese to be placed.
      */
     public void replaceCheese(Node _cheese) {
         this.VIEW.replaceCheese(_cheese);
+    }
+
+    /**
+     * This method will handle the EndGame buttons action.
+     *
+     * @param _code
+     */
+    public void handle(int _code) {
+        switch (_code) {
+            case EventCodes.YES_POST_TO_SOCIAL_MEDIA:
+                //This is where you would handle the user input with score and api interface
+                try {
+                    this.WRITE.writeTo(this.VIEW.getUserInput(), this.VIEW.getScore());
+                    this.SOCIAL.writeToSocialMedia(this.VIEW.getUserInput(), this.VIEW.getScore());
+                } catch (IOException ex) {
+                    Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            case EventCodes.NO_POST_TO_SOCIAL_MEDIA:
+                //This is where you would handle the user input with score
+                try {
+                    this.WRITE.writeTo(this.VIEW.getUserInput(), this.VIEW.getScore());
+                } catch (IOException ex) {
+                    Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+        }
+        this.exitGame();
     }
 
     /**
@@ -53,8 +91,16 @@ public class GameController {
     }
 
     /**
-     * This method returns the user to the main menu and closes the game stage.
-     * KNOWN BUG - All of the path transitions continue to run and play sound after the stage is closed.
+     * This method ends the game.
+     */
+    public void endSubscene() {
+        this.VIEW.exitGame();
+        this.getViewStage().close();
+        this.MENUSTAGE.show();
+    }
+
+    /**
+     * This method returns the user to the main menu and closes the game stage. KNOWN BUG - All of the path transitions continue to run and play sound after the stage is closed.
      */
     public void exitGame() {
         this.VIEW.exitGame();
@@ -64,6 +110,7 @@ public class GameController {
 
     /**
      * This method calls the on the mouse class, and hands over the input device to be checked.
+     *
      * @param _mouse
      */
     public void moveMouse(Mouse _mouse) {
@@ -72,6 +119,7 @@ public class GameController {
 
     /**
      * This method ends the claw shooting timeline. This is called during the exit game protocol.
+     *
      * @param _cat
      */
     public void endClaws(Cat _cat) {

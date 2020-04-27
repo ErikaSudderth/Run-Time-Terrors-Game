@@ -1,8 +1,8 @@
-anthony: 15
-seth: 15
-sara: 15
-lucy: 15
-hasler: 15
-ruby: 15
-anthony: 15
-jolie: 15
+Erika: 8
+Greg: 10
+Hasler: 11
+Erika: 7
+(No Name): 4
+RTT: 16
+Test: 5
+HaslerSUX: 2

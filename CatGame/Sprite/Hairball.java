@@ -4,7 +4,7 @@ package CatGame.Sprite;
  * Hairball class that simply initializes the location and size of the stationary hairballs on screen.
  *
  * @author Erika Sudderth, Gregory Dwyer
- * Last updated: 4/18/20
+ * Last updated: 4/27/20
  */
 
 import java.util.Random;
@@ -44,9 +44,6 @@ public class Hairball extends Sprite {
         this.pane.getChildren().add(hairballNode);
         this.pane.getChildren().get(this.pane.getChildren().indexOf(hairballNode)).toBack();
         this.placeHairball();
-        if(!this.isGoodPlacement()) {
-            this.placeHairball();
-        }
     }
 
     /**
@@ -75,12 +72,17 @@ public class Hairball extends Sprite {
             if(this.yRand > sectionUpper && this.yRand < ((yCounter + 1) * (this.yRange / this.yDivisions) + this.upperBound)) {
                 for(int xCounter = 0; xCounter < this.xDivisions; xCounter++) {
                     if(this.xRand > sectionLeft && this.xRand < ((xCounter + 1) * (this.xRange / this.xDivisions) + this.leftBound)) {
-                        Hairball.sectionArray[yCounter + xCounter] += 1;
+                        Hairball.sectionArray[(yCounter * this.xDivisions) + xCounter] += 1;
                     }
                     sectionLeft = ((xCounter + 1) * (this.xRange / this.xDivisions) + this.leftBound);
                 }
-                sectionUpper = ((yCounter + 1) * (this.yRange / this.yDivisions) + this.leftBound);
             }
+            sectionUpper = ((yCounter + 1) * (this.yRange / this.yDivisions) + this.upperBound);
+        }
+
+        // This is placed here to allow location reassignment without deleting the Hairball object and creating a new one.
+        if(!this.isGoodPlacement()) {
+            this.placeHairball();
         }
     }
 
@@ -89,7 +91,7 @@ public class Hairball extends Sprite {
      */
     private Boolean isGoodPlacement() {
         //Add one because integer division drops the remainder.
-        int hairballsPerSection = this.maxHairballs / this.numSections + 1;
+        int hairballsPerSection = (this.maxHairballs / this.numSections) + 1;
 
         for(int counter = 0; counter < Hairball.sectionArray.length; counter++) {
             if(Hairball.sectionArray[counter] > hairballsPerSection) {
