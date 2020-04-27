@@ -1,12 +1,8 @@
 Erika: 8
-: 8
-: 11
-: 9
-: 6
-: 17
-: 10
-: 9
-: 8
-: 6
-: 7
-: 5
+Greg: 10
+Hasler: 11
+Erika: 7
+(No Name): 4
+RTT: 16
+Test: 5
+HaslerSUX: 2

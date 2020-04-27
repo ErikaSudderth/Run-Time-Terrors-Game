@@ -1,8 +1,7 @@
 package CatGame.Controller;
 
 /**
- * This method handles calls from the MenuView. Author(s): Greg Dwyer Last Updated: 3/25/20
- *
+ * This method handles calls from the MenuView. Author(s): Greg Dwyer Last Updated: 4/27/20
  */
 import CatGame.Events.EventCodes;
 import CatGame.SFX;
@@ -31,6 +30,7 @@ public class MenuController {
                 this.VIEW.showHowToPlay();
                 break;
             case EventCodes.HIGHSCORES:
+                this.VIEW.updateHighscores();
                 this.VIEW.showHighscores();
                 break;
             case EventCodes.SETTINGS_MENU:
@@ -54,6 +54,7 @@ public class MenuController {
         }
     }
 //==================GETTERS======================
+
     public AnchorPane getViewPane() {
         return this.VIEW.getMainPane();
     }

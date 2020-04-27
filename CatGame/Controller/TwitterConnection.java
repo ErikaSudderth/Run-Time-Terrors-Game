@@ -15,7 +15,8 @@ import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
-public class TwitterConnection implements SocialMediaInterface{
+public class TwitterConnection implements SocialMediaInterface {
+
     private String authConsumerKey = "zkxzfcERcpPlZGpb9Xdiboo3J";
     private String authConsumerSecret = "Q6PEwZ88d6jnv5gRbR2Pw1f25f1DYxUqQHPTUcqsdS0YgliY9C";
     private String authAccessToken = "1222276825969131520-3iuVn78RpduNEViVwixUHDx6sFYBtT";
@@ -32,7 +33,7 @@ public class TwitterConnection implements SocialMediaInterface{
         TwitterFactory tf = new TwitterFactory(cb.build());
         Twitter twitter = tf.getInstance();
         try {
-            twitter.updateStatus(_username +": " + _score);
+            twitter.updateStatus(_username + ": " + _score);
         } catch (TwitterException ex) {
             Logger.getLogger(TwitterConnection.class.getName()).log(Level.SEVERE, null, ex);
         }

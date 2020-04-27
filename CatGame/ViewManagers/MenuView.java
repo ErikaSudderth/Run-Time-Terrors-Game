@@ -1,7 +1,9 @@
 package CatGame.ViewManagers;
 
 /**
- * This is the Menu View Manager Author(s) - Greg Last updated - 4/22/20
+ * This is the Menu View Manager.
+ * Author(s) - Greg Dwyer
+ * Last updated - 4/27/20
  */
 import CatGame.ButtonExt;
 import CatGame.Models.ScoreSort;
@@ -27,6 +29,7 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 public class MenuView extends ViewManager {
 
@@ -50,7 +53,8 @@ public class MenuView extends ViewManager {
     private static int center_x = ViewManager.WIDTH / 2;
     private final String HTP_INSTRUCTIONS = "src/resources/htp.txt";
     private ArrayList<String> topScores;
-    ScoreSort sortGame = new ScoreSort();
+    private final int HIGHSCORE_LENGTH = 15;
+    private Text scoresTable;
 
 
 
@@ -158,6 +162,7 @@ public class MenuView extends ViewManager {
         htp.setLayoutY(this.HOW_TO_PLAY.getTextLayoutY());
         htp.setWrappingWidth(this.HOW_TO_PLAY.getWidth()- 2 * this.HOW_TO_PLAY.getTextLayoutX());
         htp.setLineSpacing(this.HOW_TO_PLAY.getTextSpacing());
+        htp.setTextAlignment(TextAlignment.JUSTIFY);
         String howToPlay = "Arrow keys to move. Esc to quit.";
         try{
             htp.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.HOW_TO_PLAY.getTextSize() ));
@@ -177,12 +182,39 @@ public class MenuView extends ViewManager {
      */
     private void populateHighscores() {
         this.HIGHSCORES = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
-       topScores  = sortGame.getArrayList();
-        
-        
+        this.scoresTable = new Text();
+        this.scoresTable.setLayoutX(this.HIGHSCORES.getTextLayoutX());
+        this.scoresTable.setLayoutY(this.HIGHSCORES.getTextLayoutY());
+        this.scoresTable.setWrappingWidth(this.HIGHSCORES.getWidth()- 2 * this.HIGHSCORES.getTextLayoutX());
+        this.scoresTable.setLineSpacing(this.HIGHSCORES.getTextSpacing());
+        String scores = "Highscores: \n \n";
+        try{
+            this.scoresTable.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.HIGHSCORES.getTextSize() ));
+            for(int i = 0; i < this.HIGHSCORE_LENGTH; i++){
+                scores += (i+1) + "." + this.topScores.get(i) + "\n";
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        this.scoresTable.setText(scores);
+        this.HIGHSCORES.getSubAnchor().getChildren().add(this.scoresTable);
         this.mainPane.getChildren().add(this.HIGHSCORES);
     }
-
+    
+    /**
+     * This method will get an up to date string of the top scores.
+     * @return scores This is the full string of the top scores.
+     */
+    public void updateHighscores(){
+        this.topScores = new ScoreSort().getArrayList();
+        String scores="Highscores:\n\n";
+        for(int i = 0; i < this.HIGHSCORE_LENGTH && i < this.topScores.size(); i++){
+                scores += (i+1) + "." + this.topScores.get(i) + "\n";
+            }
+        this.scoresTable.setText(scores);
+    }
+    
     /**
      * This method will show the settings subscene.
      */
