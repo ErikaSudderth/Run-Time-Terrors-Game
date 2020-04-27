@@ -32,6 +32,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import CatGame.Models.WriteToTxt;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class GameView extends ViewManager {
@@ -73,7 +76,7 @@ public class GameView extends ViewManager {
     public GameView(GameController _cont, Stage _oldStage) {
 
         scoreLabel = new Label();
-        scoreLabel.setText("Score:" + this.score);
+        scoreLabel.setText("Score:" + score);
         scoreLabel.setFont(this.FONT);
         scoreLabel.setTextFill(Color.web(this.SCORE_COLOR));
 
@@ -81,7 +84,7 @@ public class GameView extends ViewManager {
         score.setId(this.LABEL_ID);
 
         livesLabel = new Label();
-        livesLabel.setText("Lives:" + this.health);
+        livesLabel.setText("Lives:" + health);
         livesLabel.setFont(this.FONT);
         livesLabel.setTextFill(Color.web(this.LIVES_COLOR));
         livesLabel.relocate(0, 25);
