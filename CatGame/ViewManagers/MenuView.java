@@ -182,6 +182,7 @@ public class MenuView extends ViewManager {
      */
     private void populateHighscores() {
         this.HIGHSCORES = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
+        this.topScores = new ScoreSort().getArrayList();
         this.scoresTable = new Text();
         this.scoresTable.setLayoutX(this.HIGHSCORES.getTextLayoutX());
         this.scoresTable.setLayoutY(this.HIGHSCORES.getTextLayoutY());
@@ -190,21 +191,20 @@ public class MenuView extends ViewManager {
         String scores = "Highscores: \n \n";
         try{
             this.scoresTable.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.HIGHSCORES.getTextSize() ));
-            for(int i = 0; i < this.HIGHSCORE_LENGTH; i++){
+            for(int i = 0; i < this.HIGHSCORE_LENGTH && i < this.topScores.size(); i++){
                 scores += (i+1) + "." + this.topScores.get(i) + "\n";
             }
         }
         catch(Exception e){
-            System.out.println(e);
+            System.out.println("populateHighscores: " + e);
         }
         this.scoresTable.setText(scores);
         this.HIGHSCORES.getSubAnchor().getChildren().add(this.scoresTable);
         this.mainPane.getChildren().add(this.HIGHSCORES);
     }
-    
+
     /**
      * This method will get an up to date string of the top scores.
-     * @return scores This is the full string of the top scores.
      */
     public void updateHighscores(){
         this.topScores = new ScoreSort().getArrayList();
@@ -214,7 +214,7 @@ public class MenuView extends ViewManager {
             }
         this.scoresTable.setText(scores);
     }
-    
+
     /**
      * This method will show the settings subscene.
      */
