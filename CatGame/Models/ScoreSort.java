@@ -14,7 +14,7 @@ import java.io.BufferedReader;
 public class ScoreSort {
 //create a BufferedReader
     private BufferedReader reader;
-    ArrayList<String> sortedScores;
+    private ArrayList<String> sortedScores;
 //method to sort the scores in the txt file
 
     public ScoreSort() {
