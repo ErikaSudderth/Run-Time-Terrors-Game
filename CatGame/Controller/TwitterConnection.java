@@ -20,6 +20,8 @@ public class TwitterConnection implements SocialMediaInterface {
     private String authAccessTokenSecret = "AsYy7yoPW8lvkbY5fdQdcztktoBDq295Fr55AGsHQMKNz";
     private GameController controller;
     private ConfigurationBuilder configBuilder = new ConfigurationBuilder();
+    private String success = "Your Score has been successfully posted";
+    private String fail = "failed to post to Twitter";
 
 
     public TwitterConnection(GameController _controller){
@@ -40,9 +42,10 @@ public class TwitterConnection implements SocialMediaInterface {
         Twitter twitter = tf.getInstance();
         try {
             twitter.updateStatus(_username + ": " + _score);
-            controller.showSuccessfulPost();
+            controller.showSuccessfulPost(success);
         } catch (TwitterException ex) {
             Logger.getLogger(TwitterConnection.class.getName()).log(Level.SEVERE, null, ex);
+            controller.showSuccessfulPost(fail);
         }
     }
 
