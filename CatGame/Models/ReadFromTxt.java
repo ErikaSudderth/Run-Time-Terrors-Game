@@ -9,8 +9,13 @@ import java.io.*;
 import java.util.Scanner;
 
 public class ReadFromTxt {
+
 	private Scanner scores;
-	//open the text file & display error message if file is not foun
+    int counter = 0;
+
+	/**This method opens the text file & displays error message if file is not found.
+     * @throws FileNotFoundException
+     */
 	public void openFile() throws FileNotFoundException {
 		try {
 			scores = new Scanner(new File("src/resources/GameScores.txt"));
@@ -19,15 +24,17 @@ public class ReadFromTxt {
 		}
 	}
 
-	//reads the contents using the scanner. Sets the variables of the text file
-        int counter = 0;
+	/**The method reads the contents using the scanner. Sets the variables of the text file.
+     */
 	public void readFile() {
 		while (scores.hasNextLine() && counter < 5) {
                     System.out.println(scores.nextLine());
                     counter++;
 		}
 	}
-	//close the file
+
+	/**This method closes the file.
+     */
 	public void closeFile() {
 		scores.close();
 	}

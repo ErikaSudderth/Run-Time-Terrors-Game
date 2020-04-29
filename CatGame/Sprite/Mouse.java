@@ -2,8 +2,8 @@ package CatGame.Sprite;
 
 /**
  * Mouse class that extends abstract Sprite class. Initializes the mouse's list of cheese objects it holds.
- *
- * @author Erika Sudderth, Greg Dwyer, Hasler Zuniga Last updated: 4/15/20
+ * @author Erika Sudderth, Greg Dwyer, Hasler Zuniga
+ * Last updated: 4/15/20
  */
 
 import CatGame.Models.Input;
@@ -30,8 +30,8 @@ public class Mouse extends Sprite {
     private final double STARTING_X = (ViewManager.getWidth() / 2) - (this.DIMENSIONS / 2);
     private final double STARTING_Y = ViewManager.getHeight() - (this.DIMENSIONS);
     private final int MOUSE_SPEED = 5;
-    private final Group animationGroup;
-    private final ArrayList<Node> collisionList = new ArrayList();
+    private final Group ANIMATION_GROUP;
+    private final ArrayList<Node> COLLISION_LIST = new ArrayList();
     private boolean collided = false;
     private final String ID = "mouse";
     private boolean hasCheese = false;
@@ -40,8 +40,8 @@ public class Mouse extends Sprite {
     public Mouse(AnchorPane _pane) {
         this.setAnimationFields();
         this.initialPos();
-        this.animationGroup = new Group(this.spriteImage);
-        Node mouseNode = this.animationGroup;
+        this.ANIMATION_GROUP = new Group(this.spriteImage);
+        Node mouseNode = this.ANIMATION_GROUP;
         mouseNode.setId(this.ID);
         _pane.getChildren().add(mouseNode);
     }
@@ -52,14 +52,14 @@ public class Mouse extends Sprite {
      * @param _distance This is the mouse's movement speed.
      */
     public void moveXLeft() {
-        if (this.animationGroup.getLayoutX() >= -(ViewManager.getWidth() / 2)) {
-            this.animationGroup.setLayoutX(this.animationGroup.getLayoutX() - this.MOUSE_SPEED);
+        if (this.ANIMATION_GROUP.getLayoutX() >= -(ViewManager.getWidth() / 2)) {
+            this.ANIMATION_GROUP.setLayoutX(this.ANIMATION_GROUP.getLayoutX() - this.MOUSE_SPEED);
         }
     }
 
     public void moveXRight() {
-        if (this.animationGroup.getLayoutX() <= (ViewManager.getWidth() / 2)) {
-            this.animationGroup.setLayoutX(this.animationGroup.getLayoutX() + this.MOUSE_SPEED);
+        if (this.ANIMATION_GROUP.getLayoutX() <= (ViewManager.getWidth() / 2)) {
+            this.ANIMATION_GROUP.setLayoutX(this.ANIMATION_GROUP.getLayoutX() + this.MOUSE_SPEED);
         }
     }
 
@@ -69,14 +69,14 @@ public class Mouse extends Sprite {
      * @param _distance This is the mouse's movement speed.
      */
     public void moveYUp() {
-        if (this.animationGroup.getLayoutY() >= -ViewManager.getHeight() + (3 * this.DIMENSIONS)) {
-            this.animationGroup.setLayoutY(this.animationGroup.getLayoutY() - this.MOUSE_SPEED);
+        if (this.ANIMATION_GROUP.getLayoutY() >= -ViewManager.getHeight() + (3 * this.DIMENSIONS)) {
+            this.ANIMATION_GROUP.setLayoutY(this.ANIMATION_GROUP.getLayoutY() - this.MOUSE_SPEED);
         }
     }
 
     public void moveYDown() {
-        if (this.animationGroup.getLayoutY() <= 0) {
-            this.animationGroup.setLayoutY(this.animationGroup.getLayoutY() + this.MOUSE_SPEED);
+        if (this.ANIMATION_GROUP.getLayoutY() <= 0) {
+            this.ANIMATION_GROUP.setLayoutY(this.ANIMATION_GROUP.getLayoutY() + this.MOUSE_SPEED);
         }
     }
 
@@ -97,7 +97,7 @@ public class Mouse extends Sprite {
             this.moveXRight();
         }
         if(this.hasCheese) {
-            Bounds mouseBounds = this.animationGroup.getBoundsInParent();
+            Bounds mouseBounds = this.ANIMATION_GROUP.getBoundsInParent();
             this.collectedCheese.setLayoutX(mouseBounds.getMinX());
             this.collectedCheese.setLayoutY(mouseBounds.getMinY() - (this.DIMENSIONS / 4));
         }
@@ -108,7 +108,7 @@ public class Mouse extends Sprite {
      * @param _node This is the collided node.
      */
     public void addCollision(Node _node) {
-        this.collisionList.add(_node);
+        this.COLLISION_LIST.add(_node);
 
     }
 
@@ -117,7 +117,7 @@ public class Mouse extends Sprite {
      * @param _node This is the node to be removed.
      */
     public void removeCollision(Node _node) {
-        this.collisionList.remove(_node);
+        this.COLLISION_LIST.remove(_node);
     }
 
     /**
@@ -146,11 +146,11 @@ public class Mouse extends Sprite {
     }
 
     public int getXPos() {
-        return (int) (this.animationGroup.getLayoutX() + this.STARTING_X) + this.getCenter();
+        return (int) (this.ANIMATION_GROUP.getLayoutX() + this.STARTING_X) + this.getCenter();
     }
 
     public int getYPos() {
-        return (int) (this.animationGroup.getLayoutY() + this.STARTING_Y) + this.getCenter();
+        return (int) (this.ANIMATION_GROUP.getLayoutY() + this.STARTING_Y) + this.getCenter();
     }
 
     public int getCenter() {
@@ -166,7 +166,7 @@ public class Mouse extends Sprite {
     }
 
     public Group getAnimationGroup() {
-        return this.animationGroup;
+        return this.ANIMATION_GROUP;
     }
 
     public boolean isCollided() {
@@ -174,7 +174,7 @@ public class Mouse extends Sprite {
     }
 
     public ArrayList getCollisionList() {
-        return this.collisionList;
+        return this.COLLISION_LIST;
     }
 
 //=================  SETTERS ===============

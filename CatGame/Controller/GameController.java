@@ -1,8 +1,11 @@
 package CatGame.Controller;
 
 /**
- * This class will route the calls from the Game view. Author(s): Greg Dwyer, hasler zuniga, anthony barrera Last Updated: 4/24/20
+ * This class will route the calls from the Game view.
+ * Author(s): Greg Dwyer, hasler zuniga, anthony barrera
+ * Last Updated: 4/27/20
  */
+
 import CatGame.Events.EventCodes;
 import CatGame.Models.CollisionChecker;
 import CatGame.Models.Input;
@@ -34,18 +37,21 @@ public class GameController {
         this.INPUT = new KeyboardInput(this);
         this.COLLISION_CHECKER = new CollisionChecker(this, this.VIEW.getMouse());
         this.WRITE = new WriteToTxt();
-        this.SOCIAL = new SocialMediaApiAdaptor();
+        this.SOCIAL = new SocialMediaApiAdaptor(this);
     }
 
     /**
      * This method tells the view to put a collected cheese item back on the board.
+     *
      * @param _cheese This is the cheese to be placed.
      */
     public void replaceCheese(Node _cheese) {
         this.VIEW.replaceCheese(_cheese);
     }
+
     /**
      * This method will handle the EndGame buttons action.
+     *
      * @param _code
      */
     public void handle(int _code) {
@@ -61,14 +67,17 @@ public class GameController {
                 break;
             case EventCodes.NO_POST_TO_SOCIAL_MEDIA:
                 //This is where you would handle the user input with score
-             try {
+                try {
                     this.WRITE.writeTo(this.VIEW.getUserInput(), this.VIEW.getScore());
                 } catch (IOException ex) {
                     Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                this.exitGame();
+                break;
+            case EventCodes.EXIT:
+                this.exitGame();
                 break;
         }
-        this.exitGame();
     }
 
     /**
@@ -84,6 +93,7 @@ public class GameController {
     public void checkCollisions() {
         this.COLLISION_CHECKER.checkCollisionsList(this.VIEW.getMainPane().getChildren());
     }
+
     /**
      * This method ends the game.
      */
@@ -92,11 +102,14 @@ public class GameController {
         this.getViewStage().close();
         this.MENUSTAGE.show();
     }
-
-
     /**
-     * This method returns the user to the main menu and closes the game stage.
-     * KNOWN BUG - All of the path transitions continue to run and play sound after the stage is closed.
+     * This method ends the game.
+     */
+    public void showSuccessfulPost() {
+        this.VIEW.showEndGameSuccess();
+    }
+    /**
+     * This method returns the user to the main menu and closes the game stage. KNOWN BUG - All of the path transitions continue to run and play sound after the stage is closed.
      */
     public void exitGame() {
         this.VIEW.exitGame();
@@ -106,6 +119,7 @@ public class GameController {
 
     /**
      * This method calls the on the mouse class, and hands over the input device to be checked.
+     *
      * @param _mouse
      */
     public void moveMouse(Mouse _mouse) {
@@ -114,11 +128,13 @@ public class GameController {
 
     /**
      * This method ends the claw shooting timeline. This is called during the exit game protocol.
+     *
      * @param _cat
      */
     public void endClaws(Cat _cat) {
         _cat.endTimeline();
     }
+
 
     //================GETTERS======================
     public Scene getViewScene() {

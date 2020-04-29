@@ -1,9 +1,10 @@
 package CatGame.ViewManagers;
 
 /**
- * This is the Menu View Manager Author(s) - Greg Last updated - 4/22/20
+ * This is the Menu View Manager.
+ * Author(s) - Greg Dwyer
+ * Last updated - 4/27/20
  */
-import CatGame.ButtonExt;
 import CatGame.Models.ScoreSort;
 import CatGame.Controller.MenuController;
 import CatGame.Events.EventCodes;
@@ -27,6 +28,7 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 public class MenuView extends ViewManager {
 
@@ -50,7 +52,8 @@ public class MenuView extends ViewManager {
     private static int center_x = ViewManager.WIDTH / 2;
     private final String HTP_INSTRUCTIONS = "src/resources/htp.txt";
     private ArrayList<String> topScores;
-    ScoreSort sortGame = new ScoreSort();
+    private final int HIGHSCORE_LENGTH = 15;
+    private Text scoresTable;
 
     public MenuView(MenuController _cont) {
         this.mainPane = new AnchorPane();
@@ -81,6 +84,39 @@ public class MenuView extends ViewManager {
         }
         _subscene.moveSubScene(center_x);
         subSceneOnScreen = _subscene;
+    }
+
+    /**
+     * This method will get an up to date string of the top scores.
+     */
+    public void updateHighscores(){
+        this.topScores = new ScoreSort().getArrayList();
+        String scores="Highscores:\n";
+        for(int i = 0; i < this.HIGHSCORE_LENGTH && i < this.topScores.size(); i++){
+                scores += (i+1) + "." + this.topScores.get(i) + "\n";
+            }
+        this.scoresTable.setText(scores);
+    }
+
+    /**
+     * This method will show the settings subscene.
+     */
+    public void showSettings() {
+        this.showSubScene(this.SETTINGS);
+    }
+
+    /**
+     * This method will show the how to play subscene.
+     */
+    public void showHowToPlay() {
+        this.showSubScene(this.HOW_TO_PLAY);
+    }
+
+    /**
+     * This method will show the high scores subscene.
+     */
+    public void showHighscores() {
+        this.showSubScene(this.HIGHSCORES);
     }
 
     /**
@@ -152,13 +188,14 @@ public class MenuView extends ViewManager {
     /**
      * This method populates the how to play subscene.
      */
-    private void populateHowToPlay() {
-        this.HOW_TO_PLAY = new SubSceneExt(LAYOUT_X, LAYOUT_Y);
+    private void populateHowToPlay(){
+        this.HOW_TO_PLAY = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
         Text htp = new Text();
         htp.setLayoutX(this.HOW_TO_PLAY.getTextLayoutX());
         htp.setLayoutY(this.HOW_TO_PLAY.getTextLayoutY());
         htp.setWrappingWidth(this.HOW_TO_PLAY.getWidth() - 2 * this.HOW_TO_PLAY.getTextLayoutX());
         htp.setLineSpacing(this.HOW_TO_PLAY.getTextSpacing());
+        htp.setTextAlignment(TextAlignment.JUSTIFY);
         String howToPlay = "Arrow keys to move. Esc to quit.";
         try {
             htp.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.HOW_TO_PLAY.getTextSize()));
@@ -176,30 +213,26 @@ public class MenuView extends ViewManager {
      * This method populates the high scores subscene.
      */
     private void populateHighscores() {
-        this.HIGHSCORES = new SubSceneExt(LAYOUT_X, LAYOUT_Y);
-        topScores = sortGame.getArrayList();
+        this.HIGHSCORES = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
+        this.topScores = new ScoreSort().getArrayList();
+        this.scoresTable = new Text();
+        this.scoresTable.setLayoutX(this.HIGHSCORES.getTextLayoutX());
+        this.scoresTable.setLayoutY(this.HIGHSCORES.getTextLayoutY());
+        this.scoresTable.setWrappingWidth(this.HIGHSCORES.getWidth()- 2 * this.HIGHSCORES.getTextLayoutX());
+        this.scoresTable.setLineSpacing(this.HIGHSCORES.getTextSpacing());
+        String scores = "Highscores: \n";
+        try{
+            this.scoresTable.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.HIGHSCORES.getTextSize() ));
+            for(int i = 0; i < this.HIGHSCORE_LENGTH && i < this.topScores.size(); i++){
+                scores += (i+1) + "." + this.topScores.get(i) + "\n";
+            }
+        }
+        catch(Exception e){
+            System.out.println("populateHighscores: " + e);
+        }
+        this.scoresTable.setText(scores);
+        this.HIGHSCORES.getSubAnchor().getChildren().add(this.scoresTable);
         this.mainPane.getChildren().add(this.HIGHSCORES);
-    }
-
-    /**
-     * This method will show the settings subscene.
-     */
-    public void showSettings() {
-        this.showSubScene(this.SETTINGS);
-    }
-
-    /**
-     * This method will show the how to play subscene.
-     */
-    public void showHowToPlay() {
-        this.showSubScene(this.HOW_TO_PLAY);
-    }
-
-    /**
-     * This method will show the high scores subscene.
-     */
-    public void showHighscores() {
-        this.showSubScene(this.HIGHSCORES);
     }
 
     //=================  GETTERS ===============
