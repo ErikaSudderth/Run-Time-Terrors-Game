@@ -160,6 +160,14 @@ public class GameView extends ViewManager {
     }
 
     /**
+     * This method will show the subscene.
+     */
+    public void showEndGameSuccess() {
+        this.clearEndGameSubscene();
+        this.successfulPost();
+    }
+
+    /**
      * This method stops all of the animations and input.
      */
     private void stopGame() {
@@ -229,6 +237,7 @@ public class GameView extends ViewManager {
         this.endGame = new SubSceneExt(this.LAYOUT_X, this.LAYOUT_Y);
         Node endgame = this.endGame;
         endgame.setId(this.SUBSCENE_ID);
+        String instruct = "Enter your name!\nWould you like your score posted to our social media?";
 
         this.createSubSceneButton("YES", EventCodes.YES_POST_TO_SOCIAL_MEDIA, this.endGame);
         this.createSubSceneButton("NO", EventCodes.NO_POST_TO_SOCIAL_MEDIA, this.endGame);
@@ -236,25 +245,36 @@ public class GameView extends ViewManager {
         this.field.setLayoutX((this.endGame.getWidth() - this.field.getWidth()) / 3.5);
         this.field.setLayoutY(this.endGame.getTextLayoutY() + 165);
 
-        this.endGame.getSubAnchor().getChildren().add(this.createEndInstructions());
-        this.endGame.getSubAnchor().getChildren().add(this.field);
-        this.endGame.getSubAnchor().getChildren().add(this.createGameOverLabel());
+
+        this.endGame.getSubAnchor().getChildren().add(this.createEndInstructions(instruct));
+        this.endGame.getSubAnchor().getChildren().add(field);
+        this.endGame.getSubAnchor().getChildren().add(this.createLabel());
+
         this.mainPane.getChildren().add(endgame);
+    }
+    /**
+     * This method will post successful post.
+     */
+    private void successfulPost() {
+        String instruct = "Your Score has been successfully posted";
+        this.createSubSceneButton("Go To Menu", EventCodes.EXIT, this.endGame);
+
+        this.endGame.getSubAnchor().getChildren().add(this.createEndInstructions(instruct));
+        this.endGame.getSubAnchor().getChildren().add(field);
     }
 
     /**
      * This method creates the Text object for the End Game subscene.
      * @return This is the created Text object.
      */
-    private Text createEndInstructions(){
-        String instruct = "Enter your name!\nWould you like your score posted to our social media?";
+    private Text createEndInstructions(String _instruct){
         Text instruction = new Text();
         instruction.setLayoutX(this.endGame.getTextLayoutX());
         instruction.setLayoutY(this.endGame.getTextLayoutY() + 6 * this.endGame.getTextSize());
         instruction.setWrappingWidth(this.endGame.getWidth() - 2 * this.endGame.getTextLayoutX());
         instruction.setLineSpacing(this.endGame.getTextSpacing());
         instruction.setTextAlignment(TextAlignment.CENTER);
-        instruction.setText(instruct);
+        instruction.setText(_instruct);
         //This is for the font.
         try {
             instruction.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.endGame.getTextSize()));
@@ -269,7 +289,7 @@ public class GameView extends ViewManager {
      * This method creates the "Game Over!" label for the endgame subscene.
      * @return This is the created label.
      */
-    private Label createGameOverLabel() {
+    private Label createLabel() {
         String endGame = "GAME OVER!";
         Label gameOver = new Label();
         gameOver.setLayoutX(this.endGame.getTextLayoutX() + 2 * this.endGame.getTextSize());
@@ -280,6 +300,15 @@ public class GameView extends ViewManager {
         gameOver.setTextFill(Color.web(this.LIVES_COLOR));
         return gameOver;
     }
+
+    /**
+     * This method will clear End Game subscene.
+     */
+    private void clearEndGameSubscene() {
+        this.endGame.getSubAnchor().getChildren().clear();
+    }
+
+
 
 //=================  GETTERS ===============
     public Cat getCat() {

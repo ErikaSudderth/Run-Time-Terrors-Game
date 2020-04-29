@@ -55,8 +55,6 @@ public class MenuView extends ViewManager {
     private final int HIGHSCORE_LENGTH = 15;
     private Text scoresTable;
 
-
-
     public MenuView(MenuController _cont) {
         this.mainPane = new AnchorPane();
         this.mainScene = new Scene(this.mainPane, MenuView.WIDTH, MenuView.HEIGHT);
@@ -77,6 +75,7 @@ public class MenuView extends ViewManager {
 
     /**
      * Use this method to show the passed subscene.
+     *
      * @param _subscene
      */
     public void showSubScene(SubSceneExt _subscene) {
@@ -132,8 +131,8 @@ public class MenuView extends ViewManager {
     }
 
     /**
-     * This method is a helper to createMenuButtons.
-     * This one repeats the placement and code setting for each button.
+     * This method is a helper to createMenuButtons. This one repeats the placement and code setting for each button.
+     *
      * @param _text
      * @param _code
      */
@@ -144,6 +143,7 @@ public class MenuView extends ViewManager {
 
     /**
      * This method handles the actual placement of the button on the screen
+     *
      * @param _button
      * @param _code
      * @param _pane
@@ -160,6 +160,7 @@ public class MenuView extends ViewManager {
 
     /**
      * This method creates buttons that will have an attached subscene.
+     *
      * @param _text
      * @param _code
      * @param _scene
@@ -176,12 +177,14 @@ public class MenuView extends ViewManager {
      * This method populates the settings subscene.
      */
     private void populateSettings() {
+
         this.settings = new SubSceneExt(this.LAYOUT_X, this.LAYOUT_Y);
         this.createSubSceneButton("Volume Up", EventCodes.VOL_UP, this.settings);
         this.createSubSceneButton("Volume Down", EventCodes.VOL_DOWN, this.settings);
         this.createSubSceneButton("Toggle SFX", EventCodes.TOGGLE_SFX, this.settings);
         this.createSubSceneButton("Toggle Music", EventCodes.TOGGLE_MUSIC, this.settings);
         this.mainPane.getChildren().add(this.settings);
+
     }
 
     /**
@@ -190,6 +193,7 @@ public class MenuView extends ViewManager {
     private void populateHowToPlay(){
         this.howToPlay = new SubSceneExt(this.LAYOUT_X,this.LAYOUT_Y);
         Text htp = new Text();
+
         htp.setLayoutX(this.howToPlay.getTextLayoutX());
         htp.setLayoutY(this.howToPlay.getTextLayoutY());
         htp.setWrappingWidth(this.howToPlay.getWidth()- 2 * this.howToPlay.getTextLayoutX());
@@ -199,8 +203,7 @@ public class MenuView extends ViewManager {
         try{
             htp.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.howToPlay.getTextSize() ));
             howToPlay = new String(Files.readAllBytes(Paths.get(this.HTP_INSTRUCTIONS)));
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         htp.setText(howToPlay);

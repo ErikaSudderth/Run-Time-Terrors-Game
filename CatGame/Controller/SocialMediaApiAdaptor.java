@@ -9,7 +9,13 @@ package CatGame.Controller;
 
 public class SocialMediaApiAdaptor implements SocialMediaInterface {
 
-    protected static final SocialMediaInterface api = new TwitterConnection();
+    protected static SocialMediaInterface api;
+    private GameController controller;
+
+    public SocialMediaApiAdaptor(GameController _controller){
+        this.controller = _controller;
+        this.api = new TwitterConnection(this.controller);
+    }
 
     public void writeToSocialMedia(String _username, int _score) {
         this.api.writeToSocialMedia(_username, _score);

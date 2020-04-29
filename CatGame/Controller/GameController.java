@@ -37,7 +37,7 @@ public class GameController {
         this.INPUT = new KeyboardInput(this);
         this.COLLISION_CHECKER = new CollisionChecker(this, this.VIEW.getMouse());
         this.WRITE = new WriteToTxt();
-        this.SOCIAL = new SocialMediaApiAdaptor();
+        this.SOCIAL = new SocialMediaApiAdaptor(this);
     }
 
     /**
@@ -72,9 +72,12 @@ public class GameController {
                 } catch (IOException ex) {
                     Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                this.exitGame();
+                break;
+            case EventCodes.EXIT:
+                this.exitGame();
                 break;
         }
-        this.exitGame();
     }
 
     /**
@@ -99,7 +102,12 @@ public class GameController {
         this.getViewStage().close();
         this.MENUSTAGE.show();
     }
-
+    /**
+     * This method ends the game.
+     */
+    public void showSuccessfulPost() {
+        this.VIEW.showEndGameSuccess();
+    }
     /**
      * This method returns the user to the main menu and closes the game stage. KNOWN BUG - All of the path transitions continue to run and play sound after the stage is closed.
      */
@@ -126,6 +134,7 @@ public class GameController {
     public void endClaws(Cat _cat) {
         _cat.endTimeline();
     }
+
 
     //================GETTERS======================
     public Scene getViewScene() {
