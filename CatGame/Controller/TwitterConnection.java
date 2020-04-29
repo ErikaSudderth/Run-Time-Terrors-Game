@@ -2,11 +2,8 @@ package CatGame.Controller;
 
 /**
  * The purpose of this file is to call the API twitter bot so the high score can be posted on to twitter.
- *
- *
- *
- * Author Hasler Last updated: 3/9/20
- *
+ * Author Hasler
+ * Last updated: 3/9/20
  */
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +20,11 @@ public class TwitterConnection implements SocialMediaInterface {
     private String authAccessTokenSecret = "AsYy7yoPW8lvkbY5fdQdcztktoBDq295Fr55AGsHQMKNz";
     private ConfigurationBuilder cb = new ConfigurationBuilder();
 
-//    This method hold the api call and writes to twitter feed
+    /**
+     * This method calls the Twitter API and sends the text to be posted.
+     * @param _username - This is the player name/handle.
+     * @param _score    - This is the player's score.
+     */
     public void writeToSocialMedia(String _username, int _score) {
         cb.setDebugEnabled(true)
                 .setOAuthConsumerKey(this.authConsumerKey)

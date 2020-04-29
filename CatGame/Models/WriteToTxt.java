@@ -11,7 +11,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class WriteToTxt {
-    //method creates a FileWriter, BufferedWriter, and PrintWriter
+    /** This method creates a FileWriter, BufferedWriter, and PrintWriter
+     * @param _text
+     * @param _points
+     * @throws IOException
+     */
     public void writeTo(String _text, int _points) throws IOException {
     if(_text.isEmpty()){
         _text = "(No Name)";

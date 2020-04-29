@@ -1,5 +1,6 @@
-package CatGame;
+package CatGame.ViewManagers;
 
+import CatGame.Models.SFX;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import javafx.event.EventHandler;

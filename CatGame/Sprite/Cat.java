@@ -2,11 +2,10 @@ package CatGame.Sprite;
 
 /**
  * Cat class extends abstract Sprite class. Initializes the cat and calls on it to move and shoot claws.
- *
  * @author Erika Sudderth, Greg Dwyer Last updated: 4/9/20
  */
 
-import CatGame.SFX;
+import CatGame.Models.SFX;
 import CatGame.ViewManagers.ViewManager;
 import javafx.animation.Animation;
 import static javafx.animation.Animation.INDEFINITE;
@@ -54,6 +53,13 @@ public class Cat extends Sprite {
         _pane.getChildren().add(catNode);
         this.moveCat();
         this.shootClaws();
+    }
+
+    /**
+     * This method ends the claw timeline. It is called during the cleanup for exiting the game.
+     */
+    public void endTimeline() {
+       this.clawTimeline.stop();
     }
 
     /**
@@ -120,13 +126,6 @@ public class Cat extends Sprite {
         this.clawTimeline.getKeyFrames().add(new KeyFrame(Duration.millis(this.shootingSpeed), event -> this.createClawPath()));
         this.clawTimeline.setCycleCount(Animation.INDEFINITE);
         this.clawTimeline.play();
-    }
-
-    /**
-     * This method ends the claw timeline. It is called during the cleanup for exiting the game.
-     */
-    public void endTimeline() {
-       this.clawTimeline.stop();
     }
 
 //=================  GETTERS ===============

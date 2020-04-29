@@ -1,8 +1,11 @@
 package CatGame.Models;
 
 /**
- * This class defines the necessary attributes and methods for anything that will be used as an input device. Author(s): Gregory Dwyer Last Updated: 3/26/20
- */
+* This class defines the necessary attributes and methods for anything that will be used as an input device.
+* Author(s): Gregory Dwyer
+* Last Updated: 3/26/20
+*/
+
 import CatGame.Controller.GameController;
 
 public abstract class Input {
