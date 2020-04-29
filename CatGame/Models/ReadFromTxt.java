@@ -18,7 +18,7 @@ public class ReadFromTxt {
      */
 	public void openFile() throws FileNotFoundException {
 		try {
-			scores = new Scanner(new File("src/resources/GameScores.txt"));
+			this.scores = new Scanner(new File("src/resources/GameScores.txt"));
 		} catch (FileNotFoundException e) {
 			System.out.println("could not find file");
 		}
@@ -27,15 +27,15 @@ public class ReadFromTxt {
 	/**The method reads the contents using the scanner. Sets the variables of the text file.
      */
 	public void readFile() {
-		while (scores.hasNextLine() && counter < 5) {
-                    System.out.println(scores.nextLine());
-                    counter++;
+		while (this.scores.hasNextLine() && this.counter < 5) {
+                    System.out.println(this.scores.nextLine());
+                    this.counter++;
 		}
 	}
-    
+
 	/**This method closes the file.
      */
 	public void closeFile() {
-		scores.close();
+		this.scores.close();
 	}
     }

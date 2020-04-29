@@ -20,26 +20,26 @@ public abstract class Input {
 
     //=================  GETTERS ===============
     public boolean isUp() {
-        return up;
+        return this.up;
     }
 
     public boolean isDown() {
-        return down;
+        return this.down;
     }
 
     public boolean isLeft() {
-        return left;
+        return this.left;
     }
 
     public boolean isRight() {
-        return right;
+        return this.right;
     }
 
     public boolean isSpace() {
-        return space;
+        return this.space;
     }
 
     public boolean isEsc() {
-        return esc;
+        return this.esc;
     }
 }

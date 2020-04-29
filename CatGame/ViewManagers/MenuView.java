@@ -36,20 +36,20 @@ public class MenuView extends ViewManager {
     protected static final int BUTTON_START_Y = 100;
     protected static final int BUTTON_SPACING = 100;
     //This is for subscenes.
-    private static int button_layout_x = 75;
-    private static int button_layout_y = 30;
-    private static int button_spacing = 100;
+    private static int buttonLayoutX = 75;
+    private static int buttonLayoutY = 30;
+    private static int buttonSpacing = 100;
 
     protected static final String BACKGROUND = "/resources/imgs/menu_background.png";
     protected MenuController controller;
     protected ButtonExt exitButton;
     private SubSceneExt subSceneOnScreen;
-    protected SubSceneExt SETTINGS;
-    protected SubSceneExt HOW_TO_PLAY;
-    protected SubSceneExt HIGHSCORES;
+    protected SubSceneExt settings;
+    protected SubSceneExt howToPlay;
+    protected SubSceneExt highscores;
     private final static int LAYOUT_Y = 150;
     private final static int LAYOUT_X = ViewManager.WIDTH + 10;
-    private static int center_x = ViewManager.WIDTH / 2;
+    private static int centerX = ViewManager.WIDTH / 2;
     private final String HTP_INSTRUCTIONS = "src/resources/htp.txt";
     private ArrayList<String> topScores;
     private final int HIGHSCORE_LENGTH = 15;
@@ -80,11 +80,11 @@ public class MenuView extends ViewManager {
      * @param _subscene
      */
     public void showSubScene(SubSceneExt _subscene) {
-        if (subSceneOnScreen != null) {
-            subSceneOnScreen.moveSubScene(center_x);
+        if (this.subSceneOnScreen != null) {
+            this.subSceneOnScreen.moveSubScene(this.centerX);
         }
-        _subscene.moveSubScene(center_x);
-        subSceneOnScreen = _subscene;
+        _subscene.moveSubScene(this.centerX);
+        this.subSceneOnScreen = _subscene;
     }
 
     /**
@@ -103,21 +103,21 @@ public class MenuView extends ViewManager {
      * This method will show the settings subscene.
      */
     public void showSettings() {
-        this.showSubScene(this.SETTINGS);
+        this.showSubScene(this.settings);
     }
 
     /**
      * This method will show the how to play subscene.
      */
     public void showHowToPlay() {
-        this.showSubScene(this.HOW_TO_PLAY);
+        this.showSubScene(this.howToPlay);
     }
 
     /**
      * This method will show the high scores subscene.
      */
     public void showHighscores() {
-        this.showSubScene(this.HIGHSCORES);
+        this.showSubScene(this.highscores);
     }
 
     /**
@@ -165,9 +165,9 @@ public class MenuView extends ViewManager {
      * @param _scene
      */
     private void createSubSceneButton(String _text, int _code, SubSceneExt _scene) {
-        _scene.setButtonLayoutX(button_layout_x);
-        _scene.setButtonLayoutY(button_layout_y);
-        _scene.setButtonSpacing(button_spacing);
+        _scene.setButtonLayoutX(this.buttonLayoutX);
+        _scene.setButtonLayoutY(this.buttonLayoutY);
+        _scene.setButtonSpacing(this.buttonSpacing);
         ButtonExt button = new ButtonExt(_text, _scene.getButtonLayoutX(), (_scene.getButtonLayoutY() + _scene.getSubAnchor().getChildren().size() * _scene.getButtonSpacing()));
         this.placeButton(button, _code, _scene.getSubAnchor());
     }
@@ -176,53 +176,53 @@ public class MenuView extends ViewManager {
      * This method populates the settings subscene.
      */
     private void populateSettings() {
-        this.SETTINGS = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
-        this.createSubSceneButton("Volume Up", EventCodes.VOL_UP, this.SETTINGS);
-        this.createSubSceneButton("Volume Down", EventCodes.VOL_DOWN, this.SETTINGS);
-        this.createSubSceneButton("Toggle SFX", EventCodes.TOGGLE_SFX, this.SETTINGS);
-        this.createSubSceneButton("Toggle Music", EventCodes.TOGGLE_MUSIC, this.SETTINGS);
-        this.mainPane.getChildren().add(this.SETTINGS);
+        this.settings = new SubSceneExt(this.LAYOUT_X, this.LAYOUT_Y);
+        this.createSubSceneButton("Volume Up", EventCodes.VOL_UP, this.settings);
+        this.createSubSceneButton("Volume Down", EventCodes.VOL_DOWN, this.settings);
+        this.createSubSceneButton("Toggle SFX", EventCodes.TOGGLE_SFX, this.settings);
+        this.createSubSceneButton("Toggle Music", EventCodes.TOGGLE_MUSIC, this.settings);
+        this.mainPane.getChildren().add(this.settings);
     }
 
     /**
      * This method populates the how to play subscene.
      */
     private void populateHowToPlay(){
-        this.HOW_TO_PLAY = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
+        this.howToPlay = new SubSceneExt(this.LAYOUT_X,this.LAYOUT_Y);
         Text htp = new Text();
-        htp.setLayoutX(this.HOW_TO_PLAY.getTextLayoutX());
-        htp.setLayoutY(this.HOW_TO_PLAY.getTextLayoutY());
-        htp.setWrappingWidth(this.HOW_TO_PLAY.getWidth()- 2 * this.HOW_TO_PLAY.getTextLayoutX());
-        htp.setLineSpacing(this.HOW_TO_PLAY.getTextSpacing());
+        htp.setLayoutX(this.howToPlay.getTextLayoutX());
+        htp.setLayoutY(this.howToPlay.getTextLayoutY());
+        htp.setWrappingWidth(this.howToPlay.getWidth()- 2 * this.howToPlay.getTextLayoutX());
+        htp.setLineSpacing(this.howToPlay.getTextSpacing());
         htp.setTextAlignment(TextAlignment.JUSTIFY);
         String howToPlay = "Arrow keys to move. Esc to quit.";
         try{
-            htp.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.HOW_TO_PLAY.getTextSize() ));
+            htp.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.howToPlay.getTextSize() ));
             howToPlay = new String(Files.readAllBytes(Paths.get(this.HTP_INSTRUCTIONS)));
         }
         catch(Exception e){
             System.out.println(e);
         }
         htp.setText(howToPlay);
-        this.HOW_TO_PLAY.getSubAnchor().getChildren().add(htp);
+        this.howToPlay.getSubAnchor().getChildren().add(htp);
 
-        this.mainPane.getChildren().add(this.HOW_TO_PLAY);
+        this.mainPane.getChildren().add(this.howToPlay);
     }
 
     /**
      * This method populates the high scores subscene.
      */
     private void populateHighscores() {
-        this.HIGHSCORES = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
+        this.highscores = new SubSceneExt(this.LAYOUT_X, this.LAYOUT_Y);
         this.topScores = new ScoreSort().getArrayList();
         this.scoresTable = new Text();
-        this.scoresTable.setLayoutX(this.HIGHSCORES.getTextLayoutX());
-        this.scoresTable.setLayoutY(this.HIGHSCORES.getTextLayoutY());
-        this.scoresTable.setWrappingWidth(this.HIGHSCORES.getWidth()- 2 * this.HIGHSCORES.getTextLayoutX());
-        this.scoresTable.setLineSpacing(this.HIGHSCORES.getTextSpacing());
+        this.scoresTable.setLayoutX(this.highscores.getTextLayoutX());
+        this.scoresTable.setLayoutY(this.highscores.getTextLayoutY());
+        this.scoresTable.setWrappingWidth(this.highscores.getWidth()- 2 * this.highscores.getTextLayoutX());
+        this.scoresTable.setLineSpacing(this.highscores.getTextSpacing());
         String scores = "Highscores: \n";
         try{
-            this.scoresTable.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.HIGHSCORES.getTextSize() ));
+            this.scoresTable.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.highscores.getTextSize() ));
             for(int i = 0; i < this.HIGHSCORE_LENGTH && i < this.topScores.size(); i++){
                 scores += (i+1) + "." + this.topScores.get(i) + "\n";
             }
@@ -231,8 +231,8 @@ public class MenuView extends ViewManager {
             System.out.println("populateHighscores: " + e);
         }
         this.scoresTable.setText(scores);
-        this.HIGHSCORES.getSubAnchor().getChildren().add(this.scoresTable);
-        this.mainPane.getChildren().add(this.HIGHSCORES);
+        this.highscores.getSubAnchor().getChildren().add(this.scoresTable);
+        this.mainPane.getChildren().add(this.highscores);
     }
 
     //=================  GETTERS ===============

@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class WriteToTxt {
+    
     /** This method creates a FileWriter, BufferedWriter, and PrintWriter
      * @param _text
      * @param _points
