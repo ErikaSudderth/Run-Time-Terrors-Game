@@ -13,53 +13,52 @@ import java.io.BufferedReader;
 
 public class ScoreSort {
 //create a BufferedReader
-
     private BufferedReader reader;
     ArrayList<String> sortedScores;
 //method to sort the scores in the txt file
 
-    public ScoreSort(){
+    public ScoreSort() {
 // (key-value pairs) = (high score - (list of players)) sorts scores and handles those that are equal
         TreeMap<Integer, List<String>> highestScores = new TreeMap<Integer, List<String>>();
 //try to open the GameScores.txt file
         try {
-            reader = new BufferedReader(new FileReader("src/resources/GameScores.txt"));
+            this.reader = new BufferedReader(new FileReader("src/resources/GameScores.txt"));
 
-        String line = null;
+            String line = null;
 //while loop
-        while ((line = reader.readLine()) != null) {
-            String[] playerScores = line.split(": ");
-            int score = Integer.valueOf(playerScores[1]);
-            List<String> playerList = null;
+            while ((line = this.reader.readLine()) != null) {
+                String[] playerScores = line.split(": ");
+                int score = Integer.valueOf(playerScores[1]);
+                List<String> playerList = null;
 
 // check if a player with that score already exists
-            if ((playerList = highestScores.get(score)) == null) { // if NOT,
-                playerList = new ArrayList<>(1); // CREATE a new list
-                playerList.add(playerScores[0]);
-                highestScores.put(Integer.valueOf(playerScores[1]), playerList);
-            } // if YES, ADD to the existing list
-            else {
-                playerList.add(playerScores[0]);
+                if ((playerList = highestScores.get(score)) == null) { // if NOT,
+                    playerList = new ArrayList<>(1); // CREATE a new list
+                    playerList.add(playerScores[0]);
+                    highestScores.put(Integer.valueOf(playerScores[1]), playerList);
+                } // if YES, ADD to the existing list
+                else {
+                    playerList.add(playerScores[0]);
+                }
             }
-        }
 
 // iterate in descending order
-         sortedScores = new ArrayList<String>();
-        String entry;
-        for (Integer score : highestScores.descendingKeySet()) {
-            // iterate over player list
-            for (String player : highestScores.get(score)) {
-                entry = player + " : " + score;
-                sortedScores.add(entry);
+            this.sortedScores = new ArrayList<String>();
+            String entry;
+            for (Integer score : highestScores.descendingKeySet()) {
+                // iterate over player list
+                for (String player : highestScores.get(score)) {
+                    entry = player + " : " + score;
+                    this.sortedScores.add(entry);
+                }
             }
-        }
         } catch (Exception e) {
             System.out.println("ScoreSort: " + e);
         }
     }
 
 //=================  GETTERS ===============
-public ArrayList<String> getArrayList(){
-    return sortedScores;
-}
+    public ArrayList<String> getArrayList() {
+        return this.sortedScores;
+    }
 }

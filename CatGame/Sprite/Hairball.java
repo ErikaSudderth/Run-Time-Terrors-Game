@@ -36,7 +36,7 @@ public class Hairball extends Sprite {
 
     public Hairball(AnchorPane _pane, int _maxHairballs) {
         this.PANE = _pane;
-        this.spriteImage = new ImageView(HAIRBALL_IMAGE);
+        this.spriteImage = new ImageView(this.HAIRBALL_IMAGE);
         this.MAX_HAIRBALLS = _maxHairballs;
         Node hairballNode = this.spriteImage;
         hairballNode.setId(this.ID);
@@ -52,11 +52,11 @@ public class Hairball extends Sprite {
     private void placeHairball() {
         Random randNum = new Random();
         // The upper bound is less than the lower bound due to flipped y coordinates.
-        yRand = randNum.nextInt(Y_RANGE) + this.UPPER_BOUND;
-        xRand = randNum.nextInt(X_RANGE) + this.LEFT_BOUND;
+        this.yRand = randNum.nextInt(this.Y_RANGE) + this.UPPER_BOUND;
+        this.xRand = randNum.nextInt(this.X_RANGE) + this.LEFT_BOUND;
 
-        this.spriteImage.setLayoutY(yRand);
-        this.spriteImage.setLayoutX(xRand);
+        this.spriteImage.setLayoutY(this.yRand);
+        this.spriteImage.setLayoutX(this.xRand);
         this.assignSection();
     }
 

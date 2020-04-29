@@ -24,7 +24,7 @@ public class Cheese extends Sprite {
     private final String ID = "cheese";
 
     public Cheese(AnchorPane _pane) {
-        this.spriteImage = new ImageView(CHEESE_IMAGE);
+        this.spriteImage = new ImageView(this.CHEESE_IMAGE);
         Node cheeseNode = this.spriteImage;
         cheeseNode.setId(this.ID);
         _pane.getChildren().add(cheeseNode);

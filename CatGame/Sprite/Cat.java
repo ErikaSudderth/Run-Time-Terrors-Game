@@ -13,6 +13,7 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
+import javafx.animation.Transition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
@@ -90,7 +91,7 @@ public class Cat extends Sprite {
         pathTransition.setDuration(Duration.seconds(this.CAT_SPEED));
         pathTransition.setNode(this.animationGroup);
         pathTransition.setPath(lines);
-        pathTransition.setCycleCount(INDEFINITE);
+        pathTransition.setCycleCount(Transition.INDEFINITE);
         pathTransition.setInterpolator(Interpolator.LINEAR);
         pathTransition.play();
     }

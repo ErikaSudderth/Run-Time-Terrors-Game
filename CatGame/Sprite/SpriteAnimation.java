@@ -19,7 +19,6 @@ public class SpriteAnimation extends Transition {
     private final int OFFSET_Y;
     private final int WIDTH;
     private final int HEIGHT;
-
     private int lastIndex;
 
     public SpriteAnimation(ImageView _imageView, Duration _duration, int _frameCount, int _columns, int _offsetX, int _offsetY, int _width, int _height) {
