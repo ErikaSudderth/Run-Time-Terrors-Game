@@ -42,8 +42,8 @@ public class SubSceneExt extends SubScene {
         this.setLayoutX(SubSceneExt.LAYOUT_X);
         this.setLayoutY(SubSceneExt.LAYOUT_Y);
         BackgroundImage img = new BackgroundImage(new Image(SubSceneExt.BACKGROUND, SubSceneExt.PREF_WIDTH, SubSceneExt.PREF_HEIGHT, false, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        SUB_ANCHOR = (AnchorPane) this.getRoot();
-        SUB_ANCHOR.setBackground(new Background(img));
+        this.SUB_ANCHOR = (AnchorPane) this.getRoot();
+        this.SUB_ANCHOR.setBackground(new Background(img));
     }
 
     /**
@@ -64,19 +64,22 @@ public class SubSceneExt extends SubScene {
         this.isHidden = !this.isHidden;
         transition.play();
     }
-    
+
 //=================  SETTERS ===============
     public void setCenterX(int _centerX) {
-        center_x = _centerX;
+        this.center_x = _centerX;
     }
+
     public void setButtonSpacing(int _BUTTON_SPACING) {
-        buttonSpacing = _BUTTON_SPACING;
+        this.buttonSpacing = _BUTTON_SPACING;
     }
+
      public void setButtonLayoutX(int _button_layout_x) {
-        buttonLayoutY = _button_layout_x;
+        this.buttonLayoutY = _button_layout_x;
     }
+
     public void setButtonLayoutY(int _button_layout_y) {
-        buttonLayoutX = _button_layout_y;
+        this.buttonLayoutX = _button_layout_y;
     }
 
 //=================  GETTERS ===============

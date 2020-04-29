@@ -33,7 +33,7 @@ public class GameController {
 
     public GameController(Stage _menuStage) {
         this.MENUSTAGE = _menuStage;
-        this.VIEW = new GameView(this, MENUSTAGE);
+        this.VIEW = new GameView(this, this.MENUSTAGE);
         this.INPUT = new KeyboardInput(this);
         this.COLLISION_CHECKER = new CollisionChecker(this, this.VIEW.getMouse());
         this.WRITE = new WriteToTxt();

@@ -52,13 +52,13 @@ public class GameView extends ViewManager {
     private final static int LAYOUT_X = ViewManager.WIDTH + 20;
 
     //This for the subscene button and text
-    private static int button_layout_x = 75;
-    private static int button_layout_y = 250;
-    private static int button_spacing = 50;
+    private static int buttonLayoutX = 75;
+    private static int buttonLayoutY = 250;
+    private static int buttonSpacing = 50;
 
     private SubSceneExt subSceneOnScreen;
-    protected SubSceneExt ENDGAME;
-    private static int center_x = ViewManager.WIDTH - 210;
+    protected SubSceneExt endGame;
+    private static int centerX = ViewManager.WIDTH - 210;
     private final String LIVES_COLOR = "red";
     private final String SCORE_COLOR = "orange";
 
@@ -66,19 +66,19 @@ public class GameView extends ViewManager {
 
     public GameView(GameController _cont, Stage _oldStage) {
 
-        scoreLabel = new Label();
-        scoreLabel.setText("Score:" + score);
-        scoreLabel.setFont(this.FONT);
-        scoreLabel.setTextFill(Color.web(this.SCORE_COLOR));
+        this.scoreLabel = new Label();
+        this.scoreLabel.setText("Score:" + score);
+        this.scoreLabel.setFont(this.FONT);
+        this.scoreLabel.setTextFill(Color.web(this.SCORE_COLOR));
 
         Node score = scoreLabel;
         score.setId(this.LABEL_ID);
 
-        livesLabel = new Label();
-        livesLabel.setText("Lives:" + health);
-        livesLabel.setFont(this.FONT);
-        livesLabel.setTextFill(Color.web(this.LIVES_COLOR));
-        livesLabel.relocate(0, 25);
+        this.livesLabel = new Label();
+        this.livesLabel.setText("Lives:" + health);
+        this.livesLabel.setFont(this.FONT);
+        this.livesLabel.setTextFill(Color.web(this.LIVES_COLOR));
+        this.livesLabel.relocate(0, 25);
         Node lives = livesLabel;
         lives.setId(this.LABEL_ID);
 
@@ -94,7 +94,7 @@ public class GameView extends ViewManager {
         this.mainStage.setResizable(false);
         this.mainStage.sizeToScene();
         _oldStage.hide();
-        mainStage.show();
+        this.mainStage.show();
         //Create cat and mouse objects
         this.createSprites();
         this.populateEndGame();
@@ -111,11 +111,11 @@ public class GameView extends ViewManager {
      * @param _subscene
      */
     public void showSubScene(SubSceneExt _subscene) {
-        if (subSceneOnScreen != null) {
-            subSceneOnScreen.moveSubScene(center_x);
+        if (this.subSceneOnScreen != null) {
+            this.subSceneOnScreen.moveSubScene(this.centerX);
         }
-        _subscene.moveSubScene(center_x);
-        subSceneOnScreen = _subscene;
+        _subscene.moveSubScene(this.centerX);
+        this.subSceneOnScreen = _subscene;
     }
 
     /**
@@ -125,7 +125,7 @@ public class GameView extends ViewManager {
      */
     public void replaceCheese(Node _cheese) {
         this.score++;
-        scoreLabel.setText("Score:" + score);
+        this.scoreLabel.setText("Score:" + this.score);
         Cheese.placeCheese(_cheese);
         if (this.score % this.DIFFICULTY == 0) {
             this.increaseDifficulty = true;
@@ -145,7 +145,7 @@ public class GameView extends ViewManager {
      */
     public void enemyCollision() {
         this.health--;
-        livesLabel.setText("lives:" + health);
+        this.livesLabel.setText("lives:" + this.health);
         if (this.health == 0) {
             this.showEndGameSubscene();
             this.stopGame();
@@ -156,7 +156,7 @@ public class GameView extends ViewManager {
      * This method will show the subscene.
      */
     public void showEndGameSubscene() {
-        this.showSubScene(this.ENDGAME);
+        this.showSubScene(this.endGame);
     }
 
     /**
@@ -222,9 +222,9 @@ public class GameView extends ViewManager {
     }
 
     private void createSubSceneButton(String _text, int _code, SubSceneExt _scene) {
-        _scene.setButtonLayoutX(button_layout_x);
-        _scene.setButtonLayoutY(button_layout_y);
-        _scene.setButtonSpacing(button_spacing);
+        _scene.setButtonLayoutX(this.buttonLayoutX);
+        _scene.setButtonLayoutY(this.buttonLayoutY);
+        _scene.setButtonSpacing(this.buttonSpacing);
         ButtonExt button = new ButtonExt(_text, _scene.getButtonLayoutX(), (_scene.getButtonLayoutY() + _scene.getSubAnchor().getChildren().size() * _scene.getButtonSpacing()));
         this.placeButton(button, _code, _scene.getSubAnchor());
     }
@@ -234,20 +234,22 @@ public class GameView extends ViewManager {
      * This method will populate buttons and textfields to the subscene.
      */
     private void populateEndGame() {
-        this.ENDGAME = new SubSceneExt(LAYOUT_X, LAYOUT_Y);
-        Node endgame = this.ENDGAME;
+        this.endGame = new SubSceneExt(this.LAYOUT_X, this.LAYOUT_Y);
+        Node endgame = this.endGame;
         endgame.setId(this.SUBSCENE_ID);
         String instruct = "Enter your name!\nWould you like your score posted to our social media?";
 
-        this.createSubSceneButton("YES", EventCodes.YES_POST_TO_SOCIAL_MEDIA, this.ENDGAME);
-        this.createSubSceneButton("NO", EventCodes.NO_POST_TO_SOCIAL_MEDIA, this.ENDGAME);
+        this.createSubSceneButton("YES", EventCodes.YES_POST_TO_SOCIAL_MEDIA, this.endGame);
+        this.createSubSceneButton("NO", EventCodes.NO_POST_TO_SOCIAL_MEDIA, this.endGame);
 
-        this.field.setLayoutX((this.ENDGAME.getWidth() - this.field.getWidth()) / 3.5);
-        this.field.setLayoutY(this.ENDGAME.getTextLayoutY() + 165);
+        this.field.setLayoutX((this.endGame.getWidth() - this.field.getWidth()) / 3.5);
+        this.field.setLayoutY(this.endGame.getTextLayoutY() + 165);
 
-        this.ENDGAME.getSubAnchor().getChildren().add(this.createEndInstructions(instruct));
-        this.ENDGAME.getSubAnchor().getChildren().add(field);
-        this.ENDGAME.getSubAnchor().getChildren().add(this.createLabel());
+
+        this.endGame.getSubAnchor().getChildren().add(this.createEndInstructions(instruct));
+        this.endGame.getSubAnchor().getChildren().add(field);
+        this.endGame.getSubAnchor().getChildren().add(this.createLabel());
+
         this.mainPane.getChildren().add(endgame);
     }
     /**
@@ -255,10 +257,10 @@ public class GameView extends ViewManager {
      */
     private void successfulPost() {
         String instruct = "Your Score has been successfully posted";
-        this.createSubSceneButton("Go To Menu", EventCodes.EXIT, this.ENDGAME);
+        this.createSubSceneButton("Go To Menu", EventCodes.EXIT, this.endGame);
 
-        this.ENDGAME.getSubAnchor().getChildren().add(this.createEndInstructions(instruct));
-        this.ENDGAME.getSubAnchor().getChildren().add(field);
+        this.endGame.getSubAnchor().getChildren().add(this.createEndInstructions(instruct));
+        this.endGame.getSubAnchor().getChildren().add(field);
     }
 
     /**
@@ -267,15 +269,15 @@ public class GameView extends ViewManager {
      */
     private Text createEndInstructions(String _instruct){
         Text instruction = new Text();
-        instruction.setLayoutX(this.ENDGAME.getTextLayoutX());
-        instruction.setLayoutY(this.ENDGAME.getTextLayoutY() + 6 * this.ENDGAME.getTextSize());
-        instruction.setWrappingWidth(this.ENDGAME.getWidth() - 2 * this.ENDGAME.getTextLayoutX());
-        instruction.setLineSpacing(this.ENDGAME.getTextSpacing());
+        instruction.setLayoutX(this.endGame.getTextLayoutX());
+        instruction.setLayoutY(this.endGame.getTextLayoutY() + 6 * this.endGame.getTextSize());
+        instruction.setWrappingWidth(this.endGame.getWidth() - 2 * this.endGame.getTextLayoutX());
+        instruction.setLineSpacing(this.endGame.getTextSpacing());
         instruction.setTextAlignment(TextAlignment.CENTER);
         instruction.setText(_instruct);
         //This is for the font.
         try {
-            instruction.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.ENDGAME.getTextSize()));
+            instruction.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.endGame.getTextSize()));
 
         } catch (Exception e) {
             System.out.println(e);
@@ -290,21 +292,23 @@ public class GameView extends ViewManager {
     private Label createLabel() {
         String endGame = "GAME OVER!";
         Label gameOver = new Label();
-        gameOver.setLayoutX(this.ENDGAME.getTextLayoutX() + 2 * this.ENDGAME.getTextSize());
-        gameOver.setLayoutY(this.ENDGAME.getTextLayoutY());
-        gameOver.setLineSpacing(this.ENDGAME.getTextSpacing());
+        gameOver.setLayoutX(this.endGame.getTextLayoutX() + 2 * this.endGame.getTextSize());
+        gameOver.setLayoutY(this.endGame.getTextLayoutY());
+        gameOver.setLineSpacing(this.endGame.getTextSpacing());
         gameOver.setText(endGame);
         gameOver.setFont(this.FONT);
         gameOver.setTextFill(Color.web(this.LIVES_COLOR));
         return gameOver;
     }
-    
+
     /**
      * This method will clear End Game subscene.
      */
     private void clearEndGameSubscene() {
-        this.ENDGAME.getSubAnchor().getChildren().clear();
+        this.endGame.getSubAnchor().getChildren().clear();
     }
+
+
 
 //=================  GETTERS ===============
     public Cat getCat() {
@@ -320,15 +324,15 @@ public class GameView extends ViewManager {
     }
 
     public String getUserInput() {
-        String player = field.getText();
+        String player = this.field.getText();
         return player;
     }
 
     public int getHealth() {
-        return health;
+        return this.health;
     }
 
     public int getScore() {
-        return score;
+        return this.score;
     }
 }

@@ -51,8 +51,8 @@ public class ButtonExt extends Button {
         this.setText(_text);
         this.setId(_text);
         this.setButtonFont(_font_size);
-        this.setPrefWidth(200);
-        this.setPrefHeight(40);
+        this.setPrefWidth(ButtonExt.PREF_WIDTH);
+        this.setPrefHeight(ButtonExt.PREF_HEIGHT);
         this.setStyle(ButtonExt.BUTTON_FREE_STYLE);
         this.initializeButtonListeners();
         this.setLayoutX(_x);

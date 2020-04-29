@@ -18,6 +18,6 @@ public class SocialMediaApiAdaptor implements SocialMediaInterface {
     }
 
     public void writeToSocialMedia(String _username, int _score) {
-        api.writeToSocialMedia(_username, _score);
+        this.api.writeToSocialMedia(_username, _score);
     }
 }

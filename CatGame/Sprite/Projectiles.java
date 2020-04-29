@@ -46,7 +46,7 @@ public class Projectiles extends Sprite {
     private void clawAnimation() {
         RotateTransition rotation = new RotateTransition();
         rotation.setNode(this.spriteImage);
-        rotation.setByAngle(ROTATION_ANGLE);
+        rotation.setByAngle(this.ROTATION_ANGLE);
         rotation.setInterpolator(Interpolator.LINEAR);
         rotation.setCycleCount(Animation.INDEFINITE);
 

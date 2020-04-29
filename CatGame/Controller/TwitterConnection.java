@@ -18,8 +18,9 @@ public class TwitterConnection implements SocialMediaInterface {
     private String authConsumerSecret = "Q6PEwZ88d6jnv5gRbR2Pw1f25f1DYxUqQHPTUcqsdS0YgliY9C";
     private String authAccessToken = "1222276825969131520-3iuVn78RpduNEViVwixUHDx6sFYBtT";
     private String authAccessTokenSecret = "AsYy7yoPW8lvkbY5fdQdcztktoBDq295Fr55AGsHQMKNz";
-    private ConfigurationBuilder cb = new ConfigurationBuilder();
     private GameController controller;
+    private ConfigurationBuilder configBuilder = new ConfigurationBuilder();
+
 
     public TwitterConnection(GameController _controller){
         this.controller = _controller;
@@ -30,12 +31,12 @@ public class TwitterConnection implements SocialMediaInterface {
      * @param _score    - This is the player's score.
      */
     public void writeToSocialMedia(String _username, int _score) {
-        cb.setDebugEnabled(true)
+        this.configBuilder.setDebugEnabled(true)
                 .setOAuthConsumerKey(this.authConsumerKey)
                 .setOAuthConsumerSecret(this.authConsumerSecret)
                 .setOAuthAccessToken(this.authAccessToken)
                 .setOAuthAccessTokenSecret(this.authAccessTokenSecret);
-        TwitterFactory tf = new TwitterFactory(cb.build());
+        TwitterFactory tf = new TwitterFactory(this.configBuilder.build());
         Twitter twitter = tf.getInstance();
         try {
             twitter.updateStatus(_username + ": " + _score);
