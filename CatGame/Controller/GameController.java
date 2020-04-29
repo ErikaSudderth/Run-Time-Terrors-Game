@@ -105,8 +105,8 @@ public class GameController {
     /**
      * This method ends the game.
      */
-    public void showSuccessfulPost() {
-        this.VIEW.showEndGameSuccess();
+    public void showSuccessfulPost(String _input) {
+        this.VIEW.showEndGameSuccess(_input);
     }
     /**
      * This method returns the user to the main menu and closes the game stage. KNOWN BUG - All of the path transitions continue to run and play sound after the stage is closed.

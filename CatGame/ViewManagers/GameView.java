@@ -162,9 +162,9 @@ public class GameView extends ViewManager {
     /**
      * This method will show the subscene.
      */
-    public void showEndGameSuccess() {
+    public void showEndGameSuccess(String _input) {
         this.clearEndGameSubscene();
-        this.successfulPost();
+        this.successfulPost(_input);
     }
 
     /**
@@ -255,11 +255,10 @@ public class GameView extends ViewManager {
     /**
      * This method will post successful post.
      */
-    private void successfulPost() {
-        String instruct = "Your Score has been successfully posted";
+    private void successfulPost(String _input) {
         this.createSubSceneButton("Go To Menu", EventCodes.EXIT, this.endGame);
 
-        this.endGame.getSubAnchor().getChildren().add(this.createEndInstructions(instruct));
+        this.endGame.getSubAnchor().getChildren().add(this.createEndInstructions(_input));
         this.endGame.getSubAnchor().getChildren().add(field);
     }
 
