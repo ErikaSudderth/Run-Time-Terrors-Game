@@ -1,10 +1,13 @@
 package CatGame.Controller;
 
 /**
- * This method handles calls from the MenuView. Author(s): Greg Dwyer Last Updated: 4/27/20
+ * This method handles calls from the MenuView.
+ * Author(s): Greg Dwyer
+ * Last Updated: 4/27/20
  */
+
 import CatGame.Events.EventCodes;
-import CatGame.SFX;
+import CatGame.Models.SFX;
 import CatGame.ViewManagers.MenuView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -53,8 +56,8 @@ public class MenuController {
                 break;
         }
     }
-//==================GETTERS======================
 
+//==================GETTERS======================
     public AnchorPane getViewPane() {
         return this.VIEW.getMainPane();
     }

@@ -5,7 +5,6 @@ package CatGame.ViewManagers;
  * Author(s) - Greg Dwyer
  * Last updated - 4/27/20
  */
-import CatGame.ButtonExt;
 import CatGame.Models.ScoreSort;
 import CatGame.Controller.MenuController;
 import CatGame.Events.EventCodes;
@@ -87,6 +86,40 @@ public class MenuView extends ViewManager {
         _subscene.moveSubScene(center_x);
         subSceneOnScreen = _subscene;
     }
+
+    /**
+     * This method will get an up to date string of the top scores.
+     */
+    public void updateHighscores(){
+        this.topScores = new ScoreSort().getArrayList();
+        String scores="Highscores:\n";
+        for(int i = 0; i < this.HIGHSCORE_LENGTH && i < this.topScores.size(); i++){
+                scores += (i+1) + "." + this.topScores.get(i) + "\n";
+            }
+        this.scoresTable.setText(scores);
+    }
+
+    /**
+     * This method will show the settings subscene.
+     */
+    public void showSettings() {
+        this.showSubScene(this.SETTINGS);
+    }
+
+    /**
+     * This method will show the how to play subscene.
+     */
+    public void showHowToPlay() {
+        this.showSubScene(this.HOW_TO_PLAY);
+    }
+
+    /**
+     * This method will show the high scores subscene.
+     */
+    public void showHighscores() {
+        this.showSubScene(this.HIGHSCORES);
+    }
+
     /**
      * This method will populate the main menu with the proper buttons and set their actions.
      */
@@ -154,7 +187,6 @@ public class MenuView extends ViewManager {
     /**
      * This method populates the how to play subscene.
      */
-
     private void populateHowToPlay(){
         this.HOW_TO_PLAY = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
         Text htp = new Text();
@@ -188,7 +220,7 @@ public class MenuView extends ViewManager {
         this.scoresTable.setLayoutY(this.HIGHSCORES.getTextLayoutY());
         this.scoresTable.setWrappingWidth(this.HIGHSCORES.getWidth()- 2 * this.HIGHSCORES.getTextLayoutX());
         this.scoresTable.setLineSpacing(this.HIGHSCORES.getTextSpacing());
-        String scores = "Highscores: \n \n";
+        String scores = "Highscores: \n";
         try{
             this.scoresTable.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.HIGHSCORES.getTextSize() ));
             for(int i = 0; i < this.HIGHSCORE_LENGTH && i < this.topScores.size(); i++){
@@ -201,39 +233,6 @@ public class MenuView extends ViewManager {
         this.scoresTable.setText(scores);
         this.HIGHSCORES.getSubAnchor().getChildren().add(this.scoresTable);
         this.mainPane.getChildren().add(this.HIGHSCORES);
-    }
-
-    /**
-     * This method will get an up to date string of the top scores.
-     */
-    public void updateHighscores(){
-        this.topScores = new ScoreSort().getArrayList();
-        String scores="Highscores:\n\n";
-        for(int i = 0; i < this.HIGHSCORE_LENGTH && i < this.topScores.size(); i++){
-                scores += (i+1) + "." + this.topScores.get(i) + "\n";
-            }
-        this.scoresTable.setText(scores);
-    }
-
-    /**
-     * This method will show the settings subscene.
-     */
-    public void showSettings() {
-        this.showSubScene(this.SETTINGS);
-    }
-
-    /**
-     * This method will show the how to play subscene.
-     */
-    public void showHowToPlay() {
-        this.showSubScene(this.HOW_TO_PLAY);
-    }
-
-    /**
-     * This method will show the high scores subscene.
-     */
-    public void showHighscores() {
-        this.showSubScene(this.HIGHSCORES);
     }
 
     //=================  GETTERS ===============

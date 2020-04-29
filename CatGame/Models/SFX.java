@@ -1,4 +1,4 @@
-package CatGame;
+package CatGame.Models;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -7,7 +7,9 @@ import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 
 /**
- * This class lays out the SFX methods and enumerates the needed files. Author(s): Greg Dwyer LastUpdated: 4/12/20
+ * This class lays out the SFX methods and enumerates the needed files.
+ * Author(s): Greg Dwyer
+ * Last Updated: 4/12/20
  */
 public class SFX {
 

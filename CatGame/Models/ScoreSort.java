@@ -34,7 +34,7 @@ public class ScoreSort {
 
 // check if a player with that score already exists
             if ((playerList = highestScores.get(score)) == null) { // if NOT,
-                playerList = new ArrayList<String>(1); // CREATE a new list
+                playerList = new ArrayList<>(1); // CREATE a new list
                 playerList.add(playerScores[0]);
                 highestScores.put(Integer.valueOf(playerScores[1]), playerList);
             } // if YES, ADD to the existing list
@@ -45,18 +45,19 @@ public class ScoreSort {
 
 // iterate in descending order
          sortedScores = new ArrayList<String>();
-        String scores = "";
+        String entry;
         for (Integer score : highestScores.descendingKeySet()) {
             // iterate over player list
             for (String player : highestScores.get(score)) {
-                scores = player + " : " + score;
-                sortedScores.add(scores);
+                entry = player + " : " + score;
+                sortedScores.add(entry);
             }
         }
         } catch (Exception e) {
             System.out.println("ScoreSort: " + e);
         }
     }
+
 //=================  GETTERS ===============
 public ArrayList<String> getArrayList(){
     return sortedScores;

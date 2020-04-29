@@ -5,6 +5,7 @@ package CatGame.Controller;
  * Author(s): Greg Dwyer, hasler zuniga, anthony barrera
  * Last Updated: 4/27/20
  */
+
 import CatGame.Events.EventCodes;
 import CatGame.Models.CollisionChecker;
 import CatGame.Models.Input;
