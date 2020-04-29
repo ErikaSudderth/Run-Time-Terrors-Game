@@ -52,8 +52,6 @@ public class MenuView extends ViewManager {
     private ArrayList<String> topScores;
     ScoreSort sortGame = new ScoreSort();
 
-
-
     public MenuView(MenuController _cont) {
         this.mainPane = new AnchorPane();
         this.mainScene = new Scene(this.mainPane, MenuView.WIDTH, MenuView.HEIGHT);
@@ -74,6 +72,7 @@ public class MenuView extends ViewManager {
 
     /**
      * Use this method to show the passed subscene.
+     *
      * @param _subscene
      */
     public void showSubScene(SubSceneExt _subscene) {
@@ -83,6 +82,7 @@ public class MenuView extends ViewManager {
         _subscene.moveSubScene(center_x);
         subSceneOnScreen = _subscene;
     }
+
     /**
      * This method will populate the main menu with the proper buttons and set their actions.
      */
@@ -95,8 +95,8 @@ public class MenuView extends ViewManager {
     }
 
     /**
-     * This method is a helper to createMenuButtons.
-     * This one repeats the placement and code setting for each button.
+     * This method is a helper to createMenuButtons. This one repeats the placement and code setting for each button.
+     *
      * @param _text
      * @param _code
      */
@@ -107,6 +107,7 @@ public class MenuView extends ViewManager {
 
     /**
      * This method handles the actual placement of the button on the screen
+     *
      * @param _button
      * @param _code
      * @param _pane
@@ -123,6 +124,7 @@ public class MenuView extends ViewManager {
 
     /**
      * This method creates buttons that will have an attached subscene.
+     *
      * @param _text
      * @param _code
      * @param _scene
@@ -139,7 +141,7 @@ public class MenuView extends ViewManager {
      * This method populates the settings subscene.
      */
     private void populateSettings() {
-        this.SETTINGS = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
+        this.SETTINGS = new SubSceneExt(LAYOUT_X, LAYOUT_Y);
         this.createSubSceneButton("Volume Up", EventCodes.VOL_UP, this.SETTINGS);
         this.createSubSceneButton("Volume Down", EventCodes.VOL_DOWN, this.SETTINGS);
         this.createSubSceneButton("Toggle SFX", EventCodes.TOGGLE_SFX, this.SETTINGS);
@@ -150,20 +152,18 @@ public class MenuView extends ViewManager {
     /**
      * This method populates the how to play subscene.
      */
-
-    private void populateHowToPlay(){
-        this.HOW_TO_PLAY = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
+    private void populateHowToPlay() {
+        this.HOW_TO_PLAY = new SubSceneExt(LAYOUT_X, LAYOUT_Y);
         Text htp = new Text();
         htp.setLayoutX(this.HOW_TO_PLAY.getTextLayoutX());
         htp.setLayoutY(this.HOW_TO_PLAY.getTextLayoutY());
-        htp.setWrappingWidth(this.HOW_TO_PLAY.getWidth()- 2 * this.HOW_TO_PLAY.getTextLayoutX());
+        htp.setWrappingWidth(this.HOW_TO_PLAY.getWidth() - 2 * this.HOW_TO_PLAY.getTextLayoutX());
         htp.setLineSpacing(this.HOW_TO_PLAY.getTextSpacing());
         String howToPlay = "Arrow keys to move. Esc to quit.";
-        try{
-            htp.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.HOW_TO_PLAY.getTextSize() ));
+        try {
+            htp.setFont(Font.loadFont(new FileInputStream(this.FONT_PATH), this.HOW_TO_PLAY.getTextSize()));
             howToPlay = new String(Files.readAllBytes(Paths.get(this.HTP_INSTRUCTIONS)));
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         htp.setText(howToPlay);
@@ -176,10 +176,8 @@ public class MenuView extends ViewManager {
      * This method populates the high scores subscene.
      */
     private void populateHighscores() {
-        this.HIGHSCORES = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
-       topScores  = sortGame.getArrayList();
-        
-        
+        this.HIGHSCORES = new SubSceneExt(LAYOUT_X, LAYOUT_Y);
+        topScores = sortGame.getArrayList();
         this.mainPane.getChildren().add(this.HIGHSCORES);
     }
 
