@@ -177,7 +177,7 @@ public class MenuView extends ViewManager {
      */
     private void populateHighscores() {
         this.HIGHSCORES = new SubSceneExt(LAYOUT_X,LAYOUT_Y);
-       topScores  = sortGame.getArrayList();
+        topScores  = sortGame.getArrayList();
         
         
         this.mainPane.getChildren().add(this.HIGHSCORES);
