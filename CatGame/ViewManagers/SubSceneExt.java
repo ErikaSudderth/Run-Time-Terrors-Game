@@ -1,9 +1,11 @@
 package CatGame.ViewManagers;
 
 /**
- * This class handles the subscenes. Author(s) - Greg Last updated - 3/6/20
+ * This class handles the subscenes.
+ * Author(s) - Greg
+ * Last updated - 4/29/20
  */
-import CatGame.ButtonExt;
+
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -29,9 +31,9 @@ public class SubSceneExt extends SubScene {
     private final static int TEXT_LAYOUT_Y = 35;
     private final static int TEXT_SPACING = 10;
     private final static int TEXT_SIZE = 12;
-    private static int button_layout_x = 75;
-    private static int button_layout_y = 30;
-    private static int BUTTON_SPACING = 100;
+    private static int buttonLayoutY = 75;
+    private static int buttonLayoutX = 30;
+    private static int buttonSpacing = 100;
     private final static String BACKGROUND = "/resources/imgs/subscene_background.png";
     private final AnchorPane SUB_ANCHOR;
 
@@ -40,8 +42,8 @@ public class SubSceneExt extends SubScene {
         this.setLayoutX(SubSceneExt.LAYOUT_X);
         this.setLayoutY(SubSceneExt.LAYOUT_Y);
         BackgroundImage img = new BackgroundImage(new Image(SubSceneExt.BACKGROUND, SubSceneExt.PREF_WIDTH, SubSceneExt.PREF_HEIGHT, false, true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        SUB_ANCHOR = (AnchorPane) this.getRoot();
-        SUB_ANCHOR.setBackground(new Background(img));
+        this.SUB_ANCHOR = (AnchorPane) this.getRoot();
+        this.SUB_ANCHOR.setBackground(new Background(img));
     }
 
     /**
@@ -62,19 +64,22 @@ public class SubSceneExt extends SubScene {
         this.isHidden = !this.isHidden;
         transition.play();
     }
-//=================  SETTERS ===============
 
+//=================  SETTERS ===============
     public void setCenterX(int _centerX) {
-        center_x = _centerX;
+        this.center_x = _centerX;
     }
+
     public void setButtonSpacing(int _BUTTON_SPACING) {
-        BUTTON_SPACING = _BUTTON_SPACING;
+        this.buttonSpacing = _BUTTON_SPACING;
     }
+
      public void setButtonLayoutX(int _button_layout_x) {
-        button_layout_x = _button_layout_x;
+        this.buttonLayoutY = _button_layout_x;
     }
+
     public void setButtonLayoutY(int _button_layout_y) {
-        button_layout_y = _button_layout_y;
+        this.buttonLayoutX = _button_layout_y;
     }
 
 //=================  GETTERS ===============
@@ -83,15 +88,15 @@ public class SubSceneExt extends SubScene {
     }
 
     public int getButtonLayoutX() {
-        return SubSceneExt.button_layout_x;
+        return SubSceneExt.buttonLayoutY;
     }
 
     public int getButtonLayoutY() {
-        return SubSceneExt.button_layout_y;
+        return SubSceneExt.buttonLayoutX;
     }
 
     public int getButtonSpacing() {
-        return SubSceneExt.BUTTON_SPACING;
+        return SubSceneExt.buttonSpacing;
     }
 
     public int getTextLayoutX() {

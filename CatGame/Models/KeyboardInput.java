@@ -1,7 +1,9 @@
 package CatGame.Models;
 
 /**
- * This class lays out the keyboard functionality for gameplay. Author(s): Greg Dwyer, Erika Sudderth Last Updated: 3/25/20
+ * This class lays out the keyboard functionality for gameplay.
+ * Author(s): Greg Dwyer, Erika Sudderth
+ * Last Updated: 3/25/20
  */
 import CatGame.Controller.GameController;
 import javafx.event.EventHandler;

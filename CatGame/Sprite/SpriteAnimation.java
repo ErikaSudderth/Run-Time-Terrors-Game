@@ -12,24 +12,23 @@ import javafx.util.Duration;
 
 public class SpriteAnimation extends Transition {
 
-    private final ImageView imageView;
-    private final int frameCount;
-    private final int columns;
-    private final int offsetX;
-    private final int offsetY;
-    private final int width;
-    private final int height;
-
+    private final ImageView IMAGE_VIEW;
+    private final int FRAME_COUNT;
+    private final int COLUMNS;
+    private final int OFFSET_X;
+    private final int OFFSET_Y;
+    private final int WIDTH;
+    private final int HEIGHT;
     private int lastIndex;
 
     public SpriteAnimation(ImageView _imageView, Duration _duration, int _frameCount, int _columns, int _offsetX, int _offsetY, int _width, int _height) {
-        this.imageView = _imageView;
-        this.frameCount = _frameCount;
-        this.columns = _columns;
-        this.offsetX = _offsetX;
-        this.offsetY = _offsetY;
-        this.width = _width;
-        this.height = _height;
+        this.IMAGE_VIEW = _imageView;
+        this.FRAME_COUNT = _frameCount;
+        this.COLUMNS = _columns;
+        this.OFFSET_X = _offsetX;
+        this.OFFSET_Y = _offsetY;
+        this.WIDTH = _width;
+        this.HEIGHT = _height;
         this.setCycleDuration(_duration);
         this.setInterpolator(Interpolator.LINEAR);
     }
@@ -41,11 +40,11 @@ public class SpriteAnimation extends Transition {
      */
     @Override
     protected void interpolate(double _k) {
-        final int index = Math.min((int) Math.floor(_k * this.frameCount), this.frameCount - 1);
+        final int index = Math.min((int) Math.floor(_k * this.FRAME_COUNT), this.FRAME_COUNT - 1);
         if (index != this.lastIndex) {
-            final int x = (index % this.columns) * this.width + this.offsetX;
-            final int y = (index / this.columns) * this.height + this.offsetY;
-            this.imageView.setViewport(new Rectangle2D(x, y, this.width, this.height));
+            final int x = (index % this.COLUMNS) * this.WIDTH + this.OFFSET_X;
+            final int y = (index / this.COLUMNS) * this.HEIGHT + this.OFFSET_Y;
+            this.IMAGE_VIEW.setViewport(new Rectangle2D(x, y, this.WIDTH, this.HEIGHT));
             this.lastIndex = index;
         }
     }

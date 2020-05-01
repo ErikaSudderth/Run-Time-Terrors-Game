@@ -2,11 +2,10 @@ package CatGame.Sprite;
 
 /**
  * Cat class extends abstract Sprite class. Initializes the cat and calls on it to move and shoot claws.
- *
  * @author Erika Sudderth, Greg Dwyer Last updated: 4/9/20
  */
 
-import CatGame.SFX;
+import CatGame.Models.SFX;
 import CatGame.ViewManagers.ViewManager;
 import javafx.animation.Animation;
 import static javafx.animation.Animation.INDEFINITE;
@@ -14,6 +13,7 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
+import javafx.animation.Transition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
@@ -57,6 +57,13 @@ public class Cat extends Sprite {
     }
 
     /**
+     * This method ends the claw timeline. It is called during the cleanup for exiting the game.
+     */
+    public void endTimeline() {
+       this.clawTimeline.stop();
+    }
+
+    /**
      * This method creates the animation group for the cat object.
      */
     private void setAnimationFields() {
@@ -84,7 +91,7 @@ public class Cat extends Sprite {
         pathTransition.setDuration(Duration.seconds(this.CAT_SPEED));
         pathTransition.setNode(this.animationGroup);
         pathTransition.setPath(lines);
-        pathTransition.setCycleCount(INDEFINITE);
+        pathTransition.setCycleCount(Transition.INDEFINITE);
         pathTransition.setInterpolator(Interpolator.LINEAR);
         pathTransition.play();
     }
@@ -120,13 +127,6 @@ public class Cat extends Sprite {
         this.clawTimeline.getKeyFrames().add(new KeyFrame(Duration.millis(this.shootingSpeed), event -> this.createClawPath()));
         this.clawTimeline.setCycleCount(Animation.INDEFINITE);
         this.clawTimeline.play();
-    }
-
-    /**
-     * This method ends the claw timeline. It is called during the cleanup for exiting the game.
-     */
-    public void endTimeline() {
-       this.clawTimeline.stop();
     }
 
 //=================  GETTERS ===============
