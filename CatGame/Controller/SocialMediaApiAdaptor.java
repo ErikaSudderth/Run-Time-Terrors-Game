@@ -2,7 +2,7 @@ package CatGame.Controller;
 
 /**
  * The purpose of this file is to call the API.
- * Author Hasler, Greg
+ * Author Hasler Zuniga, Greg Dwyer
  * Last updated: 3/9/20
  *
  */

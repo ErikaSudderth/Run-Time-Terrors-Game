@@ -66,7 +66,6 @@ public class Mouse extends Sprite {
     /**
      * Use these methods to update the mouse's location on the X axis.
      *
-     * @param _distance This is the mouse's movement speed.
      */
     public void moveYUp() {
         if (this.ANIMATION_GROUP.getLayoutY() >= -ViewManager.getHeight() + (3 * this.DIMENSIONS)) {

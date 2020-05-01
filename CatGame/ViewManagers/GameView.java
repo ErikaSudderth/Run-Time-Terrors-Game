@@ -2,9 +2,10 @@ package CatGame.ViewManagers;
 
 /**
  * This is the Menu View Manager
- * Author(s) - Greg, Erika Sudderth, Anthony, Hasler
+ * Author(s) - Greg Dwyer, Erika Sudderth, Anthony Cardenas, Hasler Zuniga
  * Last Updated - 4/27/20
  */
+
 import CatGame.Controller.GameController;
 import CatGame.Events.EventCodes;
 import CatGame.Sprite.*;
@@ -252,6 +253,7 @@ public class GameView extends ViewManager {
 
         this.mainPane.getChildren().add(endgame);
     }
+
     /**
      * This method will post successful post.
      */

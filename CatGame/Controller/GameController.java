@@ -2,7 +2,7 @@ package CatGame.Controller;
 
 /**
  * This class will route the calls from the Game view.
- * Author(s): Greg Dwyer, hasler zuniga, anthony barrera
+ * Author(s): Greg Dwyer, Hasler Zuniga, Anthony Barrera
  * Last Updated: 4/27/20
  */
 
@@ -102,12 +102,14 @@ public class GameController {
         this.getViewStage().close();
         this.MENUSTAGE.show();
     }
+
     /**
      * This method ends the game.
      */
     public void showSuccessfulPost(String _input) {
         this.VIEW.showEndGameSuccess(_input);
     }
+
     /**
      * This method returns the user to the main menu and closes the game stage. KNOWN BUG - All of the path transitions continue to run and play sound after the stage is closed.
      */
@@ -135,8 +137,7 @@ public class GameController {
         _cat.endTimeline();
     }
 
-
-    //================GETTERS======================
+//================GETTERS======================
     public Scene getViewScene() {
         return this.VIEW.getMainScene();
     }
