@@ -1,8 +1,11 @@
 package CatGame;
 
 /**
- * This is the main method for the game. It calls the method to start the Menu view. Author(s) - Greg Last updated - 3/6/20
+ * This is the main method for the game. It calls the method to start the Menu view.
+ * Author(s) - Greg Dwyer
+ * Last updated - 3/6/20
  */
+
 import CatGame.Controller.MenuController;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -19,5 +22,4 @@ public class CatGame extends Application {
     public static void main(String[] args) {
         launch();
     }
-
 }

@@ -2,13 +2,13 @@ package CatGame.Sprite;
 
 /**
  * Cat class extends abstract Sprite class. Initializes the cat and calls on it to move and shoot claws.
- * @author Erika Sudderth, Greg Dwyer Last updated: 4/9/20
+ * @author Erika Sudderth, Greg Dwyer
+ * Last updated: 4/9/20
  */
 
 import CatGame.Models.SFX;
 import CatGame.ViewManagers.ViewManager;
 import javafx.animation.Animation;
-import static javafx.animation.Animation.INDEFINITE;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;

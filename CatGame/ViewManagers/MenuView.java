@@ -5,10 +5,10 @@ package CatGame.ViewManagers;
  * Author(s) - Greg Dwyer
  * Last updated - 4/27/20
  */
+
 import CatGame.Models.ScoreSort;
 import CatGame.Controller.MenuController;
 import CatGame.Events.EventCodes;
-import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -19,13 +19,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BackgroundImage;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -238,7 +236,7 @@ public class MenuView extends ViewManager {
         this.mainPane.getChildren().add(this.highscores);
     }
 
-    //=================  GETTERS ===============
+//=================  GETTERS ===============
     public static int getWIDTH() {
         return MenuView.WIDTH;
     }

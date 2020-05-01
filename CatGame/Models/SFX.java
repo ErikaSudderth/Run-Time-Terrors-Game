@@ -1,16 +1,16 @@
 package CatGame.Models;
 
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import java.io.File;
-import javafx.scene.media.AudioClip;
-import javafx.util.Duration;
-
 /**
  * This class lays out the SFX methods and enumerates the needed files.
  * Author(s): Greg Dwyer
  * Last Updated: 4/12/20
  */
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
+import javafx.scene.media.AudioClip;
+
 public class SFX {
 
     private static final String SFX_FOLDER = "src/resources/sfx/";
@@ -159,6 +159,7 @@ public class SFX {
     private static void setVolume() {
         SFX.music.setVolume(SFX.volume);
     }
+
 //===========GETTERS=======================
 
     public static boolean getSFXMute() {

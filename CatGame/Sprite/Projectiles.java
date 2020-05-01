@@ -4,7 +4,8 @@ package CatGame.Sprite;
  * Projectile class (for claws) that extends the Sprite class. Claws follow cat's
  * location for placement. Contains method to rotate claws.
  *
- * @author Erika Sudderth Last updated: 4/9/20
+ * @author Erika Sudderth
+ * Last updated: 4/9/20
  */
 
 import javafx.animation.Animation;
@@ -22,7 +23,6 @@ public class Projectiles extends Sprite {
     private final int ROTATION_ANGLE = 360;
     private Group animationGroup;
     private final String ID = "claw";
-
 
     public Projectiles(AnchorPane _pane) {
         this.spriteImage = new ImageView(this.CLAW_IMAGE);

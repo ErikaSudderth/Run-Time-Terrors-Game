@@ -1,11 +1,5 @@
 package CatGame.Sprite;
 
-import CatGame.ViewManagers.ViewManager;
-import java.util.Random;
-import javafx.scene.Node;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-
 /**
  * Cheese class that extends the Sprite class. Each cheese object will be
  * randomly placed.
@@ -13,6 +7,12 @@ import javafx.scene.layout.AnchorPane;
  * @author Erika Sudderth, Greg Dwyer
  * Last updated: 4/29/20
  */
+
+import CatGame.ViewManagers.ViewManager;
+import java.util.Random;
+import javafx.scene.Node;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 public class Cheese extends Sprite {
 
