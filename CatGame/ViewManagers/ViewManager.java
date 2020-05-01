@@ -1,8 +1,11 @@
 package CatGame.ViewManagers;
 
 /**
- * This class sets the base qualities of the views. Author(s) - Greg Last updated - 4/15/20
+ * This class sets the base qualities of the views.
+ * Author(s) - Greg
+ * Last updated - 4/15/20
  */
+
 import java.io.FileInputStream;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;

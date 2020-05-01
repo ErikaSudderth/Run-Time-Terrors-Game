@@ -2,7 +2,7 @@ package CatGame.Events;
 
 /**
  * This class defines the integer codes for all of the events.
- * Author(s): Greg, Hasler
+ * Author(s): Greg Dwyer, Hasler Zuniga
  * Last Updated: 4/22/20
  */
 public class EventCodes {

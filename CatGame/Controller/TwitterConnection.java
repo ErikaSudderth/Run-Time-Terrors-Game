@@ -2,9 +2,10 @@ package CatGame.Controller;
 
 /**
  * The purpose of this file is to call the API twitter bot so the high score can be posted on to twitter.
- * Author Hasler
+ * Author Hasler Zuniga
  * Last updated: 3/9/20
  */
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import twitter4j.Twitter;

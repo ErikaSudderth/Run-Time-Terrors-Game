@@ -1,5 +1,12 @@
 package CatGame.ViewManagers;
 
+/**
+ * This class allows buttons to be formatted.
+ *
+ * Author(s): Greg Dwyer
+ * Last updated: 4/30/20
+ */
+
 import CatGame.Models.SFX;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

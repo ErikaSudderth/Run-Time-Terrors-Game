@@ -1,10 +1,10 @@
 package CatGame.Models;
 
-/*
-this program will help sort the scores in a text file
-@author anthony cardenas barrera, Gregory Dwyer
-last updated:4/27/20
+/* This program will help sort the scores in a text file.
+ * @author Anthony Cardenas Barrera, Gregory Dwyer
+ * Last updated:4/27/20
  */
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,41 +12,43 @@ import java.util.TreeMap;
 import java.io.BufferedReader;
 
 public class ScoreSort {
-//create a BufferedReader
+    // Create a BufferedReader.
     private BufferedReader reader;
     private ArrayList<String> sortedScores;
-//method to sort the scores in the txt file
 
+    //Method to sort the scores in the text file.
     public ScoreSort() {
-// (key-value pairs) = (high score - (list of players)) sorts scores and handles those that are equal
+        // (key-value pairs) = (high score - (list of players)) sorts scores and handles those that are equal.
         TreeMap<Integer, List<String>> highestScores = new TreeMap<Integer, List<String>>();
-//try to open the GameScores.txt file
+
+        //Try to open the GameScores.txt file.
         try {
             this.reader = new BufferedReader(new FileReader("src/resources/GameScores.txt"));
 
             String line = null;
-//while loop
             while ((line = this.reader.readLine()) != null) {
                 String[] playerScores = line.split(": ");
                 int score = Integer.valueOf(playerScores[1]);
                 List<String> playerList = null;
 
-// check if a player with that score already exists
-                if ((playerList = highestScores.get(score)) == null) { // if NOT,
-                    playerList = new ArrayList<>(1); // CREATE a new list
+                // Check if a player with that score already exists.
+                if ((playerList = highestScores.get(score)) == null) {
+                    // If not, create a new list.
+                    playerList = new ArrayList<>(1);
                     playerList.add(playerScores[0]);
                     highestScores.put(Integer.valueOf(playerScores[1]), playerList);
-                } // if YES, ADD to the existing list
+                }
+                // If yes, add to the existing list.
                 else {
                     playerList.add(playerScores[0]);
                 }
             }
 
-// iterate in descending order
+            // Iterate in descending order.
             this.sortedScores = new ArrayList<String>();
             String entry;
             for (Integer score : highestScores.descendingKeySet()) {
-                // iterate over player list
+                // Iterate over the player list.
                 for (String player : highestScores.get(score)) {
                     entry = player + " : " + score;
                     this.sortedScores.add(entry);

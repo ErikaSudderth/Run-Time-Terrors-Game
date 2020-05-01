@@ -18,7 +18,7 @@ public abstract class Input {
     private boolean space;
     private boolean esc;
 
-    //=================  GETTERS ===============
+//=================  GETTERS ===============
     public boolean isUp() {
         return this.up;
     }

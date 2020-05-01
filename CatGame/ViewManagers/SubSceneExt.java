@@ -2,13 +2,11 @@ package CatGame.ViewManagers;
 
 /**
  * This class handles the subscenes.
- * Author(s) - Greg
+ * Author(s) - Greg Dwyer
  * Last updated - 4/29/20
  */
 
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.SubScene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -50,7 +48,7 @@ public class SubSceneExt extends SubScene {
      * This method moves the subscene from its hidden position off screen, onto the screen.
      */
     public void moveSubScene(int _centerX) {
-        setCenterX(_centerX);
+        this.setCenterX(_centerX);
         TranslateTransition transition = new TranslateTransition();
         transition.setDuration(Duration.seconds(0.3));
         transition.setNode(this);

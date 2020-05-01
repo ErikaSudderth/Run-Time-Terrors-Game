@@ -2,8 +2,11 @@ package CatGame.Sprite;
 
 /**
  * This animation class is adapted from an example by Michael Heinrichs found at netopyr.com/2012/03/09/creating-a-sprite-animation-with-javafx/. A SpriteAnimation object sets and plays the frames for
- * a sprite. Author(s): Michael Heinrichs, Greg Dwyer Last Updated: 3/20/20
+ * a sprite.
+ * Author(s): Michael Heinrichs, Greg Dwyer
+ * Last Updated: 3/20/20
  */
+
 import javafx.animation.Interpolator;
 import javafx.animation.Transition;
 import javafx.geometry.Rectangle2D;
