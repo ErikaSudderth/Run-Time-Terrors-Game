@@ -3,7 +3,7 @@ package CatGame.Models;
 /**
  * This class holds the logic for checking collisions.
  * Author(s) Gregory Dwyer, Hasler Zuniga
- * Last updated: 4/15/20
+ * Last updated: 4/30/20
  */
 
 import CatGame.Controller.GameController;
@@ -22,10 +22,24 @@ public class CollisionChecker {
     private final static String CHEESE = "cheese";
     private final static String HAIRBALL = "hairball";
     private final static String DOOR = "door";
+    private boolean testScenario = false;
 
     public CollisionChecker(GameController _cont, Mouse _mouse) {
         this.CONTROLLER = _cont;
         this.MOUSE = _mouse;
+        this.testScenario = false;
+    }
+
+    /**
+     * This is an overloaded constructor to run the test methods.
+     * @param _cont
+     * @param _mouse
+     * @param _test
+     */
+    public CollisionChecker(GameController _cont, Mouse _mouse, boolean _test) {
+        this.CONTROLLER = _cont;
+        this.MOUSE = _mouse;
+        this.testScenario = _test;
     }
 
     /**
@@ -33,29 +47,35 @@ public class CollisionChecker {
     * @param _nodes This is the list of nodes to check.
     */
     public void checkCollisionsList(List<Node> _nodes) {
-        for (Node n : _nodes) {
-            switch (n.getId()) {
-                case CollisionChecker.CAT:
-                    //Fall through.
-                case CollisionChecker.HAIRBALL:
-                    //Fall through.
-                case CollisionChecker.CLAW:
-                    this.checkEnemyCollision(n);
-                    break;
-                case CollisionChecker.CHEESE:
-                    if (!this.MOUSE.hasCheese()) {
-                        this.checkCheeseCollision(n);
-                    }
-                    break;
-                case CollisionChecker.DOOR:
-                    if (this.MOUSE.hasCheese()) {
-                        if (this.checkDoorCollision(n)) {
-                            this.CONTROLLER.replaceCheese(this.MOUSE.getCollectedCheese());
+        try{
+            for (Node n : _nodes) {
+                switch (n.getId()) {
+                    case CollisionChecker.CAT:
+                        //Fall through.
+                    case CollisionChecker.HAIRBALL:
+                        //Fall through.
+                    case CollisionChecker.CLAW:
+                        this.checkEnemyCollision(n);
+                        break;
+                    case CollisionChecker.CHEESE:
+                        if (!this.MOUSE.hasCheese()) {
+                            this.checkCheeseCollision(n);
                         }
-                    }
-                    break;
-                default:
-                    //Ignore the node and continue.
+                        break;
+                    case CollisionChecker.DOOR:
+                        if (this.MOUSE.hasCheese()) {
+                            if (this.checkDoorCollision(n)) {
+                                this.CONTROLLER.replaceCheese(this.MOUSE.getCollectedCheese());
+                            }
+                        }
+                        break;
+                    default:
+                        //Ignore the node and continue.
+                }
+            }
+        } catch(Exception e){
+            if(this.testScenario) {
+                System.out.println(e);
             }
         }
     }
@@ -68,6 +88,12 @@ public class CollisionChecker {
     private boolean checkCollision(Node _node) {
         Bounds nodeBounds = _node.getBoundsInParent();
         Bounds mouseBounds = this.MOUSE.getAnimationGroup().getBoundsInParent();
+
+        //This block is only used for the CollisionTest class.
+        if(this.testScenario && mouseBounds.intersects(nodeBounds.getMinX() + this.FUDGE, nodeBounds.getMinY() + this.FUDGE, nodeBounds.getWidth() - this.FUDGE * 2, nodeBounds.getHeight() - this.FUDGE * 2) ) {
+            System.out.println("Mouse has collided with " + _node.getId());
+        }
+
         //The "FUDGE" value helps account for transparent pixels in enemies.
         return mouseBounds.intersects(nodeBounds.getMinX() + this.FUDGE, nodeBounds.getMinY() + this.FUDGE, nodeBounds.getWidth() - this.FUDGE * 2, nodeBounds.getHeight() - this.FUDGE * 2);
     }

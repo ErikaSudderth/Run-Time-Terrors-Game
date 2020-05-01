@@ -15,14 +15,14 @@ import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterConnection implements SocialMediaInterface {
 
-    private String authConsumerKey = "zkxzfcERcpPlZGpb9Xdiboo3J";
+    private String authConsumerKey = "DSFzkxzfcERcpPlZGpb9Xdiboo3J";
     private String authConsumerSecret = "Q6PEwZ88d6jnv5gRbR2Pw1f25f1DYxUqQHPTUcqsdS0YgliY9C";
     private String authAccessToken = "1222276825969131520-3iuVn78RpduNEViVwixUHDx6sFYBtT";
     private String authAccessTokenSecret = "AsYy7yoPW8lvkbY5fdQdcztktoBDq295Fr55AGsHQMKNz";
     private GameController controller;
     private ConfigurationBuilder configBuilder = new ConfigurationBuilder();
-    private String success = "Your Score has been successfully posted";
-    private String fail = "failed to post to Twitter";
+    private String success = "Your score has been successfully posted.";
+    private String fail = "There was an error.\nYour score failed to post to Twitter.";
 
 
     public TwitterConnection(GameController _controller){

@@ -248,7 +248,7 @@ public class GameView extends ViewManager {
 
 
         this.endGame.getSubAnchor().getChildren().add(this.createEndInstructions(instruct));
-        this.endGame.getSubAnchor().getChildren().add(field);
+        this.endGame.getSubAnchor().getChildren().add(this.field);
         this.endGame.getSubAnchor().getChildren().add(this.createLabel());
 
         this.mainPane.getChildren().add(endgame);
@@ -261,7 +261,6 @@ public class GameView extends ViewManager {
         this.createSubSceneButton("Go To Menu", EventCodes.EXIT, this.endGame);
 
         this.endGame.getSubAnchor().getChildren().add(this.createEndInstructions(_input));
-        this.endGame.getSubAnchor().getChildren().add(field);
     }
 
     /**
