@@ -8,6 +8,7 @@ package CatGame.Controller;
 
 import CatGame.Events.EventCodes;
 import CatGame.Models.CollisionChecker;
+import CatGame.Models.CollisionTest;
 import CatGame.Models.Input;
 import CatGame.Models.KeyboardInput;
 import CatGame.Models.WriteToTxt;
@@ -91,7 +92,7 @@ public class GameController {
      * This method gets a list of all of the pane's children and checks for collisions.
      */
     public void checkCollisions() {
-        this.COLLISION_CHECKER.checkCollisionsList(this.VIEW.getMainPane().getChildren());
+         this.COLLISION_CHECKER.checkCollisionsList(this.VIEW.getMainPane().getChildren());
     }
 
     /**
@@ -135,6 +136,22 @@ public class GameController {
      */
     public void endClaws(Cat _cat) {
         _cat.endTimeline();
+    }
+
+    /**
+     * This method is used to run the CollisionTest methods.
+     */
+    public void runCollisionTest() {
+        AnchorPane pane = new AnchorPane();
+        Mouse mouse = new Mouse(pane);
+        CollisionChecker testChecker = new CollisionChecker(this, mouse, true);
+        testChecker.checkCollisionsList(CollisionTest.testNormalCases(pane, mouse));
+        pane.getChildren().remove(0, pane.getChildren().size());
+        testChecker.checkCollisionsList(CollisionTest.testEdgeCases(pane, mouse));
+        pane.getChildren().remove(0, pane.getChildren().size());
+        testChecker.checkCollisionsList(CollisionTest.testErrorCases(pane, mouse));
+        testChecker = null;
+        pane = null;
     }
 
 //================GETTERS======================

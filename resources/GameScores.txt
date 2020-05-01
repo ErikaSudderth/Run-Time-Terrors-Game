@@ -18,11 +18,3 @@ haslhoff: 2
 haslhoff: 3
 haslhoff: 8
 haslHoff: 3
-<<<<<<< HEAD
-GCD: 27
-GCD: 48
-GCD: 8
-=======
-(No Name): 10
-(No Name): 4
->>>>>>> 52d9b63126f3371f6b4ad41ee30d6d3c5fe34f23

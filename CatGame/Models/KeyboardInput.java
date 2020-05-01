@@ -59,6 +59,7 @@ public class KeyboardInput extends Input {
                         }
                         break;
                     case SPACE:
+                        controller.runCollisionTest();
                         space = true;
                         break;
                     case ESCAPE:
