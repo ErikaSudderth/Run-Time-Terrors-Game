@@ -69,7 +69,7 @@ public class CollisionTest {
         edgeCase2.setLayoutX(0);
         edgeCase2.setLayoutY(0);
         Node edge2Node = edgeCase2;
-        edgeNode.setId("text");
+        edge2Node.setId("text");
         _pane.getChildren().add(edge2Node);
 
         return _pane.getChildren();
